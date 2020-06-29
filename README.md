@@ -19,21 +19,19 @@ To install all required dependencies, run
 npm install
 ```
 You'll also need a Discord API and IGDB API key if you are planning on hosting this yourself.
-## Usage
-Invite the bot to your server using this link: https://discord.com/oauth2/authorize?client_id=725749175282696194&scope=bot&permissions=8 
-
-To run the bot, run ```node ./index.js```. Once the bot says ```Ready to go!```, you can begin issuing command to the bot in your server.
 
 ## Commands
 Game Info Bot uses the following commands:
 
-`about` Get info about the bot
+`about` Get info about the bot.
 
-`gameinfo`  Get general information of a particular game
+`gameinfo`  Get general information of a particular game.
 
-`gametime`  Get the time to complete a game's campaign and DLC 
+`gametime`  Get the time to complete a game's campaign and DLC. 
 
-`help` The bot will DM you of info of all commands
+`haloquote` Send a line of dialogue from the Halo series! Quotes are picked at random.
+
+`help` The bot will DM you of info of all commands.
 
 
 ## Support
