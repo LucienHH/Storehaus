@@ -1,0 +1,25 @@
+{
+  "name": "gamereleasebot",
+  "version": "1.0.0",
+  "description": "A discord bot that provides a wealth of information on video games.",
+  "main": "index.js",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "find-config": "^1.0.0",
+    "howlongtobeat": "^1.2.1",
+    "igdb-api-node": "^4.0.4",
+    "node-fetch": "^2.6.0",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": " "
+  },
+  "author": "",
+  "license": "ISC"
+}
