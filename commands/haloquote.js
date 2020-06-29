@@ -8,6 +8,5 @@ module.exports = {
         var quoteList = ["Halo Lines Go Here!"];
 		var quote = Math.floor(Math.random() * quoteList.length);
 		message.channel.send(quoteList[quote]);
-        //message.channel.send("Kappa bot best bot, mean.. PONG!!")
     },
 };
