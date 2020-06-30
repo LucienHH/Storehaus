@@ -25,13 +25,15 @@ Game Info Bot uses the following commands:
 
 `gameinfo`  Get general information of a particular game.
 
+`gamereview` Read a review and score of a game.
+
 `gametime`  Get the time to complete a game's campaign and DLC. 
 
 `haloquote` Send a line of dialogue from the Halo series! Quotes are picked at random.
 
 `help` The bot will DM you of info of all commands.
 
-`trivia` Learn something new about gaming!
+`trivia` Learn something new about gaming, TV, film, and history.
 
 
 ## Support
