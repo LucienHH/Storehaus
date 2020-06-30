@@ -1,6 +1,6 @@
 //Required API token
 require('dotenv').config({ path: require('find-config')('.env') });
-const { get } = require('../helpers/gamespot')
+//const { get } = require('../helpers/gamespot')
 
 const Discord = require('discord.js');
 const client = new Discord.Client();
