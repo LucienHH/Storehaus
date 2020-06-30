@@ -8,14 +8,23 @@ module.exports = {
     description: 'Dad joke lol',
     cooldown: 5,
     async execute(message, args) {
-        const { file } = await fetch('https://icanhazdadjoke.com/', {
-            method: 'GET',
-            headers: {
-              'accept': 'text/plain'
-            }
-          });
+        // fetch('https://icanhazdadjoke.com/')
+        var request = require('request');// need this for below to work 
         
-        message.channel.send(file);
-        return;
+        var url = 'https://icanhazdadjoke.com/';
+        
+        request.get({
+            url: url,
+            json: true,
+            headers: {'User-Agent': 'request'}
+          }, (err, res, data) => {
+            if (err) {
+              console.log('Error:', err);
+            }
+            else {
+              // data is already parsed as JSON:
+              message.channel.send(data.joke)
+            }
+        });
     },
 };
