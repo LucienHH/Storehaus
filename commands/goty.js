@@ -11,18 +11,21 @@ module.exports = {
         let game = args.slice(0).join(" ");
         //GET
         //Test query below
+        let embed = new Discord.MessageEmbed()
+        .setColor("#ff00ff")
+        .setTitle("GOTY CONTENDERS [insert year here]")
+
+        var y = 0; // used as counter for data.results mapping 
         fetch("https://api.rawg.io/api/games?dates=2019-01-01,2019-12-31&ordering=-added")
             .then(response => response.json())
             .then(data => data.results.map( d => {
-                const embed = new Discord.MessageEmbed()
-                .setColor("#ff00ff")
-                .addField('GOTY:' , `${d.name}`)
-                // .addField('Answer:', `${d.correct_answer}`)
-                message.channel.send(embed);
-
-                delete embed;
+                embed.addField("\u200B", `${d.name}`)
+                y++;
+                y==10?message.channel.send(embed):0; //if 10 send embed otherwise don't 
 
             }));
+            delete embed;
+
         return;
     },
 };
