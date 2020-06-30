@@ -25,10 +25,29 @@ module.exports = {
         
         ;
         // message.channel.send(query)
-        const { list } = get(`http://www.gamespot.com/api/reviews?api_key=${process.env.gamespot_token}&format=json&limit=1&filter=title%3A${query}&limit=1`, message)
+        // const { list } = get(`https://www.gamespot.com/api/reviews/?api_key=${process.env.gamespot_token}&format=json&limit=1&filter=title%3AWitcher%203`)
+        // let list = get(`http://www.gamespot.com/api/reviews?api_key=${process.env.gamespot_token}&format=json&limit=1&filter=title%3A${args.join(' ')}&limit=1`, message)
 
+
+        fetch(`http://www.gamespot.com/api/reviews?api_key=${process.env.gamespot_token}&format=json&limit=1&filter=title%3A${args.join(' ')}&limit=1`)
+            .then(response => response.json())
+            .then(data => data.results.map( d => {
+                const embed = new Discord.MessageEmbed()
+                .setColor("#ff00ff")
+                .setTitle(`${d.title} by ${d.authors}`)
+                .addField('Good :' , `${d.good}`)
+                .addField('Bad:' , `${d.bad}`)
+                .addField('Score:' , `${d.score}`)
+
+                message.channel.send(embed);
+
+                delete embed;
+                
+            }));
         //currently failing ^
-        
+        // list.map(r => console.log(r));
+
+        return;
         if (!list.length) {
             return message.channel.send(`No results found for **${args.join(' ')}**.`);
         }

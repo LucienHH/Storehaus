@@ -87,7 +87,7 @@ module.exports.get = async (url, query, message, args) =>{
                 .addField("Title ", body[num].name)
                 .addField("Description ", game_summary)
                 .addField("Link ", body[num].url)
-                .addField("Release Date ", releaseDate.toGMTString())
+                .addField("Release Date ", releaseDate.toGMTString().slice(0,-13))
                 // .setImage(body[0].url)
                 .setTimestamp();
             
