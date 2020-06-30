@@ -11,7 +11,7 @@ const fetch = require('node-fetch');
 module.exports = {
     name: 'gamereview',
     description: 'Get reviews about a game.',
-    cooldown: 10000,
+    cooldown: 5,
     async execute(message, args) {
         let game = args.slice(0).join(" ");
         const querystring = require('querystring')

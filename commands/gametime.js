@@ -3,7 +3,7 @@ const client = new Discord.Client();
 module.exports = {
 	name: 'gametime',
 	description: 'Get information about the time to beat and complete a game.',
-	cooldown: 10000,
+	cooldown: 5,
 	execute(message, args) {
         let game = args.slice(0).join(" ");
 

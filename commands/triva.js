@@ -6,7 +6,7 @@ const fetch = require('node-fetch');
 module.exports = {
     name: 'trivia',
     description: 'Learn something new about gaming!',
-    cooldown: 0,
+    cooldown: 5,
     async execute(message, args) {
         //GET
         fetch("https://opentdb.com/api.php?amount=1&category=15")
@@ -17,7 +17,7 @@ module.exports = {
                 .addField('Trivia:' , `${d.question}`)
                 .addField('Answer:', `${d.correct_answer}`)
                 message.channel.send(embed);
-                
+
                 delete embed;
 
             }));
