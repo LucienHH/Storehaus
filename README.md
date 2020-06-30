@@ -18,8 +18,6 @@ To install all required dependencies, run
 ```bash
 npm install
 ```
-You'll also need a Discord API and IGDB API key if you are planning on hosting this yourself.
-
 ## Commands
 Game Info Bot uses the following commands:
 
@@ -32,6 +30,8 @@ Game Info Bot uses the following commands:
 `haloquote` Send a line of dialogue from the Halo series! Quotes are picked at random.
 
 `help` The bot will DM you of info of all commands.
+
+`trivia` Learn something new about gaming!
 
 
 ## Support
