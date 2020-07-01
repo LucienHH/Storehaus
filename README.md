@@ -23,11 +23,17 @@ Game Info Bot uses the following commands:
 
 `about` Get info about the bot.
 
+`dadjoke` Dad joke lol.
+
+`deals` Check if a game is on sale on Steam.
+
 `gameinfo`  Get general information of a particular game.
 
 `gamereview` Read a review and score of a game.
 
 `gametime`  Get the time to complete a game's campaign and DLC. 
+
+`goty` See what the best games are for a particular year.
 
 `haloquote` Send a line of dialogue from the Halo series! Quotes are picked at random.
 

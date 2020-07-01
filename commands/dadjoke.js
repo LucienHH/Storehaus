@@ -8,7 +8,6 @@ module.exports = {
     description: 'Dad joke lol',
     cooldown: 5,
     async execute(message, args) {
-        // fetch('https://icanhazdadjoke.com/')
         var request = require('request');// need this for below to work 
         
         var url = 'https://icanhazdadjoke.com/';
