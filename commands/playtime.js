@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 module.exports = {
-	name: 'gametime',
+	name: 'playtime',
 	description: 'Get information about the time to beat and complete a game.',
 	cooldown: 5,
 	execute(message, args) {

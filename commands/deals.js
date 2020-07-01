@@ -28,9 +28,10 @@ module.exports = {
                 const embed = new Discord.MessageEmbed()
                 .setColor("#ff00ff")
                 .setTitle(`Steam deals for ${d.title}`)
-                .addField('Current sale price: ', `${d.salePrice}`)
-                .addField('Normal price: ', `${d.normalPrice}`)
-                .addField("Sale started: ", saleStart.toGMTString().slice(0,-13))
+                .addField('Current sale price: ', `$${d.salePrice}`)
+                .addField('Normal price: ', `$${d.normalPrice}`)
+                .addField("Last price change: ", saleStart.toGMTString().slice(0,-13))
+                .addField("Steam user reviews:", `${d.steamRatingText}`)
                 //Cheapshark requests redirect URL
                 .addField("Get this game:", `https://www.cheapshark.com/redirect?dealID=${d.dealID}`)
                 message.channel.send(embed);

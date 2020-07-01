@@ -1,5 +1,6 @@
 # Game Info Bot
 A Discord bot that returns helpful information of video games, including general information, completion time, and review scores.
+
 ## Installation
 Create a copy of `.env-sample` and name it `.env`, then add the required tokens. This file won't be commited.
 
@@ -31,13 +32,13 @@ Game Info Bot uses the following commands:
 
 `gamereview` Read a review and score of a game.
 
-`gametime`  Get the time to complete a game's campaign and DLC. 
-
 `goty` See what the best games are for a particular year.
 
 `haloquote` Send a line of dialogue from the Halo series! Quotes are picked at random.
 
 `help` The bot will DM you of info of all commands.
+
+`playtime`  Get the time to complete a game's campaign and DLC. 
 
 `trivia` Learn something new about gaming, TV, film, and history.
 
@@ -52,4 +53,4 @@ Main contributors to Game Info Bot:
 * https://github.com/Patross 
 * https://github.com/NicmeisteR 
 
-Game Info Bot is open source, so feel free to contribute to it to make it better!
+Game Info Bot is open source. If you plan on using this code for your own project, please have a reference to this project :)

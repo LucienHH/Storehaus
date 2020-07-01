@@ -22,7 +22,7 @@ module.exports = {
                 embed.addField("\u200B", `${d.name}`)
                 y++;
                 y==10?message.channel.send(embed):0; //if 10 send embed otherwise don't 
-
+                embed.setFooter("Try running !gameinfo (name of game) to learn more about a game!")
             }));
             delete embed;
 
