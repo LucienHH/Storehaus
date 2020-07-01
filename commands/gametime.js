@@ -26,7 +26,7 @@ module.exports = {
                 .addField("Main Campaign Time: ", body[0].gameplayMain + " hours")
                 .addField("Main Campaign + DLC Time: ", body[0].gameplayMainExtra + " hours")
                 .addField("100% Completionist Time: ", body[0].gameplayCompletionist + " hours")
-                .addField("Info", "This data is from IGDB. Support them at https://www.igdb.com/discover")
+                .setFooter("This data is from IGDB. Support them at https://www.igdb.com/discover")
         
                 message.channel.send(info);
                 delete info;

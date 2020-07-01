@@ -27,11 +27,18 @@ module.exports = {
         fetch(`http://www.gamespot.com/api/reviews?api_key=${process.env.gamespot_token}&format=json&limit=1&filter=title%3A${args.join(' ')}&limit=1`)
             .then(response => response.json())
             .then(data => data.results.map( d => {
+
+                d.authors.replace("",". ");
+                var good = d.good;
+                var bad  = d.bad
+                convertedGood = good.replace(/\|/g,". ");
+                convertedBad = bad.replace(/\|/g,". ");
+
                 const embed = new Discord.MessageEmbed()
                 .setColor("#ff00ff")
                 .setTitle(`${d.title} by ${d.authors}`)
-                .addField('Good :' , `${d.good}`)
-                .addField('Bad:' , `${d.bad}`)
+                .addField('Good :' , `${convertedGood}`)
+                .addField('Bad:' , `${convertedBad}`)
                 .addField('Score:' , `${d.score}`)
                 .addField('Date Published:' , `${d.publish_date}`.slice(0,-8))
                 .addField(`Link to full ${d.title} : `, `${d.site_detail_url}`)

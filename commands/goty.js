@@ -13,10 +13,10 @@ module.exports = {
         //Test query below
         let embed = new Discord.MessageEmbed()
         .setColor("#ff00ff")
-        .setTitle("GOTY CONTENDERS [insert year here]")
+        .setTitle(`GOTY CONTENDERS ${args[0]}`)
 
         var y = 0; // used as counter for data.results mapping 
-        fetch("https://api.rawg.io/api/games?dates=2019-01-01,2019-12-31&ordering=-added")
+        fetch(`https://api.rawg.io/api/games?dates=${args[0]}-01-01,${args[0]}-12-31&ordering=-added`)
             .then(response => response.json())
             .then(data => data.results.map( d => {
                 embed.addField("\u200B", `${d.name}`)
