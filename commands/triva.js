@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'trivia',
-    description: 'Learn something new about gaming, TV, film, and history. Do trivia `(game, TV, film, or history)` to learn more.',
+    description: 'Learn something new about gaming, TV, film, and history. Try trivia `(game, TV, film, or history)` to learn more.',
     cooldown: 5,
     async execute(message, args) {
 

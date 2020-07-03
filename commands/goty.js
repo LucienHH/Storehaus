@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'goty',
-    description: 'Learn something new about gaming!',
+    description: 'Learn something new about gaming! Try !goty `name of game`!',
     cooldown: 5,
     async execute(message, args) {
         let game = args.slice(0).join(" ");

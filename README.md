@@ -26,11 +26,11 @@ Game Info Bot uses the following commands:
 
 `dadjoke` Dad joke lol.
 
-`deals` Check if a game is on sale on Steam.
-
 `gameinfo`  Get general information of a particular game.
 
 `gamereview` Read a review and score of a game.
+
+`gogdeals` Check if a game is on sale on GoG.
 
 `goty` See what the best games are for a particular year.
 
@@ -39,6 +39,8 @@ Game Info Bot uses the following commands:
 `help` The bot will DM you of info of all commands.
 
 `playtime`  Get the time to complete a game's campaign and DLC. 
+
+`steamdeals` Check if a game is on sale on Steam.
 
 `trivia` Learn something new about gaming, TV, film, and history.
 
