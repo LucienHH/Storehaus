@@ -13,11 +13,14 @@ module.exports = {
         let embed = new Discord.MessageEmbed()
         .setColor("#ff00ff")
         .setTitle(`Articles for Halopedia`)
-        fetch(`https://www.halopedia.org/api.php?list=random&action=query&format=json&rnlimit=5&rnnamespace=0`)
+        fetch(`https://www.halopedia.org/api.php?list=random&action=query&format=json&rnlimit=1&rnnamespace=0`)
             .then(response => response.json())
-            .then(data => data.results.map( d => {
-                embed.addField("Title:", `${d.title}`)
-            }));
+            .then(data => {
+                console.log(data.query.random.map(d => {
+                    console.log(d)
+                }))
+            }
+            );
             delete embed;
 
         return;
