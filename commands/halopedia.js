@@ -18,6 +18,10 @@ module.exports = {
             .then(data => {
                 console.log(data.query.random.map(d => {
                     console.log(d)
+                    let embed = new Discord.MessageEmbed()
+                    .setColor("#ff00ff")
+                    .addField("Article" ,d.title);
+                    message.channel.send(embed);
                 }))
             }
             );

@@ -54,7 +54,7 @@ module.exports.get = async (url, query, message, args) =>{
         
         
         const filter = m => m.author.id === message.author.id;
-        message.channel.awaitMessages(filter, {max: 1, time: 10000}).then(collectedMessage => {
+        message.channel.awaitMessages(filter, {max: 1, time: 15000}).then(collectedMessage => {
             let parsedInt = parseInt(collectedMessage.first().content);
             if(isNaN(parsedInt) || (parsedInt <1 || parsedInt > body.length) ){
                 message.channel.send(`You need to provide a number between 1 and ${body.length}`)
