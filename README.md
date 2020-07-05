@@ -22,9 +22,7 @@ npm install
 ## Commands
 Game Info Bot uses the following commands:
 
-`about` Get info about the bot.
-
-`dadjoke` Dad joke lol.
+#### Gaming Commands
 
 `gameinfo`  Get general information of a particular game.
 
@@ -38,14 +36,21 @@ Game Info Bot uses the following commands:
 
 `haloquote` Send a line of dialogue from the Halo series! Quotes are picked at random.
 
-`help` The bot will DM you of info of all commands.
-
 `playtime`  Get the time to complete a game's campaign and DLC. 
 
 `steamdeals` Check if a game is on sale on Steam.
 
+#### Humor and Info Commands
+
+`dadjoke` Dad joke lol.
+
 `trivia` Learn something new about gaming, TV, film, and history.
 
+#### Misc. Commands
+
+`about` Get info about the bot.
+
+`help` The bot will DM you of info of all commands.
 
 ## Support
 If you are stuck using this bot, you can go to discord.teamrespawntv.com and ask for help.
