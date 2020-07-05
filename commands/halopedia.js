@@ -6,21 +6,26 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'halopedia',
-    description: 'Get deals about a game on Steam. Try !steamdeals `name of game`!',
+    description: 'Retrieve a random article from the Halo lore website Halopedia.org. Try !halopedia `random`!',
     cooldown: 5,
     async execute(message, args) {
-        
-        let embed = new Discord.MessageEmbed()
-        .setColor("#ff00ff")
-        .setTitle(`Articles for Halopedia`)
+        let option = args.slice(0).join(" ");
+
+        //Get random article from Halopedia
+        if(option == "random"){
         fetch(`https://www.halopedia.org/api.php?list=random&action=query&format=json&rnlimit=1&rnnamespace=0`)
             .then(response => response.json())
             .then(data => {
                 console.log(data.query.random.map(d => {
                     console.log(d)
+                    //modify title string so URL works
+                    halopediaTitle = d.title.split(" ").join("%20")
+                    console.log(halopediaTitle)
                     let embed = new Discord.MessageEmbed()
                     .setColor("#ff00ff")
-                    .addField("Article" ,d.title);
+                    .addField("Random article from Halopedia" ,d.title)
+                    .addField("Read more about this article at" ,`https://www.halopedia.org/${halopediaTitle}`)
+                    .setFooter("Halo lore retrieved from Halopedia.org");
                     message.channel.send(embed);
                 }))
             }
@@ -28,5 +33,7 @@ module.exports = {
             delete embed;
 
         return;
+        }
+        //end random retrieval
     }
 };

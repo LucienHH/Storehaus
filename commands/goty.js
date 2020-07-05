@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'goty',
-    description: 'Learn something new about gaming! Try !goty `name of game`!',
+    description: 'Learn the best games from a particular year! Try !goty `year`!',
     cooldown: 5,
     async execute(message, args) {
         let game = args.slice(0).join(" ");
@@ -13,7 +13,7 @@ module.exports = {
         //Test query below
         let embed = new Discord.MessageEmbed()
         .setColor("#ff00ff")
-        .setTitle(`GOTY CONTENDERS ${args[0]}`)
+        .setTitle(`Game of the Year Contenders for ${args[0]}`)
 
         var y = 0; // used as counter for data.results mapping 
         fetch(`https://api.rawg.io/api/games?dates=${args[0]}-01-01,${args[0]}-12-31&ordering=-added`)

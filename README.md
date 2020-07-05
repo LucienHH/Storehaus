@@ -34,6 +34,8 @@ Game Info Bot uses the following commands:
 
 `goty` See what the best games are for a particular year.
 
+`halopedia` Retrieve a random article from the Halo lore website Halopedia.org.
+
 `haloquote` Send a line of dialogue from the Halo series! Quotes are picked at random.
 
 `help` The bot will DM you of info of all commands.
