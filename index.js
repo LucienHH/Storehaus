@@ -3,7 +3,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-//This is for REST API. Not implemented yet kappa
+//This is for REST API.
 const fetch = require('node-fetch');
 const querystring = require('querystring');
 
@@ -20,9 +20,9 @@ for (const file of commandFiles) {
 client.once('ready', () => {
 	console.log('Ready to go!');
 
-	client.user.setActivity("!help", {
+	client.user.setActivity(`!help in ${client.guilds.cache.size} servers`, {
 		type: "STREAMING",
-		//url: "https://github.com/AndyTheNerd/GameReleaseBot/"
+		//url: "Some URL here"
 	});
 });
 
