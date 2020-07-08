@@ -37,7 +37,7 @@ module.exports = {
                 const embed = new Discord.MessageEmbed()
                 .setColor("#ff00ff")
                 .setTitle(`${d.title} by ${d.authors}`)
-                .addField('Good :' , `${convertedGood}`)
+                .addField('Good:' , `${convertedGood}`)
                 .addField('Bad:' , `${convertedBad}`)
                 .addField('Score:' , `${d.score}`)
                 .addField('Date Published:' , `${d.publish_date}`.slice(0,-8))
