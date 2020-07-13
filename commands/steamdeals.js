@@ -32,7 +32,6 @@ module.exports = {
                 .addField('Normal price: ', `$${d.normalPrice}`)
                 .addField("Last price change: ", saleStart.toGMTString().slice(0,-13))
                 .addField("Steam user reviews:", `${d.steamRatingText} based on ${d.steamRatingCount} reviews`)
-                .addField("Cheapest Price:", `${d.cheapestPrice}`)
                 //Cheapshark requests redirect URL
                 .addField("Get this game:", `https://www.cheapshark.com/redirect?dealID=${d.dealID}`)
                 message.channel.send(embed);
