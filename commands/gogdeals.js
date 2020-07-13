@@ -23,6 +23,7 @@ module.exports = {
         fetch(`https://www.cheapshark.com/api/1.0/deals?title=${args.join(' ')}&storeID=7`)
             .then(response => response.json())
             .then(data => data.map( d => {
+                data==null||data.length===undefined?console.log("a"):console.log("b");
                 //Store for converting sale date from epoch time
                 var saleStart = new Date(d.lastChange * 1000);
                 const embed = new Discord.MessageEmbed()

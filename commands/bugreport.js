@@ -36,7 +36,7 @@ module.exports = {
                 message.channel.awaitMessages(filter, {max: 1, time: 10000}).then(collectedMessage2 => {
                     var contact = collectedMessage2.first().content.toLowerCase();
                     contact=="yes" || contact=="y"?contact="yes":contact="no"; 
-                var con = helpers.connectMYSQL();
+                var con = helpers.connectMYSQL(); // connect to the pool?
                 con.query(`INSERT INTO bug_reports VALUES(NULL, "${message.author.username + '#' + message.author.discriminator}", 
                                                                 "${message.author.id}",
                                                                 "${report}",
@@ -44,20 +44,16 @@ module.exports = {
                                                                 "${contact}",
                                                                 DEFAULT)`, function (err, result) {
                     if (err) throw err;
-                    con.end();
                 });
                 message.channel.send(new Discord.MessageEmbed().setTitle("Sent!"));
 
                 var server = message.client.guilds.cache.get('722513354303995987');
                 const channel = server.channels.cache.filter(c => c.type === 'text').find(x => x.id == "727953467443773460");
 
-
-                con = helpers.connectMYSQL();
                 con.query(`SELECT * FROM bug_reports ORDER  BY made_at DESC `, function (err,results){
                     channel.send(new Discord.MessageEmbed()
-                    .setTitle(`New case. ID: ${results[0].id}`)
+                    .setTitle(`New case. ID: ${++results[0].id}`)
                     );
-                    con.end();
                 });
             })
             }else{

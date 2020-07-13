@@ -16,9 +16,12 @@ module.exports = {
         if (!args.length) {
             // Sends a DM to author of all commands
             data.push('Here\'s a list of all my commands:');
-            data.push(commands.map(command => command.name).join(', '));
+            commands.map(command => {
+                if(command.name.charAt(0)!='_'){
+                    data.push(command.name)
+                }
+            });
             data.push(`\nYou can send \`${prefix}help [command name]\` to get info on a specific command!`);
-            
             return message.author.send(data, { split: true })
                 .then(() => {
                     if (message.channel.type === 'dm') return;
@@ -30,7 +33,7 @@ module.exports = {
                 });
         }
         const name = args[0].toLowerCase();
-        const command = commands.get(name) || commands.find(c => c.aliases && c.aliases.includes(name));
+        const command = commands.get(name);
     
         if (!command) {
             return message.reply('that\'s not a valid command!');

@@ -12,13 +12,13 @@ module.exports = {
         //GET Game deals by title name
         fetch(`https://www.reddit.com/r/nocontextxboxmessages.json?show=all&limit=1`)
             .then(response => response.json())
-            .then(data => data.map( d => {
-                console.log(d)
+            .then(data => data.data.children.map( d => {
+                console.log(d.data.url)
                 //Store for converting sale date from epoch time
                 const embed = new Discord.MessageEmbed()
                 .setColor("#ff00ff")
                 .setTitle(`No Context XBL Message`)
-                .addField(`Message` , `$${d.url}`)
+                .addField(`Message` , `$${d.data.url}`)
                 message.channel.send(embed);
 
                 delete embed;
