@@ -10,7 +10,7 @@ module.exports = {
 		let embed = new Discord.MessageEmbed()
 		.setColor("#ff00ff")
 		.addField(`Storehaus: A Gaming Info Bot`, " [Add Storehaus to your server!](https://discordapp.com/oauth2/authorize?client_id=725749175282696194&scope=bot&permissions=8) Storehaus is a gaming info bot designed to help you learn and enhance your gaming experience. Storehaus can grab game reviews, information, sales, playtime, and more! This bot is open source, so you can check out the code of Storehaus and contribute to it [here](https://github.com/AndyTheNerd).")
-		.setFooter("Made with <3 from AndyTheNerd and PatrossDev.");
+		.setFooter("Storehaus v1.0.0. Made with <3 from AndyTheNerd and PatrossDev.");
 		message.channel.send(embed);
 		delete embed;
 	}
