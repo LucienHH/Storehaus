@@ -29,7 +29,7 @@ module.exports = {
                 const embed = new Discord.MessageEmbed()
                 .setColor("#ff00ff")
                 .setTitle(`GoG deals for ${d.title}`)
-                .addField('Current sale price: ', `$${d.salePrice}`)
+                .addField('Current price: ', `$${d.salePrice}`)
                 .addField('Normal price: ', `$${d.normalPrice}`)
                 .addField("Last price change: ", saleStart.toGMTString().slice(0,-13))
                 //Cheapshark requests redirect URL
