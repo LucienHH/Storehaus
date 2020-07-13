@@ -10,20 +10,22 @@ module.exports = {
     cooldown: 5,
     async execute(message, args) {
         //GET Game deals by title name
-        fetch(`https://www.reddit.com/r/nocontextxboxmessages.json?show=all&limit=1`)
+        fetch(`https://www.reddit.com/r/nocontextxboxmessages/random.json?show=all&limit=1`)
             .then(response => response.json())
-            .then(data => data.data.children.map( d => {
-                console.log(d.data.url)
+            .then(data => {
+                var imageLink = data[0].data.children.map(d => d.data.url_overridden_by_dest);
+                imageLink = imageLink.toString(); // converts from object
                 //Store for converting sale date from epoch time
                 const embed = new Discord.MessageEmbed()
                 .setColor("#ff00ff")
                 .setTitle(`No Context XBL Message`)
-                .addField(`Message` , `$${d.data.url}`)
+                .addField(`Message` , `${imageLink}`)
+                .setImage(imageLink)
                 message.channel.send(embed);
 
-                delete embed;
+                // delete embed;
                 
-            }));
+            });
         return;
     }
 };
