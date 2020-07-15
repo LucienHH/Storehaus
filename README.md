@@ -24,6 +24,8 @@ Game Info Bot uses the following commands:
 
 #### Gaming Commands
 
+`compat` Find out if a game is backwards compatible on Xbox One or Xbox Series X devices.
+
 `gameinfo`  Get general information of a particular game.
 
 `gamereview` Read a review and score of a game.
@@ -43,6 +45,8 @@ Game Info Bot uses the following commands:
 #### Humor and Info Commands
 
 `dadjoke` Dad joke lol.
+
+`insult` Get a random insult. May or may not make sense for the lolz.
 
 `trivia` Learn something new about gaming, TV, film, and history.
 
