@@ -9,8 +9,8 @@ const client = new Discord.Client();
 const fetch = require('node-fetch');
 
 module.exports = {
-    name: 'gamereview',
-    description: 'Get reviews about a game.',
+    name: 'review',
+    description: 'Get reviews about a game.  To run, type `!review name of game`',
     cooldown: 5,
     async execute(message, args) {
         let game = args.slice(0).join(" ");
