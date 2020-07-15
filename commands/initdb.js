@@ -8,7 +8,7 @@ module.exports = {
 
         var con  = helpers.connectMYSQL();
 
-        con.query(`CREATE TABLE IF NOT EXISTS bug_reports(  
+        con.query(`CREATE TABLE IF NOT EXISTS ${process.env.mysql_bug_reports_table}(  
             id int NOT NULL AUTO_INCREMENT PRIMARY KEY,  
             user_name varchar(45) NOT NULL,  
             user_id varchar(35) NOT NULL,

@@ -10,7 +10,12 @@ module.exports = {
     cooldown: 5,
     async execute(message, args) {
         let report = await args.slice(0).join(" ");
-
+        if (report.length < 20) {
+            let embed = await new Discord.MessageEmbed()
+                .setTitle("Your report is too shortm needs to be at least 20 characters");
+                message.channel.send(embed);
+                return;
+        }
         let embed = await new Discord.MessageEmbed()
         .setTitle("You are about to send the following message:")
         .setDescription(report)
@@ -37,7 +42,7 @@ module.exports = {
                     var contact = collectedMessage2.first().content.toLowerCase();
                     contact=="yes" || contact=="y"?contact="yes":contact="no"; 
                 var con = helpers.connectMYSQL(); // connect to the pool?
-                con.query(`INSERT INTO bug_reports VALUES(NULL, "${message.author.username + '#' + message.author.discriminator}", 
+                con.query(`INSERT INTO ${process.env.mysql_bug_reports_table} VALUES(NULL, "${message.author.username + '#' + message.author.discriminator}", 
                                                                 "${message.author.id}",
                                                                 "${report}",
                                                                 "Pending",
@@ -50,9 +55,9 @@ module.exports = {
                 var server = message.client.guilds.cache.get('722513354303995987');
                 const channel = server.channels.cache.filter(c => c.type === 'text').find(x => x.id == "727953467443773460");
 
-                con.query(`SELECT * FROM bug_reports ORDER  BY made_at DESC `, function (err,results){
+                con.query(`SELECT * FROM ${process.env.mysql_bug_reports_table} ORDER  BY made_at DESC `, function (err,results){
                     channel.send(new Discord.MessageEmbed()
-                    .setTitle(`New case. ID: ${++results[0].id}`)
+                    .setTitle(`New case. ID: ${results[0].id + 1}`)
                     );
                 });
             })
