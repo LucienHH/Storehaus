@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'dadjoke',
-    description: 'Dad joke lol. Try with !dadjoke.',
+    description: 'The cheesiest dad jokes. To run, type `!dadjoke`',
     cooldown: 5,
     async execute(message, args) {
         var request = require('request');// need this for below to work 

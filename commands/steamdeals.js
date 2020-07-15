@@ -6,7 +6,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'steamdeals',
-    description: 'Get deals about a game on Steam. Try !steamdeals `name of game`!',
+    description: 'Get deals about a game on Steam. To run, type `!steamdeals name of game`',
     cooldown: 5,
     async execute(message, args) {
         let game = args.slice(0).join(" ");
@@ -14,7 +14,7 @@ module.exports = {
 
         //If no game is provided
         if (!args.length) {
-            return message.channel.send('You need to supply a search term! Try !gamereview `name of a game`.');
+            return message.channel.send('You need to supply a search term! Try `!steamdeals name of a game`.');
           }
 
         const query = querystring.stringify({ term: args.join(' ') });

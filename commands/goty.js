@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'goty',
-    description: 'Learn the best games from a particular year! Try !goty `year`!',
+    description: 'Learn the best games from a particular year! To run, type `!goty year`',
     cooldown: 5,
     async execute(message, args) {
         let game = args.slice(0).join(" ");
@@ -22,7 +22,7 @@ module.exports = {
                 embed.addField("\u200B", `${d.name}`)
                 y++;
                 y==10?message.channel.send(embed):0; //if 10 send embed otherwise don't 
-                embed.setFooter("Try running !gameinfo (name of game) to learn more about a game!")
+                embed.setFooter(`Try running !gameinfo name of a game to learn more about a game!`)
             }));
             delete embed;
 

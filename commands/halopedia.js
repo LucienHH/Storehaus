@@ -6,12 +6,13 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'halopedia',
-    description: 'Retrieve a random article from the Halo lore website Halopedia.org. Try !halopedia `random`!',
+    description: 'Retrieve a random article from the Halo lore website Halopedia.org. To run, try `!halopedia random`',
     cooldown: 5,
     async execute(message, args) {
         let option = args.slice(0).join(" ");
 
         //Get random article from Halopedia
+        //The reason this requires random is because we would like to add great functionality to this command in the future
         if(option == "random"){
         fetch(`https://www.halopedia.org/api.php?list=random&action=query&format=json&rnlimit=1&rnnamespace=0`)
             .then(response => response.json())

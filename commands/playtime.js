@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 module.exports = {
 	name: 'playtime',
-	description: 'Get information about the time to beat and complete a game. Try !playtime `name of game`!',
+	description: 'Get information about the time to beat and complete a game. To run, type `!playtime name of game`!',
 	cooldown: 5,
 	execute(message, args) {
         let game = args.slice(0).join(" ");
