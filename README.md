@@ -22,6 +22,11 @@ npm install
 ## Commands
 Game Info Bot uses the following commands:
 
+Prefix: !
+
+Example: `!meme`
+
+Some commands require the name of game after them. Example: `!gameinfo Skyrim`
 #### Gaming Commands
 
 `compat` Find out if a game is backwards compatible on Xbox One or Xbox Series X devices.
@@ -44,9 +49,13 @@ Game Info Bot uses the following commands:
 
 #### Humor and Info Commands
 
+`chuck` What bot would not have Chuck Norris jokes?
+
 `dadjoke` Dad joke lol.
 
 `insult` Get a random insult. May or may not make sense for the lolz.
+
+`meme` See some of the best gaming memes on the Internet today. Recommended for those 18+.
 
 `trivia` Learn something new about gaming, TV, film, and history.
 
