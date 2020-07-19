@@ -13,7 +13,11 @@ module.exports = {
 
         //Get random article from Halopedia
         //The reason this requires random is because we would like to add great functionality to this command in the future
-        if(option == "random"){
+        //if (option !== "random")
+        //{
+        //message.channel.send("K you said nothing, Kevin.");
+        //}
+        //if(option == "random"){
         fetch(`https://www.halopedia.org/api.php?list=random&action=query&format=json&rnlimit=1&rnnamespace=0`)
             .then(response => response.json())
             .then(data => {
@@ -34,7 +38,7 @@ module.exports = {
             delete embed;
 
         return;
-        }
+        //}
         //end random retrieval
     }
 };
