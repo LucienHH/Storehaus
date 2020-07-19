@@ -20,7 +20,7 @@ for (const file of commandFiles) {
 client.once('ready', () => {
 	console.log('Ready to go!');
 
-	client.user.setActivity(`!help in ${client.guilds.cache.size} servers`, {
+	client.user.setActivity(`!about in ${client.guilds.cache.size} servers`, {
 		type: "STREAMING",
 		//url: "Some URL here"
 	});
