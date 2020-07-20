@@ -10,9 +10,9 @@ module.exports = {
 		let embed = new Discord.MessageEmbed()
 		.setColor("#ff00ff")
 		.addField(`Storehaus: A Gaming Info Bot`, " [Add Storehaus to your server!](https://discordapp.com/oauth2/authorize?client_id=725749175282696194&scope=bot&permissions=8) Storehaus is a gaming info bot designed to help you learn and enhance your gaming experience. Storehaus can grab game reviews, information, sales, playtime, and more! This bot is open source, so you can check out the code of Storehaus and contribute to it [here](https://github.com/AndyTheNerd).")
-		.addField(`Gaming Commands`,"`!compat`, `!gameinfo`, `!gogdeals`, `!goty`, `!halopedia`, `!haloquote`, `!playtime`, `!review`, `!steamdeals`, `!xbl`")
+		.addField(`Gaming Commands`,"`!achievements`, `!compat`, `!dlc` `!gameinfo`, `!gamesub`, `!gogdeals`, `!goty`, `!halopedia`, `!haloquote`, `!playtime`, `!playanywhere`, `!psnow`, `!review`, `!screenshot`, `!series`, `!steamdeals`, `!stores`, `!xbl`")
 		.addField(`Humor and Info Commands`, "`!chuck`, `!dadjoke`, `!insult`, `!meme`, `!trivia`")
-		.addField(`Support Comands`, "`!help [name of a command]`, `!bugreport`")
+		.addField(`Support Comands`, "`!help [name of a command]`, `!feedback`")
 		.addField(`TeamRespawn`, "If you love Halo or Halo Wars, come join the [TeamRespawn Discord server!](https://discord.com/invite/Q5vEpDj)")
 		.addField(`Support`, "Need help? Join the [support server.](https://discord.gg/nvNQQ2f) Feeling generous? [Buy us a coffee.](https://ko-fi.com/andythenerd)")
 		.setFooter("Storehaus v 1.0.0 Made with <3 from AndyTheNerd and PatrossDev.");
