@@ -1,4 +1,7 @@
 var mysql = require('mysql');
+const Discord = require('discord.js');
+const client = new Discord.Client();
+var fs = require('fs');
 require('dotenv').config({ path: require('find-config')('.env') });
 module.exports = {
 
@@ -43,6 +46,12 @@ module.exports = {
         }
         
         return roman;
-        }
+        },
+
+    getFooter: function(){
+        var array = fs.readFileSync('textfiles/tips.txt').toString().split("\n");
+        var quote = Math.floor(Math.random() * array.length);
+        return array[quote]
+    }
 
 };
