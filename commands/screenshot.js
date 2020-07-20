@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'screenshot',
-    description: 'Get screenshots for the game.',
+    description: 'Get screenshots for a game. To run, type `!screenshot name of a game`',
     cooldown: 5,
     async execute(message, args) {
         let game = args.slice(0).join(" ");
@@ -13,7 +13,6 @@ module.exports = {
         //Test query below
         let embed = new Discord.MessageEmbed()
             .setColor("#ff00ff")
-            // .setTitle(`Screenshots for the game.`)
 
             message.channel.send("Fetching. This may take a while...").then(message => message.delete({timeout: 10000}))
         var y = 0; // used as counter for data.results mapping 
@@ -33,10 +32,7 @@ module.exports = {
                             var randomElement = array[Math.floor(Math.random() * array.length)];
                             embed.setImage(randomElement);
                             // console.log(array);
-
-                            // embed.setFooter(`Try running !gameinfo name of a game to learn more about a game!`)
                             message.channel.send(embed); 
-                            // message.channel.send(embed)
                         }
                         );
                     delete embed;
