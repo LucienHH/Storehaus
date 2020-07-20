@@ -38,27 +38,6 @@ module.exports = {
             message.channel.send(embed);
         }else{
 
-            let game = args.slice(0).join(" ");
-            // console.log(game);
-            console.log(game)
-            // console.log(game)
-            //User input to lower case
-            var lowerCaseGame = game.toLowerCase();
-            //Reads each line from text file that supplies lines of dialogue. Picks on at random and displays it.
-            var fs = require('fs');
-            var array = fs.readFileSync('textfiles/BCXboxGames.txt').toString().split("\n");
-            a = FuzzySet(array,false,1,1);
-            let result = a.get(lowerCaseGame)[0]
-            console.log(result[0])
-            console.log(result[1])
-            if (result[0] > 0.9) {
-                let embed = new Discord.MessageEmbed()
-                .setTitle(`Closest match: ${result[1]}`)
-                .setColor("#ff00ff")
-                .addField(`Xbox Backwards Compatibility`, ` Yay! ${result[1]} **is** backwards compatible on Xbox One and Xbox Series X devices.`)
-                .setFooter(`Try !playtime ${result[1]} to see how long it takes to complete it.`)
-                message.channel.send(embed);
-            }else{
                 let embed = new Discord.MessageEmbed()
                 .setColor("#ff00ff")
                 .addField(`Xbox Backwards Compatibility`, ` Oh no, ${game} **is not** backwards compatible on Xbox One and Xbox Series X devices.`)
@@ -106,6 +85,6 @@ module.exports = {
             //     delete embed;
             // }
 
-        }
+        // }
     },
 };
