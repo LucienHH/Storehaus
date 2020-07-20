@@ -8,6 +8,10 @@ module.exports = {
     description: 'Learn the best games from a particular year! To run, type `!goty year`',
     cooldown: 5,
     async execute(message, args) {
+        var fs = require('fs');
+        var array = fs.readFileSync('textfiles/tips.txt').toString().split("\n");
+        var quote = Math.floor(Math.random() * array.length);
+
         let game = args.slice(0).join(" ");
         //GET
         //Test query below
@@ -22,7 +26,7 @@ module.exports = {
                 embed.addField("\u200B", `${d.name}`)
                 y++;
                 y==10?message.channel.send(embed):0; //if 10 send embed otherwise don't 
-                embed.setFooter(`Try running !gameinfo name of a game to learn more about a game!`)
+                embed.setFooter(array[quote]);
             }));
             delete embed;
 
