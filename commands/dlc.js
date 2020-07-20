@@ -5,7 +5,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'dlc',
-    description: 'DLC\'s for the game, GOTY and other editions, companion apps, etc.',
+    description: 'DLC\'s for the game, GOTY and other editions, companion apps, etc. To run, type `!dlc name of a game`',
     cooldown: 5,
     async execute(message, args) {
         let game = args.slice(0).join(" ");
