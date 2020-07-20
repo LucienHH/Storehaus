@@ -66,7 +66,9 @@ Some commands require the name of game after them. Example: `!gameinfo Skyrim`
 `help` The bot will DM you of info of all commands.
 
 ## Support
-If you are stuck using this bot, you can go to discord.teamrespawntv.com and ask for help.
+If you are stuck using this bot, you can go to https://discord.com/invite/Q5vEpDj and ask for help.
+
+Feeling generous? Buy us a coffee: https://ko-fi.com/andythenerd 
 
 ## Contributors
 Main contributors to Game Info Bot:
