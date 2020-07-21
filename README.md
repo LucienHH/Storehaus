@@ -53,6 +53,8 @@ Some commands require the name of game after them. Example: `!gameinfo Skyrim`
 
 `dadjoke` Dad joke lol.
 
+`gif` Posts a random gif.
+
 `insult` Get a random insult. May or may not make sense for the lolz.
 
 `meme` See some of the best gaming memes on the Internet today. Recommended for those 18+.
