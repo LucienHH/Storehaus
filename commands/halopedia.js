@@ -11,13 +11,29 @@ module.exports = {
     async execute(message, args) {
         let option = args.slice(0).join(" ");
 
+
+        if(option != "random"){
+            var request = require('request');// need this for below to work 
+        
+            var url = `https://www.halopedia.org/api.php?format=json&limit=3&action=opensearch&search=${args[0]}`;
+            
+            request.get({
+                url: url,
+                json: true,
+                headers: {'User-Agent': 'request'}
+              }, (err, res, data) => {
+                if (err) {
+                  console.log('Error:', err);
+                }
+                else {
+                  // data is already parsed as JSON:
+                  message.channel.send(data)
+                }
+            });
+            }
+            
         //Get random article from Halopedia
-        //The reason this requires random is because we would like to add great functionality to this command in the future
-        //if (option !== "random")
-        //{
-        //message.channel.send("K you said nothing, Kevin.");
-        //}
-        //if(option == "random"){
+        if(option == "random"){
         fetch(`https://www.halopedia.org/api.php?list=random&action=query&format=json&rnlimit=1&rnnamespace=0`)
             .then(response => response.json())
             .then(data => {
@@ -38,7 +54,7 @@ module.exports = {
             delete embed;
 
         return;
-        //}
+        }
         //end random retrieval
     }
 };
