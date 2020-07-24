@@ -7,6 +7,10 @@ module.exports = {
     cooldown: 5,
     aliases: ['case', 'report'],
 	execute(message, args) {
+        if (message.author.id != 327865732681433098 && message.author.id != 273654494829477888) {
+            return message.channel.send(new Discord.MessageEmbed().setTitle("You do not have the sufficient permissions to use this command.")).then(m => m.delete({timeout: 10000}));
+            
+        }
         if (args[0].toLowerCase() == "view") {
            if(args[1]==null){
                message.channel.send(`Please choose one of the following options:
@@ -39,7 +43,7 @@ module.exports = {
                     case "pending":
                         {
                             var con = helpers.connectMYSQL();
-                            con.query(```SELECT * FROM ${process.env.mysql_bug_reports_table} WHERE status = 'Pending'ORDER BY made_at ASC LIMIT 10`,function(err,results){
+                            con.query(`SELECT * FROM ${process.env.mysql_bug_reports_table} WHERE status = 'Pending'ORDER BY made_at ASC LIMIT 10`,function(err,results){
                                 let embed = new Discord.MessageEmbed()
                                 if(results.length == 0){
                                     embed.setTitle("No Pending cases");
@@ -99,6 +103,9 @@ module.exports = {
                                 .setFooter(`Report made at: ${results[0].made_at}`)
                                 message.channel.send(embed);
                             });
+
+                            con.query(`UPDATE ${process.env.mysql_bug_reports_table} SET status = "Open" WHERE id = ${args[2]}`,function(err,results){
+                            })
                         }
                     break;
                

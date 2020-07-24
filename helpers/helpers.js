@@ -52,6 +52,8 @@ module.exports = {
         var array = fs.readFileSync('textfiles/tips.txt').toString().split("\n");
         var quote = Math.floor(Math.random() * array.length);
         return array[quote]
-    }
+    },
+
+    prefix: "!",
 
 };

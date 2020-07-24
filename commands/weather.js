@@ -46,6 +46,6 @@ module.exports = {
         );
         delete embed;
 
-        return; 
-        }
+        return;
+    }
 }
