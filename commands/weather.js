@@ -14,24 +14,34 @@ module.exports = {
 
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${args[0]}&appid=${process.env.open_weather}`)
         .then(response => response.json())
-        .then(data => {
-            // console.log(data.query.map(d => {
-            //     console.log(d)
-                //modify title string so URL works
+        .then(data => {             
+                var temp = data.main.temp
+                var fahrenheit = temp * 1.8 -459.67
+                var celsius = temp -  273.15
+
+                var feelsLikeF = data.main.feels_like * 1.8 -459.67
+                var feelsLikeC = data.main.feels_like - 273.15
+
+                var MinTempF = data.main.temp_min * 1.8 -459.67
+                var MinTempC = data.main.temp_min - 273.15
+
+                var MaxTempF = data.main.temp_max * 1.8 -459.67
+                var MaxTempC= data.main.temp_max - 273.15
+
+                var sunrise = new Date(data.sys.sunrise * 1000);
+                var sunset = new Date(data.sys.sunset * 1000);
+
                 let embed = new Discord.MessageEmbed()
                 .setColor("#ff00ff")
-                .setTitle(`Weather for ${args[0]}`)
-                .addField("Temp:",data.main.temp)
-                .addField("Feels like:",data.main.feels_like)
-                .addField("Min temp:",data.main.temp_min)
-                .addField("Max temp:",data.main.temp_max)
-                .addField("Humidity:",data.main.humidity)
-                .addField("Sunrise:",data.sys.sunrise)
-                .addField("Sunset",data.sys.sunset)
+                .setTitle(`Weather for ${args.slice(0).join(" ")}`)
+                .addField("Current Temperature", `${fahrenheit.toFixed(2)}f (${celsius.toFixed(2)}c)`)
+                .addField("Feels like:", `${feelsLikeF.toFixed(2)}f (${feelsLikeC.toFixed(2)}c)`)
+                .addField("Min temp:", `${MinTempF.toFixed(2)}f (${MinTempC.toFixed(2)}c)`)
+                .addField("Max temp:", `${MaxTempF.toFixed(2)}f (${MaxTempC.toFixed(2)}c)`)
+                .addField("Humidity:", `${data.main.humidity}%`)
+                .addField("Sunrise:",`${sunrise.toGMTString().slice(0,-7)}GMT`)
+                .addField("Sunset",`${sunset.toGMTString().slice(0,-7)}GMT`)
                 message.channel.send(embed);
-            // }))
-
-            // console.log(data);
         }
         );
         delete embed;
