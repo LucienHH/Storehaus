@@ -34,6 +34,7 @@ module.exports = {
                 let embed = new Discord.MessageEmbed()
                 .setColor("#ff00ff")
                 .setTitle(`Weather for ${args.slice(0).join(" ")}`)
+                .addFiedl(`Current Conditons`, `${data.weather.description}`)
                 .addField("Current Temperature", `${fahrenheit.toFixed(2)}f (${celsius.toFixed(2)}c)`)
                 .addField("Feels like:", `${feelsLikeF.toFixed(2)}f (${feelsLikeC.toFixed(2)}c)`)
                 .addField("Min temp:", `${MinTempF.toFixed(2)}f (${MinTempC.toFixed(2)}c)`)
