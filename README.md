@@ -1,4 +1,4 @@
-# Game Info Bot
+# Storehaus: A Gaming Discord Bot
 A Discord bot that returns helpful information of video games, including general information, completion time, and review scores.
 
 ## Installation
@@ -22,18 +22,22 @@ npm install
 ## Commands
 Game Info Bot uses the following commands:
 
-Prefix: !
+Default prefix: !
 
 Example: `!meme`
 
 Some commands require the name of game after them. Example: `!gameinfo Skyrim`
 #### Gaming Commands
 
+`achivements` See the Xbox achievements of a game.
+
 `compat` Find out if a game is backwards compatible on Xbox One or Xbox Series X devices.
+
+`dlc` Get the information of DLC of a game.
 
 `gameinfo`  Get general information of a particular game.
 
-`gamereview` Read a review and score of a game.
+`gamesub` See the recent posts of a game's subreddit.
 
 `gogdeals` Check if a game is on sale on GoG.
 
@@ -43,15 +47,29 @@ Some commands require the name of game after them. Example: `!gameinfo Skyrim`
 
 `haloquote` Send a line of dialogue from the Halo series! Quotes are picked at random.
 
+`playanywhere` See if a Xbox game is part of the Play Anywhere program.
+
 `playtime`  Get the time to complete a game's campaign and DLC. 
+
+`psnow` See if a game is on Playstatoin Now.
+
+`review` Read a review and score of a game.
+
+`screenshot` See a cool screenshot of a game.
+
+`series` Find out what the other games in a series are.
 
 `steamdeals` Check if a game is on sale on Steam.
 
 #### Humor and Info Commands
 
+`cat` Retrieve a random picture of a cute kitty.
+
 `chuck` What bot would not have Chuck Norris jokes?
 
 `dadjoke` Dad joke lol.
+
+`dog` Retrieve a random picture of a good doggo.
 
 `gif` Posts a random gif.
 
@@ -61,9 +79,13 @@ Some commands require the name of game after them. Example: `!gameinfo Skyrim`
 
 `trivia` Learn something new about gaming, TV, film, and history.
 
+`weather` Get data of weather from any city around the world.
+
 #### Misc. Commands
 
 `about` Get info about the bot.
+
+`feedback` Send feedback to us to make this bot better.
 
 `help` The bot will DM you of info of all commands.
 
