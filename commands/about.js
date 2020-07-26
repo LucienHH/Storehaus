@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const helpers = require('../helpers/helpers');
 const client = new Discord.Client();
 module.exports = {
 	name: 'about',
@@ -16,7 +17,7 @@ module.exports = {
 		.addField(`Help`, "To learn how to use a particular command, type `!help [name of a command]`")
 		.addField(`TeamRespawn`, "If you love Halo or Halo Wars, come join the [TeamRespawn Discord server!](https://discord.com/invite/Q5vEpDj)")
 		.addField(`Support`, "Need help? Join the [support server.](https://discord.gg/nvNQQ2f) Feeling generous? [Buy us a coffee.](https://ko-fi.com/andythenerd)")
-		.setFooter("Storehaus v 1.0.0 Made with <3 from AndyTheNerd and PatrossDev.");
+		.setFooter(helpers.getFooter());
 		message.channel.send(embed);
 		delete embed;
 	}

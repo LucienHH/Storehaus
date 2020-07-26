@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const helpers = require('../helpers/helpers');
 const client = new Discord.Client();
 //const botStats = require('../helpers/stats')
 module.exports = {
@@ -12,7 +13,7 @@ module.exports = {
     .setColor("#ff00ff")
     .setTitle("Bot Stats:")
     .addField(`Number of Servers`, `${client.guilds.cache.size}`)
-    .setFooter("Storehaus v 1.0.0 Made with <3 from AndyTheNerd and PatrossDev.");
+    .setFooter(helpers.getFooter());
     message.channel.send(embed);
     delete embed;
     }

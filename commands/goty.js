@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const fetch = require('node-fetch');
+const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'goty',
@@ -30,7 +31,7 @@ module.exports = {
                 embed.addField("\u200B", `${d.name}`)
                 y++;
                 y==10?message.channel.send(embed):0; //if 10 send embed otherwise don't 
-                embed.setFooter(array[quote]);
+                embed.setFooter(helpers.getFooter());
             }));
             delete embed;
 

@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const fetch = require('node-fetch');
+const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'series',
@@ -32,7 +33,7 @@ module.exports = {
                             data.results.map(d => {
                                 embed.addField("\u200B", `${d.name}`)
                             })
-                            embed.setFooter(`Try running !gameinfo name of a game to learn more about a game!`)
+                            embed.setFooter(helpers.getFooter())
                             message.channel.send(embed)
                         }
                         );

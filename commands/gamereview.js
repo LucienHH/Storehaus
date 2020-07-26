@@ -7,6 +7,7 @@ const client = new Discord.Client();
 
 //Fetch required for API Call
 const fetch = require('node-fetch');
+const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'review',
@@ -42,6 +43,7 @@ module.exports = {
                 .addField('Score:' , `${d.score}`)
                 .addField('Date Published:' , `${d.publish_date}`.slice(0,-8))
                 .addField(`Link to full ${d.title} : `, `${d.site_detail_url}`)
+                .setFooter(helpers.getFooter())
 
                 message.channel.send(embed);
 
