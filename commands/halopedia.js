@@ -30,21 +30,13 @@ module.exports = {
                   console.log('Error:', err);
                 }
                 else {
-                  // data is already parsed as JSON:
-                //   message.channel.send(data)
-                // data.forEach(element => {
-                //     console.log(element);
-                // });
-
+                // data is already parsed as JSON:
                 let embed = new Discord.MessageEmbed()
                 .setTitle("Halopedia articles:")
                 .addField(data[1][0],data[3][0])
                 .addField(data[1][1],data[3][1])
                 .addField(data[1][2],data[3][2]);
                 message.channel.send(embed);
-
-                // console.log(data[1]);
-                // console.log(data[3][0]);
                 }
             });
             }
