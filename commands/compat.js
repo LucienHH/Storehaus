@@ -9,14 +9,19 @@ module.exports = {
     cooldown: 5,
     execute(message, args) {
         let game = args.slice(0).join(" ");
+
+        if (game == undefined || game=="") {
+            message.channel.send(new Discord.MessageEmbed().setTitle("You must specify a game to check backwards compatibility")).then(m => m.delete({timeout: 10000}));
+            return;
+        }
         // console.log(game);
-        game = game      
-        .replace(' 5'," V")
-        .replace(' 4'," IV")
-        .replace(' 3'," III")
-        .replace(' 2'," II")
-        .replace(' 1'," I")
-        .replace(/'/g,"’");
+        // game = game      
+        // .replace(' 5'," V")
+        // .replace(' 4'," IV")
+        // .replace(' 3'," III")
+        // .replace(' 2'," II")
+        // .replace(' 1'," I")
+        // .replace(/'/g,"’");
         console.log(game)
         // console.log(game)
         //User input to lower case

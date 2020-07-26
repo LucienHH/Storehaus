@@ -6,6 +6,10 @@ module.exports = {
 	cooldown: 5,
 	execute(message, args) {
         let game = args.slice(0).join(" ");
+        if (game == undefined || game=="") {
+                message.channel.send(new Discord.MessageEmbed().setTitle("You must specify a game to check the playtime")).then(m => m.delete({timeout: 10000}));
+                return;
+            }
 
         //Related to howlongtobeat.com
         let hltb = require('howlongtobeat');

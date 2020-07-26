@@ -13,6 +13,10 @@ module.exports = {
         var quote = Math.floor(Math.random() * array.length);
 
         let game = args.slice(0).join(" ");
+        if (game == undefined || game=="") {
+            message.channel.send(new Discord.MessageEmbed().setTitle("You must specify a year to see the GOTY contenders")).then(m => m.delete({timeout: 10000}));
+            return;
+        }
         //GET
         //Test query below
         let embed = new Discord.MessageEmbed()

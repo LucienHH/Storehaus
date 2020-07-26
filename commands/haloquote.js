@@ -9,6 +9,6 @@ module.exports = {
         var fs = require('fs');
         var array = fs.readFileSync('textfiles/HaloLines.txt').toString().split("\n");
         var quote = Math.floor(Math.random() * array.length);
-        message.channel.send(array[quote]);
+        message.channel.send(`>>> ${array[quote]}`);
     },
 };

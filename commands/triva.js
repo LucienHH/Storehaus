@@ -10,6 +10,10 @@ module.exports = {
     async execute(message, args) {
 
         let userInput = args.slice(0).join(" ");
+        if (userInput == undefined || userInput=="") {
+            message.channel.send(new Discord.MessageEmbed().setTitle("You must specify a category: `tv` `movie` `history` or `game`")).then(m => m.delete({timeout: 10000}));
+            return;
+        }
 
         if(userInput == "game"){
         //GET game query
