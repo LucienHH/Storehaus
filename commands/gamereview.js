@@ -16,10 +16,10 @@ module.exports = {
         let game = args.slice(0).join(" ");
         const querystring = require('querystring')
 
-        //If no game is provided
-        if (!args.length) {
-            return message.channel.send('You need to supply a search term! Try !gamereview `name of a game`.');
-          }
+        if (game == undefined || game=="") {
+            message.channel.send(new Discord.MessageEmbed().setTitle("You must supply a search term! Try !gamereview `name of a game`")).then(m => m.delete({timeout: 10000}));
+            return;
+        }
 
         const query = querystring.stringify({ term: args.join(' ') });
         

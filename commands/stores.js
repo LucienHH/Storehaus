@@ -9,6 +9,10 @@ module.exports = {
     cooldown: 5,
     async execute(message, args) {
         let game = args.slice(0).join(" ");
+        if (game == undefined || game=="") {
+            message.channel.send(new Discord.MessageEmbed().setTitle("You must specify a game to see stores that sell it")).then(m => m.delete({timeout: 10000}));
+            return;
+        }
         //GET
         //Test query below
         let embed = new Discord.MessageEmbed()

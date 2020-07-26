@@ -9,6 +9,10 @@ module.exports = {
     cooldown: 5,
     execute(message, args) {
         let playAnywhere = args.slice(0).join(" ");
+        if (playAnywhere == undefined || playAnywhere=="") {
+            message.channel.send(new Discord.MessageEmbed().setTitle("You must specify a game to see if it is a play anywhere title")).then(m => m.delete({timeout: 10000}));
+            return;
+        }
         console.log(playAnywhere)
         //User input to lower case
         var lowerCaseGame = playAnywhere.toLowerCase();

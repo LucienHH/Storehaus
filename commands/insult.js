@@ -22,7 +22,7 @@ module.exports = {
             }
             else {
               // data is already parsed as JSON:
-              message.channel.send(data)
+              message.channel.send(`>>> ${data}`)
             }
         });
     },

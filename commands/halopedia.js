@@ -10,6 +10,10 @@ module.exports = {
     cooldown: 5,
     async execute(message, args) {
         let option = args.slice(0).join(" ");
+        if (option == undefined || option=="") {
+            message.channel.send(new Discord.MessageEmbed().setTitle("Try `!halopedia random` or `!halopedia [article]`")).then(m => m.delete({timeout: 10000}));
+            return;
+        }
 
 
         if(option != "random"){

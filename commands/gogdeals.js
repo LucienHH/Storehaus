@@ -20,25 +20,30 @@ module.exports = {
         const query = querystring.stringify({ term: args.join(' ') });
         
         //GET Game deals by title name
+        let embed = new Discord.MessageEmbed()
+        .setColor("#ff00ff")
+        .setTitle(`GOG deals matching ${game}`)
+        let y=0
+        onSaleNo =0
         fetch(`https://www.cheapshark.com/api/1.0/deals?title=${args.join(' ')}&storeID=7`)
-            .then(response => response.json())
-            .then(data => data.map( d => {
-                data==null||data.length===undefined?console.log("a"):console.log("b");
-                //Store for converting sale date from epoch time
-                var saleStart = new Date(d.lastChange * 1000);
-                const embed = new Discord.MessageEmbed()
-                .setColor("#ff00ff")
-                .setTitle(`GoG deals for ${d.title}`)
-                .addField('Current price: ', `$${d.salePrice}`)
-                .addField('Normal price: ', `$${d.normalPrice}`)
-                .addField("Last price change: ", saleStart.toGMTString().slice(0,-13))
-                //Cheapshark requests redirect URL
-                .addField("Get this game:", `https://www.cheapshark.com/redirect?dealID=${d.dealID}`)
-                message.channel.send(embed);
+        .then(response => response.json())
+        .then(data => data.map(d => {
+            console.log(d);
+            y++
+            //Store for converting sale date from epoch time
+            var saleStart = new Date(d.lastChange * 1000);
+            if (d.isOnSale != 0) {
+                embed.addField(`${d.title}`, `$${d.salePrice} down from $${d.normalPrice}`)
+                onSaleNo++;
+            }
 
-                delete embed;
-                
-            }));
+        })).then(e => {
+            if (onSaleNo == 0) {
+                message.channel.send(new Discord.MessageEmbed().setTitle("No sales found")).then(m => m.delete({ timeout: 10000 }))
+            } else {
+                message.channel.send(embed)
+            }
+        });
         return;
     }
 };
