@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+
+const botStats = require('../helpers/stats')
 module.exports = {
     name: 'gif',
     description: 'Send a random gif! Gifs are picked at random. To run, type `!gif`',
