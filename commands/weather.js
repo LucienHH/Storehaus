@@ -11,6 +11,10 @@ module.exports = {
     cooldown: 5,
     async execute(message, args) {
         let option = args.slice(0).join(" ");
+        if (option == undefined || option=="") {
+            message.channel.send(new Discord.MessageEmbed().setTitle("You must specify a location to see the weather")).then(m => m.delete({timeout: 10000}));
+            return;
+        }
 
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${args[0]}&appid=${process.env.open_weather}`)
         .then(response => response.json())
