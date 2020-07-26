@@ -15,9 +15,6 @@ module.exports = {
         fetch(subreddit)
             .then(response => response.json())
             .then(data => {
-                console.log(data[0]);
-                console.log(data[0].data);
-                console.log(data[0].data.children);
                 var imageLink = data[0].data.children.map(d => d.data.url_overridden_by_dest);
                 if (imageLink == undefined || imageLink == "") {
                     imageLink = data[0].data.children.map(d => d.data.url);
