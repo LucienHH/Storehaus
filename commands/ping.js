@@ -6,6 +6,6 @@ module.exports = {
     cooldown: 0,
     execute(message, args) {
 
-        message.channel.send("Kappa bot best bot, mean.. PONG!!")
+        message.channel.send("Kappa bot best bot, I mean.. PONG!!")
     },
 };

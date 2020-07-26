@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const fetch = require('node-fetch');
+const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'gamesub',
@@ -33,7 +34,7 @@ module.exports = {
                                 embed.addField(`${d.name}`, `${d.url}`)
                                 y++;
                                 y == 3 ? message.channel.send(embed) : 0; //if 10 send embed otherwise don't 
-                                embed.setFooter(`Try running !gameinfo name of a game to learn more about a game!`)
+                                embed.setFooter(helpers.getFooter())
                             })
                         }
                         );

@@ -5,7 +5,9 @@ module.exports = {
     description: 'Initiate DB (BOT OWNER ONLY)',
     cooldown: 5,
     async execute(message, args) {
-
+        if (message.author.id != 327865732681433098) {
+            return;
+        }
         var con  = helpers.connectMYSQL();
 
         con.query(`CREATE TABLE IF NOT EXISTS ${process.env.mysql_bug_reports_table}(  

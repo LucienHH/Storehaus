@@ -3,6 +3,7 @@ const client = new Discord.Client();
 
 //Fetch required for API Call
 const fetch = require('node-fetch');
+const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'halopedia',
@@ -35,7 +36,8 @@ module.exports = {
                 .setTitle("Halopedia articles:")
                 .addField(data[1][0],data[3][0])
                 .addField(data[1][1],data[3][1])
-                .addField(data[1][2],data[3][2]);
+                .addField(data[1][2],data[3][2])
+                .setFooter(helpers.getFooter());
                 message.channel.send(embed);
                 }
             });
@@ -55,7 +57,7 @@ module.exports = {
                     .setColor("#ff00ff")
                     .addField("Random article from Halopedia" ,d.title)
                     .addField("Read more about this article at" ,`https://www.halopedia.org/${halopediaTitle}`)
-                    .setFooter("Halo lore retrieved from Halopedia.org");
+                    .setFooter(helpers.getFooter())
                     message.channel.send(embed);
                 }))
             }

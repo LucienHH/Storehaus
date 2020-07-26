@@ -4,6 +4,7 @@ const client = new Discord.Client();
 
 //Fetch required for API Call
 const fetch = require('node-fetch');
+const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'weather',
@@ -46,6 +47,7 @@ module.exports = {
                 .addField("Humidity:", `${data.main.humidity}%`)
                 .addField("Sunrise:",`${sunrise.toGMTString().slice(0,-7)}GMT`)
                 .addField("Sunset",`${sunset.toGMTString().slice(0,-7)}GMT`)
+                .setFooter(helpers.getFooter());
                 message.channel.send(embed);
         }
         );

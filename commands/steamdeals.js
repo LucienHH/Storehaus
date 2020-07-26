@@ -36,7 +36,6 @@ module.exports = {
                     embed.addField(`${d.title}`, `$${d.salePrice} down from $${d.normalPrice}`)
                     onSaleNo++;
                 }
-
             })).then(e => {
                 if (onSaleNo == 0) {
                     message.channel.send(new Discord.MessageEmbed().setTitle("No sales found")).then(m => m.delete({ timeout: 10000 }))
