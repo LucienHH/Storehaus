@@ -4,7 +4,7 @@ const client = new Discord.Client();
 
 //Fetch required for API Call
 const fetch = require('node-fetch');
-
+const helpers = require('../helpers/helpers');
 module.exports = {
     name: 'nasa',
     description: 'Retrieve the NASA picture of the day! To run, try `!nasa`',
@@ -17,14 +17,20 @@ module.exports = {
         .then(data => {             
                 var image = data.url
                 var info = data.explanation
+                var length = 800;
+                var trimmedString = info.substring(0, length);
+                var title = data.title
                 var dateTaken = data.date
                 var author = data.copyright
+                console.log(image);
 
                 let embed = new Discord.MessageEmbed()
                 .setColor("#ff00ff")
                 .setTitle(`NASA Pic of the Day`)
+                .setDescription(`${data.title}`)
+                .addField(`Description`, `${trimmedString}...\n Author: ${author}. Date Taken: ${dateTaken}`)
                 .setImage(image)
-                .addField(`Description`, `${info}. Taken on ${dateTaken}, copyright ${author}`)
+                .setFooter(helpers.getFooter());
                 message.channel.send(embed);
         }
         );
