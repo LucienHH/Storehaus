@@ -6,7 +6,7 @@ module.exports = {
 	description: 'Storehaus is a bot that queries various APIs to enhance your discord server. This bot was created to help gamers discover, share, and enjoy info on their favorite games! To run, type `!about',
 	cooldown: 5,
 	execute(message, args) {
-
+//test
 		//message.channel.send("This bot is made to show information about games! Made by AndyTheNerd and PatrossDev. Contribute to this project at https://github.com/AndyTheNerd/GameInfoBot/")
 		let embed = new Discord.MessageEmbed()
 		.setColor("#ff00ff")
