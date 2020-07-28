@@ -89,7 +89,7 @@ module.exports = {
                                 var con = helpers.connectMYSQL();
                                 con.query(`SELECT * FROM ${process.env.mysql_bug_reports_table} ORDER  BY made_at DESC `, function (err, results) {
                                     channel.send(new Discord.MessageEmbed()
-                                        .setTitle(`New case. ID: ${results[0].id}`)
+                                        .setTitle(`New case. ID: ${results[0]['id']}`)
                                     );
                                 });
                             }).catch(() => {
