@@ -34,8 +34,9 @@ module.exports = {
                     if (results_.length == 0) {
                         con.query(`INSERT INTO ${process.env.mysql_league_summoners_table} VALUES(NULL, ${results[0]['id']}, "${summoner}")`,function(err,results_){
                             if (err) {
-                                message.channel.send(new Discord.MessageEmbed().setTitle(`Account linked to ${summoner}`)).then(message => message.delete({timeout: 10000}))
+                                console.log(err);
                             }
+                            message.channel.send(new Discord.MessageEmbed().setTitle(`Account linked to ${summoner}`)).then(message => message.delete({timeout: 10000}))
                         })
                     }else{
                         con.query(`UPDATE ${process.env.mysql_league_summoners_table} SET summoner_name = "${summoner}" WHERE user_id = ${results[0]['id']}`,function(err,results){
