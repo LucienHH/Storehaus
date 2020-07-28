@@ -36,7 +36,7 @@ client.on('message', async message => {
 		var con = helpers.connectMYSQL();
 		con.query(`SELECT * FROM ${process.env.mysql_guilds_table} where guild_id = ${guild}`, function (err, results) {
 			//guild found, check for prefix
-			let guildID = results[0].id == undefined ? 0 : results[0].id
+			let guildID = results==undefined || results[0].id == undefined ? 0 : results[0].id
 
 
 			console.log(results);
