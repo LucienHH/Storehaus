@@ -16,7 +16,6 @@ module.exports = {
             return;
         }
 
-
         if(option != "random"){
             var request = require('request');// need this for below to work 
         
