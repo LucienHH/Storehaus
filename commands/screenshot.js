@@ -7,7 +7,7 @@ const fs = require('fs');
 module.exports = {
     name: 'screenshot',
     description: 'Get screenshots for a game. To run, type `!screenshot name of a game`',
-    cooldown: 5,
+    cooldown: 10,
     async execute(message, args) {
         let game = args.slice(0).join(" ");
         if (game == undefined || game=="") {
