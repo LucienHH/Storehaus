@@ -40,7 +40,7 @@ client.on('message', async message => {
 				console.log(err);
 			}
 			//guild found, check for prefix
-			let guildID = results==undefined || results[0].id == undefined ? 0 : results[0].id
+			let guildID = results==undefined ? 0 : results[0].id
 
 
 			console.log(results);
