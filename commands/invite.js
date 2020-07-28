@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 module.exports = {
     name: 'invite',
-    description: 'test command!',
+    description: 'Invite Storehaus to your server!',
     cooldown: 0,
     execute(message, args) {
 
