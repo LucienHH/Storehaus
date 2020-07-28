@@ -23,31 +23,31 @@ module.exports = {
 
        
         fetch(`https://eun1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${summoner}`, { headers: headers })
-        .then(result => result.json())
+        // .then(result => result.json())
+            // .then(data => {
+            //     fetch(`https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/BKE_ooL5eRDnwGKXuCnBt45_aUG0EgjJDWu43YdnBk0by50`, {headers: headers})
+            //     .then(result => result.json())
+            //     .then(data => console.log(data))
+            // })
+            .then(result => result.json())
             .then(data => {
-                fetch(`https://eun1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/BKE_ooL5eRDnwGKXuCnBt45_aUG0EgjJDWu43YdnBk0by50`, {headers: headers})
-                .then(result => result.json())
-                .then(data => console.log(data))
-            })
-        //     .then(result => result.json())
-        //     .then(data => {
-        //         console.log(data);
-        //         try{
-        //             if (data.status.status_code ==404) {
-        //                 let embed = new Discord.MessageEmbed()
-        //                 .setTitle("Could not find the specified summoner, please try again.");
-        //                 message.channel.send(embed).then(message => message.delete({timeout: 10000}))
-        //                 return
-        //             }
-        //         }catch{
+                console.log(data);
+                try{
+                    if (data.status.status_code ==404) {
+                        let embed = new Discord.MessageEmbed()
+                        .setTitle("Could not find the specified summoner, please try again.");
+                        message.channel.send(embed).then(message => message.delete({timeout: 10000}))
+                        return
+                    }
+                }catch{
 
-        //         }
-        //         let embed = new Discord.MessageEmbed()
-        //             .setTitle(data.name)
-        //             .setThumbnail(`http://ddragon.leagueoflegends.com/cdn/10.15.1/img/profileicon/${data.profileIconId}.png`)
-        //             .addField("Summoner level:", data.summonerLevel);
-        //         message.channel.send(embed);
-        //     })
+                }
+                let embed = new Discord.MessageEmbed()
+                    .setTitle(data.name)
+                    .setThumbnail(`http://ddragon.leagueoflegends.com/cdn/10.15.1/img/profileicon/${data.profileIconId}.png`)
+                    .addField("Summoner level:", data.summonerLevel);
+                message.channel.send(embed);
+            })
 
     }
 }

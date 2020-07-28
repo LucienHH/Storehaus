@@ -55,5 +55,6 @@ module.exports = {
     },
 
     prefix: "!",
+    userID: "0",
 
 };
