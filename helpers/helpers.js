@@ -25,7 +25,7 @@ module.exports = {
             host: `${process.env.mysql_host}`,
             database: `${process.env.mysql_database}`,
             user: `${process.env.mysql_user}`,
-            password: ""
+            password: `${process.env.mysql_password}`
           });
 
           return con;
@@ -55,5 +55,6 @@ module.exports = {
     },
 
     prefix: "!",
+    userID: "0",
 
 };

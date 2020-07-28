@@ -12,6 +12,9 @@ module.exports = {
     cooldown: 5,
     async execute(message, args) {
         message.delete();
+
+        // await console.log(helpers.userID.toString());
+
         let report = await args.slice(0).join(" ");
         if (report.length < 20) {
             let embed = await new Discord.MessageEmbed()
@@ -55,14 +58,31 @@ module.exports = {
                                 message_.edit(embed);
                                 message_.delete({ timeout: 10000 })
                                 var con = helpers.connectMYSQL(); // connect to the pool?
-                                con.query(`INSERT INTO ${process.env.mysql_bug_reports_table} VALUES(NULL, "${message.author.username + '#' + message.author.discriminator}", 
-                                                                    "${message.author.id}",
-                                                                    "${report}",
-                                                                    "Pending",
-                                                                    "${contactPermission}",
-                                                                    DEFAULT)`, function (err, result) {
-                                    if (err) throw err;
-                                });
+                                con.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${message.author.id}`, function (err, results) {
+                                    if (results.length != 0) {
+                                        con.query(`INSERT INTO ${process.env.mysql_bug_reports_table} VALUES(NULL, "${message.author.username + '#' + message.author.discriminator}", 
+                                        "${results[0]['id']}",
+                                        "${report}",
+                                        "Pending",
+                                        "${contactPermission}",
+                                        DEFAULT)`, function (err, result) {
+                                            if (err) throw err;
+                                        });
+                                    } else {
+                                        con.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${message.author.id})`, function (err, results) {
+                                            con.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${message.author.id}`, function (err, results) {
+                                                con.query(`INSERT INTO ${process.env.mysql_bug_reports_table} VALUES(NULL, "${message.author.username + '#' + message.author.discriminator}", 
+                                                "${results[0]['id']}",
+                                                "${report}",
+                                                "Pending",
+                                                "${contactPermission}",
+                                                DEFAULT)`, function (err, result) {
+                                                    if (err) throw err;
+                                                });
+                                            })
+                                        })
+                                    }
+                                })
 
                                 var server = message.client.guilds.cache.get('722513354303995987');
                                 const channel = server.channels.cache.filter(c => c.type === 'text').find(x => x.id == "727953467443773460");
