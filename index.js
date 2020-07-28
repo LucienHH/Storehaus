@@ -7,6 +7,7 @@ const client = new Discord.Client();
 //This is for REST API.
 const fetch = require('node-fetch');
 const querystring = require('querystring');
+const { log } = require('console');
 
 client.commands = new Discord.Collection();
 
@@ -35,6 +36,9 @@ client.on('message', async message => {
 		// console.log(guild);
 		var con = helpers.connectMYSQL();
 		con.query(`SELECT * FROM ${process.env.mysql_guilds_table} where guild_id = ${guild}`, function (err, results) {
+			if (err) {
+				console.log(err);
+			}
 			//guild found, check for prefix
 			let guildID = results==undefined || results[0].id == undefined ? 0 : results[0].id
 
@@ -42,7 +46,7 @@ client.on('message', async message => {
 			console.log(results);
 			if (results.length == 1) {
 				con.query(`SELECT * FROM ${process.env.mysql_prefixes_table} WHERE guild_id = ${guildID}`, function (err, results_) {
-
+					
 
 					try {
 						results_.length == 1 ? helpers.prefix = results_[0]['prefix'] : helpers.prefix = process.env.prefix;
