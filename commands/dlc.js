@@ -12,7 +12,7 @@ module.exports = {
         let game = args.slice(0).join(" ");
 
         if (game == undefined || game=="") {
-            message.channel.send(new Discord.MessageEmbed().setTitle("You must specify a game to check the achievements")).then(m => m.delete({timeout: 10000}));
+            message.channel.send(new Discord.MessageEmbed().setTitle("You must specify a game to check the dlc")).then(m => m.delete({timeout: 10000}));
             return;
         }
         //GET

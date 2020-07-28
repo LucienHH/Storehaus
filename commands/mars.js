@@ -4,7 +4,7 @@ const client = new Discord.Client();
 
 //Fetch required for API Call
 const fetch = require('node-fetch');
-
+const helpers = require('../helpers/helpers');
 module.exports = {
     name: 'mars',
     description: 'Retrieve a picture from the Mars Curiosity rover! To run, try `!mars`',
@@ -23,6 +23,7 @@ module.exports = {
                 .setColor("#ff00ff")
                 .setTitle(`NASA Pic from Curiosity Rover`)
                 .setImage(image)
+                .setFooter(helpers.getFooter());
                 message.channel.send(embed);
         }
         );
