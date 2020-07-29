@@ -6,6 +6,6 @@ module.exports = {
     cooldown: 0,
     execute(message, args) {
 
-        message.channel.send("Coming Soon Kappa")
+        message.channel.send("https://discord.gg/urfmc8z")
     },
 };
