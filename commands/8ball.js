@@ -11,6 +11,5 @@ module.exports = {
         var array = fs.readFileSync('textfiles/8ball.txt').toString().split("\n");
         var quote = Math.floor(Math.random() * array.length);
         message.channel.send(`>>> ${array[quote]}`);
-        botStats.haloquote ++;
     },
 };
