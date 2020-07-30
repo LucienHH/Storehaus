@@ -88,9 +88,9 @@ module.exports = {
                                 const channel = server.channels.cache.filter(c => c.type === 'text').find(x => x.id == "727953467443773460");
                                 // var con = helpers.connectMYSQL();
                                 // con.query(`SELECT * FROM ${process.env.mysql_bug_reports_table} ORDER  BY made_at DESC `, function (err, results) {
-                                //     channel.send(new Discord.MessageEmbed()
-                                //         .setTitle(`New case. ID: ${results[0].id}`)
-                                //     );
+                                    channel.send(new Discord.MessageEmbed()
+                                        .setTitle(`New case available.`)
+                                    );
                                 // });
                             }).catch(() => {
 
