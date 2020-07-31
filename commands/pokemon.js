@@ -15,16 +15,15 @@ module.exports = {
         fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
         .then(response => response.json())
         .then(data => {         
+
             let title = new Discord.MessageEmbed() 
             title.setColor("#ff00ff")
             title.setTitle(`Pokemon Info for ${pokemon}`)
-            console.log(data)
-            for (let i = 0; i < data.length; i++) {   
-                titleno = i + 1;     
-                title.addField(`\u200b` ,`**${titleno}** - *${data.game_indices}*`);
-            }
-                
 
+            let i=0;
+            data.game_indices.map(d => {
+                title.addField(`\u200b` ,`**${++i}** - *${d.version.name}*`);
+            })
                 //ddField(`Description`, `${trimmedString}...\n Author: ${author}. Date Taken: ${dateTaken}`)
                 title.setFooter(helpers.getFooter());
                 message.channel.send(title);
