@@ -6,7 +6,7 @@ const prefix  = process.env.prefix;
 
 module.exports = {
 	name: 'help',
-	description: 'List all of the bots commands or info about a specific command.',
+	description: 'List info about a specific command.',
     cooldown: 2,
     usage: '[command name]',
 	execute(message, args) {

@@ -8,7 +8,7 @@ const helpers = require('../helpers/helpers');
 module.exports = {
     name: 'nasa',
     description: 'Retrieve the NASA picture of the day! To run, try `!nasa`',
-    cooldown: 5,
+    cooldown: 60,
     async execute(message, args) {
         let option = args.slice(0).join(" ");
 
