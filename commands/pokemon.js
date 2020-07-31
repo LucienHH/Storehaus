@@ -22,7 +22,7 @@ module.exports = {
 
             let i=0;
             data.game_indices.map(d => {
-                title.addField(`\u200b` ,`**${++i}** - *${d.version.name}*`);
+                title.addField(`\u200b` ,`**${++i}** - *${d.version.name}*`, true);
             })
                 //ddField(`Description`, `${trimmedString}...\n Author: ${author}. Date Taken: ${dateTaken}`)
                 title.setFooter(helpers.getFooter());
