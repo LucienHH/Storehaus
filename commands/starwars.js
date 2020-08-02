@@ -16,12 +16,7 @@ module.exports = {
         .then(response => response.json())
         .then(data => {             
                 var quote = data.starWarsQuote
-
-                let embed = new Discord.MessageEmbed()
-                .setColor("#ff00ff")
-                .addField(`Random Star Wars Quote`, `${quote}`)
-                .setFooter(helpers.getFooter());
-                message.channel.send(embed);
+                message.channel.send(`>>> ${quote}`);
         }
         );
         delete embed;
