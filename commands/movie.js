@@ -5,6 +5,7 @@ const client = new Discord.Client();
 //Fetch required for API Call
 const fetch = require('node-fetch');
 const helpers = require('../helpers/helpers');
+const { log } = require('console');
 
 module.exports = {
     name: 'movie',
@@ -21,14 +22,21 @@ module.exports = {
 
         const query = querystring.stringify({ term: args.join(' ') });
 
-        fetch(`https://api.nytimes.com/svc/moviesreview/v2/reviews/search.json?query=${args.join(' ')}&api-key=${process.env.ny_times}`)
+        fetch(`https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=${args.join(' ')}&api-key=${process.env.ny_times}`)
         .then(response => response.json())
-        .then(data => {             
-                var movieName = data.results.display_title
-                console.log(movieName)
+        .then(data => {         
+            
+            // data.results.forEach(element => {
+            //     // console.log(element.display_title);
+            // });
+            console.log(data);
+                var movieName = data.display_title
+                console.log(data.display_title)
                 let embed = new Discord.MessageEmbed()
                 .setColor("#ff00ff")
-                .addField(`Movie Information for ${movieName}`, `MPAA Rating:`)
+                .addField(`Movie Information for ${data.results[0].display_title}`, `MPAA Rating: ${data.results[0].mpaa_rating}`)
+                .addField("Short summary: ", data.results[0].summary_short)
+                .addField("Publication date: ", data.results[0].publication_date)
                 .setFooter(helpers.getFooter());
                 message.channel.send(embed);
         }
