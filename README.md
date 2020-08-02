@@ -76,6 +76,8 @@ To understand what each command does, type `!help [name of command]`. To get a l
 
 `nasa` See the NASA Picture of the Day! One of our favorite commands.
 
+`starwars` Grab a random quote from the Star Wars movies. Of course the prequels are included.
+
 `today` Learn about what happened today in history.
 
 `trivia` Learn something new about gaming, TV, film, and history.
