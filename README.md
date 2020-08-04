@@ -70,11 +70,17 @@ To understand what each command does, type `!help [name of command]`. To get a l
 
 `insult` Get a random insult. May or may not make sense for the lolz.
 
+`ligma` Do you have ligma? What about one of your friends?
+
 `mars` See a random picture taken by the NASA Curiosity rover!
+
+`math` Retrieve a random fact about math, numbers, and dates in history.
 
 `meme` See some of the best gaming memes on the Internet today. Recommended for those 18+.
 
 `nasa` See the NASA Picture of the Day! One of our favorite commands.
+
+`starwars` Grab a random quote from the Star Wars movies. Of course the prequels are included.
 
 `today` Learn about what happened today in history.
 
