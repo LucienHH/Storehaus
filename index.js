@@ -35,6 +35,15 @@ client.on('message', async message => {
 		let guild = message.guild.id;
 		console.log(guild);
 		var con = helpers.connectMYSQL();
+		con.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${message.author.id}`,function(err,user_result){
+			if (user_result == undefined) {
+				con.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${message.author.id})`)
+			}else if(user_result == 0){
+				con.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${message.author.id})`)
+			}else{
+				//nothing
+			}
+		})
 		con.query(`SELECT * FROM ${process.env.mysql_guilds_table} where guild_id = "${guild}"`, function (err, results) {
 			if (err) {
 				console.log(err);
