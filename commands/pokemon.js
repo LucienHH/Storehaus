@@ -27,17 +27,18 @@ module.exports = {
             // title.addField(`Type:`,`${d.type.name}`)
             // })
             title.setFooter(helpers.getFooter());
-
+            const filter = (reaction, user) => {
+                return ['✅', '❌'].includes(reaction.emoji.name) && user.id === message.author.id;
+            };
             message.channel.send(title).then(function (message_) {
                 message_.react('✅').then(() => message_.react('❌'));
-                if (reaction.emoji.name === '✅') {
-                    title.edit(new Discord.MessagEmbed().setTitle("Kevin"))
-                }
-            })
-            message_.awaitReactions(filter, { max: 1, time: 30000, errors: ['time'] })
-            .then(collected => {
-                const reaction = collected.first();
- 
+                message_.awaitReactions(filter, { max: 1, time: 30000, errors: ['time'] })
+                .then(collected => {
+                    const reaction = collected.first();
+                    message_.reactions.removeAll();
+                    message_.edit(new Discord.MessageEmbed().setTitle("test"));
+     
+                })
             })
 
         }
