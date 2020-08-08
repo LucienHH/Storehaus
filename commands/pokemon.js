@@ -18,17 +18,28 @@ module.exports = {
 
             let title = new Discord.MessageEmbed() 
             title.setColor("#ff00ff")
-            title.setTitle(`Pokemon Info for ${pokemon}`)
-            title.setDescription(`**Versions Appeared In:**`)
-            let i=0;
-            data.game_indices.map(d => {
-                title.addField(`\u200b` ,`**${++i}** - *${d.version.name}*`, true);
-            })
-            data.types.map(d => {
-            title.addField(`Type:`,`${d.type.name}`)
-            })
+            title.addField(`Get Info`,`✅ Get a list of all the versions this pokemon has appeared in. \n ❌ Get a list of abilities of this Pokemon.`)
+            //let i=0;
+            // data.game_indices.map(d => {
+            //     title.addField(`\u200b` ,`**${++i}** - *${d.version.name}*`, true);
+            // })
+            // data.types.map(d => {
+            // title.addField(`Type:`,`${d.type.name}`)
+            // })
             title.setFooter(helpers.getFooter());
-            message.channel.send(title);
+
+            message.channel.send(title).then(function (message_) {
+                message_.react('✅').then(() => message_.react('❌'));
+                if (reaction.emoji.name === '✅') {
+                    title.edit(new Discord.MessagEmbed().setTitle("Kevin"))
+                }
+            })
+            message_.awaitReactions(filter, { max: 1, time: 30000, errors: ['time'] })
+            .then(collected => {
+                const reaction = collected.first();
+ 
+            })
+
         }
         );
         delete embed;
