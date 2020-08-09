@@ -12,6 +12,7 @@
     "howlongtobeat": "^1.2.1",
     "igdb-api-node": "^4.0.4",
     "line-reader": "^0.4.0",
+    "moment": "^2.27.0",
     "mysql": "^2.18.1",
     "node-fetch": "^2.6.0",
     "pokedex-promise-v2": "^3.2.0",
