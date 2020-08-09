@@ -5,12 +5,30 @@ const client = new Discord.Client();
 //Fetch required for API Call
 const fetch = require('node-fetch');
 const helpers = require('../helpers/helpers');
+
+//API Wrapper
+var Pokedex = require('pokedex-promise-v2');
+var P = new Pokedex();
 module.exports = {
     name: 'pokemon',
     description: 'Retrieve the NASA picture of the day! To run, try `!nasa`',
     cooldown: 5,
     async execute(message, args) {
         let pokemon = args.slice(0).join(" ");
+        //----------Beginning of code for API wrapper-----------
+        // P.getPokemonByName('eevee') // with Promise
+        // .then(function(response) {
+        //   console.log(response);
+        // })
+        // .catch(function(error) {
+        //   console.log('There was an ERROR: ', error);
+        // });
+
+        // P.getRegionByName("sinnoh")
+        // .then(function(response) {
+        //   console.log(response);
+        // })
+        //----------End of Commented out code for API wrapper---------
 
         function pokemonVersion(){
             fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
@@ -21,6 +39,7 @@ module.exports = {
             embed = new Discord.MessageEmbed()
             let i=0;
             data.game_indices.map(d => {
+                embed.setTitle(`${pokemon} appears in:`)
                 embed.addField(`\u200b` ,`**${++i}** - *${d.version.name}*`, true);
                 embed.setFooter(`❌ Return to the main menu.`)
             })
@@ -46,7 +65,7 @@ module.exports = {
             //message_.edit(new Discord.MessageEmbed().setTitle("test"));
             embed = new Discord.MessageEmbed()
             data.types.map(d => {
-            embed.addField(`Type:`,`${d.type.name}`)
+            embed.addField(`Types for ${pokemon}:`,`${d.type.name}`)
             embed.setFooter(`❌ Return to the main menu.`)
             })
             message.channel.send(embed).then(function (messageGame){
@@ -60,9 +79,35 @@ module.exports = {
                 //embed.delete;
                 mainMenu();
             }
-            //End Type function
         }
+        //End Type function
 
+        function pokemonAbilities(){
+            fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+            .then(response => response.json())
+            .then(data => {  
+            //message_.reactions.removeAll();
+            //message_.edit(new Discord.MessageEmbed().setTitle("test"));
+            embed = new Discord.MessageEmbed()
+            let i=0;
+            data.abilities.map(d => {
+                embed.setTitle(`${pokemon} abilities:`)
+                embed.addField(`\u200b` ,`**${++i}** - *${d.ability.name}*`, true);
+                embed.setFooter(`❌ Return to the main menu.`)
+            })
+            message.channel.send(embed).then(function (messageGame){
+                messageGame.react('❌');
+                })
+            })
+            if (reaction.emoji.name === '❌')
+            {   
+                message2.reactions.removeAll();
+                message2.delete();
+                //embed.delete;
+                mainMenu();
+            }
+        }
+        //End of version function
 
         function mainMenu() {
             fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
@@ -70,7 +115,7 @@ module.exports = {
             .then(data => {         
                 let title = new Discord.MessageEmbed() 
                 title.setColor("#ff00ff")
-                title.addField(`Pokemon Info for ${pokemon}`,`👍 Get a list of all the versions that ${pokemon} has appeared in. \n 👀 See what type ${pokemon} is \n 🌎 See where to find this Pokemon \n❌ Return to the main menu.`)
+                title.addField(`Pokemon Info for ${pokemon}`,`👍 Get a list of all the versions that ${pokemon} has appeared in. \n 👀 See what type ${pokemon} is \n 🌎 See the abilities of this Pokemon \n❌ Return to the main menu.`)
                 // let i=0;
                 // data.game_indices.map(d => {
                 //     title.addField(`\u200b` ,`**${++i}** - *${d.version.name}*`, true);
@@ -100,6 +145,13 @@ module.exports = {
                         message_.delete();
                         //embed.delete;
                         pokemonType();
+                    }
+                    if (reaction.emoji.name === '🌎')
+                    {   
+                        message_.reactions.removeAll();
+                        message_.delete();
+                        //embed.delete;
+                        pokemonAbilities();
                     }
     
                     })
