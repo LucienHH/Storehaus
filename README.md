@@ -58,6 +58,8 @@ To understand what each command does, type `!help [name of command]`. To get a l
 
 `8ball` Ask the bot for advice. May or may not be a good idea.
 
+`anime` Retrieve a quote from an anime.
+
 `cat` Retrieve a random picture of a cute kitty.
 
 `chuck` What bot would not have Chuck Norris jokes?
@@ -67,6 +69,8 @@ To understand what each command does, type `!help [name of command]`. To get a l
 `dog` Retrieve a random picture of a good doggo.
 
 `gif` Posts a random gif.
+
+`hack` Show your hacking skills and hack a random person.
 
 `insult` Get a random insult. May or may not make sense for the lolz.
 

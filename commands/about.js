@@ -12,7 +12,7 @@ module.exports = {
 		.setColor("#ff00ff")
 		.addField(`Storehaus: A Gaming Info Bot`, "[Invite Storehaus to your server!](https://discord.com/oauth2/authorize?client_id=736204347171405904&scope=bot&permissions=379968)\n \nStorehaus is a gaming info bot designed to help you learn and enhance your gaming experience.\n \nThe default prefix for Storehaus is `!` and you can change it with `!setprefix`")
 		.addField(`Gaming Commands`,"`!achievements`, `!compat`, `!dlc` `!gameinfo`, `!gamesub`, `!gogdeals`, `!goty`, `!halopedia`, `!haloquote`, `!playtime`, `!playanywhere`, `!psnow`, `!review`, `!screenshot`, `!series`, `!steamdeals`, `!stores`")
-		.addField(`Humor and Misc. Commands`, "`!8ball`, `!cat`, `!chuck`, `!dadjoke`, `!dog`, `!gif`, `!insult`, `!ligma`, `!mars`, `!math`, `!meme`, `!nasa`, `!starwars`, `!teamrespawn`, `!today`, `!trivia`, `!weather`, `!xbl`")
+		.addField(`Humor and Misc. Commands`, "`!8ball`, `!anime`, `!cat`, `!chuck`, `!dadjoke`, `!dog`, `!gif`, `!hack`, `!insult`, `!ligma`, `!mars`, `!math`, `!meme`, `!nasa`, `!starwars`, `!teamrespawn`, `!today`, `!trivia`, `!weather`, `!xbl`")
 		.addField(`Support Comands`, "`!about`, `!feedback`, `!help`, `!invite`, `!setprefix`, `!support`")
 		.addField(`Help`, "To learn how to use a particular command, type `!help [name of a command]`")
 		.addField(`TeamRespawn`, "If you love Halo or Halo Wars, come join the [TeamRespawn Discord server!](https://discord.com/invite/Q5vEpDj)")
