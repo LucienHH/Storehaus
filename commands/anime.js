@@ -17,27 +17,17 @@ module.exports = {
         }
 
         if (option =="random") {
-            fetch(`https://anime-chan.herokuapp.com/api/quotes`)
+            fetch(`https://anime-chan.herokuapp.com/api/quotes/random`)
             .then(response => response.json())
             .then(data => {
                     var quote1 = data[0].quote;
                     var character1 = data[0].character;
-                    var anime1 = data[0].anime;
-
-                    var quote2 = data[1].quote;
-                    var character2 = data[1].character;
-                    var anime2 = data[1].anime;
-                    
-                    var quote3 = data[2].quote;
-                    var character3 = data[2].character;
-                    var anime3 = data[2].anime;  
+                    var anime1 = data[0].anime; 
     
                     let embed = new Discord.MessageEmbed()
                     .setColor("#ff00ff")
                     .setTitle(`Anime Quotes`)
                     .addField(anime1,`${quote1} - ${character1}`)
-                    .addField(anime2,`${quote2} - ${character2}`)
-                    .addField(anime3,`${quote3} - ${character3}`)
                     message.channel.send(embed);
             }
             );
