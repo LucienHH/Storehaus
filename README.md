@@ -42,7 +42,7 @@ To understand what each command does, type `!help [name of command]`. To get a l
 
 `playtime`  Get the time to complete a game's campaign and DLC. 
 
-`psnow` See if a game is on Playstatoin Now.
+`psnow` See if a game is on Playstation Now.
 
 `review` Read a review and score of a game.
 
