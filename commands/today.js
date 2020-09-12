@@ -32,9 +32,9 @@ module.exports = {
                 let embed = new Discord.MessageEmbed()
                 .setColor("#ff00ff")
                 .setTitle(`${date} In History`)
-                .addField(`${year}`, `${title}\n Read more: ${url}`)
-                .addField(`${year2}`, `${title2}\n Read more: ${url2}`)
-                .addField(`${year3}`, `${title3}\n Read more: ${url3}`)
+                .addField(`${year}`, `${title}\nRead more: ${url}`)
+                .addField(`${year2}`, `${title2}\nRead more: ${url2}`)
+                .addField(`${year3}`, `${title3}\nRead more: ${url3}`)
                 .setFooter(helpers.getFooter());
                 message.channel.send(embed);
         }
