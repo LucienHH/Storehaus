@@ -9,7 +9,7 @@ const fetch = require('node-fetch');
 module.exports = {
     name: '_mods',
     description: 'Get the top trending mods about a game on Nexus Mods. Try `!mods name of game`',
-    cooldown: 5,
+    cooldown: 10,
     async execute(message, args) {
         let game = args.slice(0).join(" ");
         const querystring = require('querystring')

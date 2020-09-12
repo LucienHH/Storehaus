@@ -21,8 +21,16 @@ module.exports = {
               console.log('Error:', err);
             }
             else {
+              let option = args.slice(0).join(" ");
+              if (option == undefined || option=="" || option == "@everyone" || option == "@here") {
+                  message.channel.send(`>>> ${data}`);
+                  return;
+              }
+              else{
+                  message.channel.send(`>>> ${option} - ${data}`);
+              }
               // data is already parsed as JSON:
-              message.channel.send(`>>> ${data}`)
+              //message.channel.send(`>>> ${data}`)
             }
         });
     },
