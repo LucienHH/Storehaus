@@ -80,6 +80,7 @@ module.exports = {
             .addField(`Chuck`,"What bot would not have Chuck Norris jokes?\n `!chuck`")
             .addField(`Dad Jokes`,"Dad joke lol.\n `!dadjoke`")
             .addField(`Dog`,"Retrieve a random picture of a good doggo.\n `!dog`")
+            .addField(`Geek Joke`, "If you laugh you are a true nerd\n `!geekjoke`")
             .addField(`Gif`,"Retrieve a random gif.\n `!gif`")
             .addField(`Insult`,"Get a random insult. May or may not make sense for the lolz.\n `!insult @someone`")
             .addField(`Ligma`,"Do you have ligma? What about one of your friends?\n `!ligma @someone` or `!ligma`")
@@ -92,6 +93,7 @@ module.exports = {
             .addField(`Trivia`,"Learn something new about gaming, TV, film, and history.\n `!trivia game`, `!trivia film`, `!trivia tv`, or `!trivia history`")
             .addField(`Weather`,"Get data of weather from any city around the world.\n `!weather Tokyo`")
             .addField(`No Context Xbox Live Messages`,"See a random post from the No Context Xbox Live subreddit.\n `!xbl`")
+            .addField(`Yes Or No`,"Yes or No.\n `!yesorno`")
             .setFooter(`<3`)
             message.channel.send(embed);
             delete embed;
