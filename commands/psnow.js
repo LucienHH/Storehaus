@@ -10,6 +10,11 @@ module.exports = {
     execute(message, args) {
         let PSNow = args.slice(0).join(" ");
         console.log(PSNow)
+        if (PSNow == undefined || PSNow=="") {
+            message.channel.send(new Discord.MessageEmbed().setTitle("You must specify a game to check! Try `!psnow [name of game]`")).then(m => m.delete({timeout: 10000}));
+            return;
+        }
+
         //User input to lower case
         var lowerCaseGame = PSNow.toLowerCase();
         //Reads each line from text file that supplies lines of dialogue. Picks on at random and displays it.
