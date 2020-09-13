@@ -41,9 +41,9 @@ client.on('message', async message => {
 			// Use the connection
 			connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${message.author.id}`,function(err,user_result){
 				if (user_result == undefined) {
-					con.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${message.author.id})`)
+					connection.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${message.author.id})`)
 				}else if(user_result == 0){
-					con.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${message.author.id})`)
+					connection.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${message.author.id})`)
 				}else{
 					//nothing
 				}
@@ -170,6 +170,7 @@ client.on('message', async message => {
 			})
 			  // When done with the connection, release it.
 			  connection.release();
+			  
 		   
 			  // Handle error after the release.
 			//   if (error) throw error;
