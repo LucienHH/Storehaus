@@ -164,4 +164,4 @@ client.on('message', async message => {
 	///
 });
 
-client.login(process.env.old_token);
+client.login(process.env.token);
