@@ -39,12 +39,6 @@ module.exports = {
             let embed = new Discord.MessageEmbed()
             .setColor("#ff00ff")
             .addField(`Commands List`, "**Gaming Commands** `!help gaming`\n**Humor Commands** `!help humor`\n **Misc Commands** `!help misc`\n **About Storehaus** `!about`")
-            // .addField(`Gaming Commands`,"`!achievements`, `!compat`, `!dlc` `!gameinfo`, `!gamesub`, `!gogdeals`, `!goty`, `!halopedia`, `!haloquote`, `!playtime`, `!playanywhere`, `!psnow`, `!review`, `!screenshot`, `!series`, `!steamdeals`, `!stores`")
-            // .addField(`Humor and Misc. Commands`, "`!8ball`, `!cat`, `!chuck`, `!dadjoke`, `!dog`, `!gif`, `!insult`, `!ligma`, `!mars`, `!math`, `!meme`, `!nasa`, `!starwars`, `!teamrespawn`, `!today`, `!trivia`, `!weather`, `!xbl`")
-            // .addField(`Support Comands`, "`!about`, `!feedback`, `!help`, `!invite`, `!setprefix`, `!support`")
-            // .addField(`Help`, "To learn how to use a particular command, type `!help [name of a command]`")
-            // .addField(`TeamRespawn`, "If you love Halo or Halo Wars, come join the [TeamRespawn Discord server!](https://discord.com/invite/Q5vEpDj)")
-            // .addField(`Support`, "Need help? [Join the support server](https://discord.gg/urfmc8z) Feeling generous? [Buy us a coffee.](https://ko-fi.com/andythenerd)")
             message.channel.send(embed);
             delete embed;
             return;
