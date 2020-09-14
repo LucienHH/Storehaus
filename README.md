@@ -70,6 +70,8 @@ To understand what each command does, type `!help [name of command]`. To get a l
 
 `gif` Posts a random gif.
 
+`geekjoke` If you laugh you are a true nerd.
+
 `hack` Show your hacking skills and hack a random person.
 
 `insult` Get a random insult. May or may not make sense for the lolz.
@@ -93,6 +95,8 @@ To understand what each command does, type `!help [name of command]`. To get a l
 `weather` Get data of weather from any city around the world.
 
 `xbl` See a random post from the "No Context Xbox Live" subreddit.
+
+`yesorno` Yes or No.
 
 #### Misc. Commands
 
