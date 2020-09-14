@@ -35,8 +35,7 @@ client.on('message', async message => {
 		const helpers = require('./helpers/helpers')
 		let guild = message.guild.id;
 		console.log(guild);
-		var con = helpers.connectMYSQL();
-		con.getConnection(function(err, connection) {
+		helpers.pool.getConnection(function(err, connection) {
 			if (err) throw err; // not connected!
 		   
 			// Use the connection
@@ -170,8 +169,11 @@ client.on('message', async message => {
 				}
 			})
 			  // When done with the connection, release it.
-			  connection.release();
-			  
+			//   console.log(connection._pool.config.connectionLimit)     // passed in max size of the pool
+			//   console.log(connection._pool._freeConnections.length)    // number of free connections awaiting use
+			//   console.log(connection._pool._allConnections.length)     // number of connections currently created, including ones in use
+			//   console.log(connection._pool._acquiringConnections.length) // number of connections in the process of being acquired
+			connection.release();
 		   
 			  // Handle error after the release.
 			//   if (error) throw error;
@@ -180,7 +182,7 @@ client.on('message', async message => {
 
 		  });
 	} catch (error) {
-		console.log("REEE");
+		console.log(error);
 	}
 	///
 	///CHECK WHETHER DEFAULT PREFIX OR GUILD CUSTOM PREFIX IS BEING USED

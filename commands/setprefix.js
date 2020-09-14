@@ -10,8 +10,7 @@ module.exports = {
     description: 'Set global prefix for the guild.',
     cooldown: 5,
     async execute(message, args) {
-        let con = helpers.connectMYSQL();
-        con.getConnection(function(err, connection) {
+        helpers.pool.getConnection(function(err, connection) {
             if (err) throw err; // not connected!
            
             // Use the connection
