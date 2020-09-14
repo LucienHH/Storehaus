@@ -21,7 +21,7 @@ module.exports = {
 
     connectMYSQL: function(){
             var con = mysql.createPool({
-            connectionLimit : 100,
+            connectionLimit : 10,
             host: `${process.env.mysql_host}`,
             database: `${process.env.mysql_database}`,
             user: `${process.env.mysql_user}`,
