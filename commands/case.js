@@ -7,8 +7,7 @@ module.exports = {
     cooldown: 5,
     aliases: ['case', 'report'],
 	execute(message, args) {
-        let con = helpers.connectMYSQL();
-        con.getConnection(function(err, connection) {
+        helpers.pool.getConnection(function(err, connection) {
             if (err) throw err; // not connected!
            
             // Use the connection
@@ -125,6 +124,7 @@ module.exports = {
                 message.channel.send(new Discord.MessageEmbed().setTitle("Deleted Case id " + args[1]))
             }
               // When done with the connection, release it.
+              
               connection.release();
               
            

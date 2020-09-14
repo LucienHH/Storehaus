@@ -19,17 +19,17 @@ module.exports = {
 
     },
 
-    connectMYSQL: function(){
-            var con = mysql.createPool({
-            connectionLimit : 10,
-            host: `${process.env.mysql_host}`,
-            database: `${process.env.mysql_database}`,
-            user: `${process.env.mysql_user}`,
-            password: `${process.env.mysql_password}`
-          });
+    // connectMYSQL: function(){
+    //         var con = mysql.createPool({
+    //         connectionLimit : 10,
+    //         host: `${process.env.mysql_host}`,
+    //         database: `${process.env.mysql_database}`,
+    //         user: `${process.env.mysql_user}`,
+    //         password: `${process.env.mysql_password}`
+    //       });
 
-          return con;
-    },
+    //       return con;
+    // },
 
     arabicToRoman: function(number){
         let roman = "";
@@ -56,5 +56,14 @@ module.exports = {
 
     prefix: "!",
     userID: "0",
+
+    pool: mysql.createPool({
+    connectionLimit : 10,
+    host: `${process.env.mysql_host}`,
+    database: `${process.env.mysql_database}`,
+    user: `${process.env.mysql_user}`,
+    password: `${process.env.mysql_password}`
+    }),
+
 
 };

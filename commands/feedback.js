@@ -11,8 +11,7 @@ module.exports = {
     usage: "[report content]",
     cooldown: 5,
     async execute(message, args) {
-        let con = helpers.connectMYSQL();
-        con.getConnection(async function(err, connection) {
+        helpers.pool.getConnection(async function(err, connection) {
             if (err) throw err; // not connected!
            
             // Use the connection
