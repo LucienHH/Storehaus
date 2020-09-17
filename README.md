@@ -17,7 +17,7 @@ Example: `!meme`
 
 Some commands require the name of game after them. Example: `!gameinfo Skyrim`
 
-To understand what each command does, type `!help [name of command]`. To get a list of all commands, type `!about`.
+To understand what each command does, type `!help [name of command]`. To get a list of all commands, type `!help`.
 #### Gaming Commands
 
 `achivements` See the Xbox achievements of a game.
