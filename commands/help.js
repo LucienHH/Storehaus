@@ -48,7 +48,7 @@ module.exports = {
             let embed = new Discord.MessageEmbed()
             .setColor("#ff00ff")
             .setTitle(`Gaming Commands`)
-            .addField(`Achievemnts`, "Learn about the achievements of a particular game\n`!achievements skyrim`")
+            .addField(`Achievements`, "Learn about the achievements of a particular game\n`!achievements skyrim`")
             .addField(`Compat`,"See if a game is backwards compatatible on Xbox One\n `!compat Halo 4`")
             .addField(`DLC`, "See what DLC is offered on a game\n `!dlc witcher 3`")
             .addField(`Game Info`, "Get general information of a particular game.\n `!gameinfo Crackdown 2`")
@@ -76,11 +76,14 @@ module.exports = {
             .setColor("#ff00ff")
             .setTitle(`Humor Commands`)
             .addField(`8ball`, "Ask the bot for advice. May or may not be a good idea.\n`!8ball Should I fire James?`")
+            .addField(`Anime`, "Get an anime quote!\n `!anime random` or `!anime naruto`")
             .addField(`Cat`,"Retrieve a random picture of a cute kitty.\n `!cat`")
             .addField(`Chuck`,"What bot would not have Chuck Norris jokes?\n `!chuck`")
             .addField(`Dad Jokes`,"Dad joke lol.\n `!dadjoke`")
             .addField(`Dog`,"Retrieve a random picture of a good doggo.\n `!dog`")
+            .addField(`Geek Joke`, "If you laugh you are a true nerd\n `!geekjoke`")
             .addField(`Gif`,"Retrieve a random gif.\n `!gif`")
+            .addField(`Hack`, "Be a true hacker and hack a totally fake person.\n `!hack`")
             .addField(`Insult`,"Get a random insult. May or may not make sense for the lolz.\n `!insult @someone`")
             .addField(`Ligma`,"Do you have ligma? What about one of your friends?\n `!ligma @someone` or `!ligma`")
             .addField(`Mars`,"See a random picture taken by the NASA Curiosity rover!\n `!mars`")
@@ -92,6 +95,7 @@ module.exports = {
             .addField(`Trivia`,"Learn something new about gaming, TV, film, and history.\n `!trivia game`, `!trivia film`, `!trivia tv`, or `!trivia history`")
             .addField(`Weather`,"Get data of weather from any city around the world.\n `!weather Tokyo`")
             .addField(`No Context Xbox Live Messages`,"See a random post from the No Context Xbox Live subreddit.\n `!xbl`")
+            .addField(`Yes Or No`,"Yes or No.\n `!yesorno`")
             .setFooter(`<3`)
             message.channel.send(embed);
             delete embed;
@@ -107,6 +111,7 @@ module.exports = {
             .addField(`Help`, "You're using this command right now.\n`!help`")
             .addField(`Invite`, "Invite Storehaus to your server.\n`!invite`")
             .addField(`Support`, "Get a link to join the Storehaus support server\n`!support`")
+            .addField(`TeamRespawn`, "Get info and links to the YouTube channel and community that developed this bot!\n `!tr`")
             .setFooter(`<3`)
             message.channel.send(embed);
             delete embed;

@@ -8,22 +8,16 @@ module.exports = {
     description: 'Of course we need Chuck Norris jokes. To run, type `!chuck`',
     cooldown: 5,
     async execute(message, args) {
-        var request = require('request');// need this for below to work 
-        
-        var url = 'http://api.icndb.com/jokes/random';
-        
-        request.get({
-            url: url,
-            json: true,
-          }, (err, res, data) => {
-            if (err) {
-              console.log('Error:', err);
-            }
-            else {
-            console.log(data)
-              // data is already parsed as JSON:
-            message.channel.send(`>>> ${data.value.joke}`)
-            }
-        });
-    },
-};
+      fetch(`https://api.chucknorris.io/jokes/random`)
+      .then(response => response.json())
+      .then(data => {             
+              var quote = data.value
+              var url = data.url
+              message.channel.send(`>>> ${quote}`);
+      }
+      );
+      delete embed;
+
+      return;
+  }
+}

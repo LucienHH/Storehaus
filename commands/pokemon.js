@@ -1,3 +1,5 @@
+//WIP
+
 require('dotenv').config({ path: require('find-config')('.env') });
 const Discord = require('discord.js');
 const client = new Discord.Client();
