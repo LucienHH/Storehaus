@@ -111,6 +111,7 @@ module.exports = {
             .addField(`Help`, "You're using this command right now.\n`!help`")
             .addField(`Invite`, "Invite Storehaus to your server.\n`!invite`")
             .addField(`Support`, "Get a link to join the Storehaus support server\n`!support`")
+            .addField(`TeamRespawn`, "Get info and links to the YouTube channel and community that developed this bot!\n `!tr`")
             .setFooter(`<3`)
             message.channel.send(embed);
             delete embed;
