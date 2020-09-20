@@ -24,10 +24,10 @@ module.exports = {
             })
             
 
-            connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${randomUser.id}`, function (err, results) {
-                console.log(results.id);
-                connection.query(`SELECT * FROM ${process.env.mysql_someone_blacklist_table} where user_id = ${results[0]['id']}`, function (err, results_) {
-                    if (results && results_.length == 1) {
+            connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${randomUser.id}`, function (err, result) {
+                console.log(result);
+                connection.query(`SELECT * FROM ${process.env.mysql_someone_blacklist_table} where user_id = ${result['id']}`, function (err, results_) {
+                    if (results_ && results_.length == 1) {
                         message.channel.send(`Blacklisted user: ${randomUser.user.username}#${randomUser.user.discriminator}`);
                     } else {
                         message.channel.send(`<@${randomUser.id}>`);
