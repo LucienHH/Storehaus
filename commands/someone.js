@@ -15,7 +15,7 @@ module.exports = {
         helpers.pool.getConnection(async function (err, connection) {
             connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${randomUser.id}`,function(err,user_result){
 				if (user_result == undefined) {
-					connection.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${mrandomUser.id})`)
+					connection.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${randomUser.id})`)
 				}else if(user_result == 0){
 					connection.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${randomUser.id})`)
 				}else{
