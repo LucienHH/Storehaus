@@ -48,7 +48,7 @@ module.exports = {
             let embed = new Discord.MessageEmbed()
             .setColor("#ff00ff")
             .setTitle(`Gaming Commands`)
-            .addField(`Achievemnts`, "Learn about the achievements of a particular game\n`!achievements skyrim`")
+            .addField(`Achievements`, "Learn about the achievements of a particular game\n`!achievements skyrim`")
             .addField(`Compat`,"See if a game is backwards compatatible on Xbox One\n `!compat Halo 4`")
             .addField(`DLC`, "See what DLC is offered on a game\n `!dlc witcher 3`")
             .addField(`Game Info`, "Get general information of a particular game.\n `!gameinfo Crackdown 2`")
