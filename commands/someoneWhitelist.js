@@ -16,8 +16,8 @@ module.exports = {
 
                 connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${message.author.id}`,function(err,result){
                     connection.query(`SELECT * FROM ${process.env.mysql_someone_blacklist_table}`,function(err,result_blacklisted){
-                        if (result_blacklisted.length == 1) {
-                            connection.query(`DELETE FROM ${process.env.mysql_someone_blacklist_table} WHERE user_id = ${result[0].id}`,function(err,result){
+                        if (result_blacklisted && result_blacklisted.length == 1) {
+                            connection.query(`DELETE FROM ${process.env.mysql_someone_blacklist_table} WHERE user_id = ${result[0]['id']}`,function(err,result){
                                 if (err) {
                                     console.log(err);
                                 }

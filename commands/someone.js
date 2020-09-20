@@ -14,8 +14,8 @@ module.exports = {
         let randomUser = users.random();
         helpers.pool.getConnection(async function (err, connection) {
             connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${randomUser.id}`, function (err, results) {
-                connection.query(`SELECT * FROM ${process.env.mysql_someone_blacklist_table} where user_id = ${results[0].id}`, function (err, results_) {
-                    if (results_.length == 1) {
+                connection.query(`SELECT * FROM ${process.env.mysql_someone_blacklist_table} where user_id = ${results[0]['id']}`, function (err, results_) {
+                    if (results && results_.length == 1) {
                         message.channel.send(`Blacklisted user: ${randomUser.user.username}#${randomUser.user.discriminator}`);
                     } else {
                         message.channel.send(`<@${randomUser.id}>`);
