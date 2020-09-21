@@ -17,7 +17,7 @@ Example: `!meme`
 
 Some commands require the name of game after them. Example: `!gameinfo Skyrim`
 
-To understand what each command does, type `!help [name of command]`. To get a list of all commands, type `!about`.
+To understand what each command does, type `!help [name of command]`. To get a list of all commands, type `!help`.
 #### Gaming Commands
 
 `achivements` See the Xbox achievements of a game.
@@ -42,7 +42,7 @@ To understand what each command does, type `!help [name of command]`. To get a l
 
 `playtime`  Get the time to complete a game's campaign and DLC. 
 
-`psnow` See if a game is on Playstatoin Now.
+`psnow` See if a game is on Playstation Now.
 
 `review` Read a review and score of a game.
 
@@ -70,6 +70,8 @@ To understand what each command does, type `!help [name of command]`. To get a l
 
 `gif` Posts a random gif.
 
+`geekjoke` If you laugh you are a true nerd.
+
 `hack` Show your hacking skills and hack a random person.
 
 `insult` Get a random insult. May or may not make sense for the lolz.
@@ -93,6 +95,8 @@ To understand what each command does, type `!help [name of command]`. To get a l
 `weather` Get data of weather from any city around the world.
 
 `xbl` See a random post from the "No Context Xbox Live" subreddit.
+
+`yesorno` Yes or No.
 
 #### Misc. Commands
 

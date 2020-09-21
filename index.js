@@ -21,8 +21,9 @@ for (const file of commandFiles) {
 const cooldowns = new Discord.Collection();
 client.once('ready', () => {
 	console.log('Ready to go!');
-
-	client.user.setActivity(`!about in ${client.guilds.cache.size} servers`, {
+	//Sends a message to TR Dev server acknoledging reboot
+	client.channels.cache.get('727953467443773460').send('Storehaus has been rebooted.');
+	client.user.setActivity(`!help in ${client.guilds.cache.size} servers`, {
 		type: "STREAMING",
 		//url: "Some URL here" 
 		//asdasdasda
