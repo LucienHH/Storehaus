@@ -11,6 +11,7 @@ const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'review',
+    aliases: ['gamereview'],
     description: 'Get reviews about a game.  To run, type `!review name of game`',
     cooldown: 5,
     async execute(message, args) {
