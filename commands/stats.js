@@ -25,17 +25,18 @@ module.exports = {
                 let embed = new Discord.MessageEmbed()
                     .setColor("#ff00ff")
                     .addField(`Stats`, `Servers: ${servers}\n Channels: ${channels}\n Users: ${users}`)
-                    .addField(`Top command usage stats`, `\n
-                    ${result[0]?result[0].command_name:""} ${result[0]?"-":""} ${result[0]?result[0].count:""}
-                    ${result[1]?result[1].command_name:""} ${result[1]?"-":""} ${result[1]?result[1].count:""}
-                    ${result[2]?result[2].command_name:""} ${result[2]?"-":""} ${result[2]?result[2].count:""}
-                    ${result[3]?result[3].command_name:""} ${result[3]?"-":""} ${result[3]?result[3].count:""}
-                    ${result[4]?result[4].command_name:""} ${result[4]?"-":""} ${result[4]?result[4].count:""}
-                    ${result[5]?result[5].command_name:""} ${result[5]?"-":""} ${result[5]?result[5].count:""}
-                    ${result[6]?result[6].command_name:""} ${result[6]?"-":""} ${result[6]?result[6].count:""}
-                    ${result[7]?result[7].command_name:""} ${result[7]?"-":""} ${result[7]?result[7].count:""}
-                    ${result[8]?result[8].command_name:""} ${result[8]?"-":""} ${result[8]?result[8].count:""}
-                    ${result[9]?result[9].command_name:""} ${result[9]?"-":""} ${result[9]?result[9].count:""}`);
+                    .addField(`Top command usage stats`, `
+${result[0]?result[0].command_name:""} ${result[0]?"-":""} ${result[0]?result[0].count:""}
+${result[1]?result[1].command_name:""} ${result[1]?"-":""} ${result[1]?result[1].count:""}
+${result[2]?result[2].command_name:""} ${result[2]?"-":""} ${result[2]?result[2].count:""}
+${result[3]?result[3].command_name:""} ${result[3]?"-":""} ${result[3]?result[3].count:""}
+${result[4]?result[4].command_name:""} ${result[4]?"-":""} ${result[4]?result[4].count:""}
+${result[5]?result[5].command_name:""} ${result[5]?"-":""} ${result[5]?result[5].count:""}
+${result[6]?result[6].command_name:""} ${result[6]?"-":""} ${result[6]?result[6].count:""}
+${result[7]?result[7].command_name:""} ${result[7]?"-":""} ${result[7]?result[7].count:""}
+${result[8]?result[8].command_name:""} ${result[8]?"-":""} ${result[8]?result[8].count:""}
+${result[9]?result[9].command_name:""} ${result[9]?"-":""} ${result[9]?result[9].count:""}`);
+//the above must stay indented
                 message.channel.send(embed)
                 console.log(result);
             })
