@@ -99,6 +99,16 @@ client.on('message', async message => {
 	
 						try {
 							command.execute(message, args);
+							///INSERT COMMAND NAME TO DATABASE 
+
+							connection.query(`INSERT INTO ${process.env.mysql_command_stats_table} VALUES ("${command.name}", DEFAULT)`,function(err,results){
+								if (err) {
+									console.log(err);
+								}
+							})
+
+							///
+							
 						} catch (error) {
 							console.error(error);
 							message.reply('there was an error trying to execute that command!');
@@ -172,6 +182,7 @@ client.on('message', async message => {
 			//   console.log(connection._pool._freeConnections.length)    // number of free connections awaiting use
 			//   console.log(connection._pool._allConnections.length)     // number of connections currently created, including ones in use
 			//   console.log(connection._pool._acquiringConnections.length) // number of connections in the process of being acquired
+			connection.query(`ALTER TABLE ${process.env.mysql_command_stats_table} AUTO_INCREMENT = 1;`)
 			connection.release();
 		   
 			  // Handle error after the release.
