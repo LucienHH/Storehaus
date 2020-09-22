@@ -95,6 +95,7 @@ module.exports = {
             .addField(`Trivia`,"Learn something new about gaming, TV, film, and history.\n `!trivia game`, `!trivia film`, `!trivia tv`, or `!trivia history`")
             .addField(`Weather`,"Get data of weather from any city around the world.\n `!weather Tokyo`")
             .addField(`No Context Xbox Live Messages`,"See a random post from the No Context Xbox Live subreddit.\n `!xbl`")
+            .addField('YELL',"THIS YELLS ANYTHING YOU SAY. IT GETS VERY LOUD.\n `!yell where are the reports James`")
             .addField(`Yes Or No`,"Yes or No.\n `!yesorno`")
             .setFooter(`<3`)
             message.channel.send(embed);
