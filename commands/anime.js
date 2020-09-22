@@ -10,19 +10,19 @@ module.exports = {
     cooldown: 5,
     async execute(message, args) {
         let option = args.slice(" ").join("%20")
-        console.log(option)
+        console.log(`anime option: ${option}`)
         if (option == undefined || option=="") {
             message.channel.send(new Discord.MessageEmbed().setTitle("Try `!anime random` or `!anime [name]`")).then(m => m.delete({timeout: 10000}));
             return;
         }
 
         if (option =="random") {
-            fetch(`https://anime-chan.herokuapp.com/api/quotes/random`)
+            fetch(`https://animechanapi.xyz/api/quotes/random`)
             .then(response => response.json())
             .then(data => {
-                    var quote1 = data[0].quote;
-                    var character1 = data[0].character;
-                    var anime1 = data[0].anime; 
+                    var quote1 = data.data[0].quote;
+                    var character1 = data.data[0].character;
+                    var anime1 = data.data[0].anime; 
     
                     let embed = new Discord.MessageEmbed()
                     .setColor("#ff00ff")
@@ -37,12 +37,12 @@ module.exports = {
         }
         else 
         {
-            fetch(`https://anime-chan.herokuapp.com/api/quotes?anime=${option}`)
+            fetch(`https://animechanapi.xyz/api/quotes?anime=${option}`)
             .then(response => response.json())  
             .then(data => {
-                    var quote1 = data[0].quote;
-                    var character1 = data[0].character;
-                    var anime1 = data[0].anime; 
+                    var quote1 = data.data[0].quote;
+                    var character1 = data.data[0].character;
+                    var anime1 = data.data[0].anime; 
                     //This if statement currently does not execute. Will need to rewrite this. 
                     if (quote1 == "null"|| null || undefined)
                     {
