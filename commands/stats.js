@@ -12,9 +12,9 @@ module.exports = {
     cooldown: 5,
     async execute(message, args) {
     // First we use guild.members.fetch to make sure all members are cached
-        var servers = client.guilds.cache.size;
-        var channels = client.channels.cache.size;
-        var users = client.users.cache.size
+        var servers = message.client.guilds.cache.size;
+        var channels = message.client.channels.cache.size;
+        var users = message.client.users.cache.size
         // message.channel.send(`Servers: ${servers}`)
         // message.channel.send(`Channels: ${channels}`)
         let embed = new Discord.MessageEmbed()
