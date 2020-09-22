@@ -21,7 +21,7 @@ module.exports = {
 
         const { commands } = message.client
         helpers.pool.getConnection(function (err, connection) {
-            connection.query(`SELECT command_name, COUNT(*) count FROM command_stats GROUP BY command_name  HAVING count > 0 ORDER BY count DESC`, function (err, result) {
+            connection.query(`SELECT command_name, COUNT(*) count FROM ${process.env.mysql_command_stats_table} GROUP BY command_name  HAVING count > 0 ORDER BY count DESC`, function (err, result) {
                 let embed = new Discord.MessageEmbed()
                     .setColor("#ff00ff")
                     .addField(`Stats`, `Servers: ${servers}\n Channels: ${channels}\n Users: ${users}`)
@@ -38,7 +38,6 @@ ${result[8]?result[8].command_name:""} ${result[8]?"-":""} ${result[8]?result[8]
 ${result[9]?result[9].command_name:""} ${result[9]?"-":""} ${result[9]?result[9].count:""}`);
 //the above must stay indented
                 message.channel.send(embed)
-                console.log(result);
             })
         })
 
