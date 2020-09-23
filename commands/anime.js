@@ -40,11 +40,17 @@ module.exports = {
             fetch(`https://animechanapi.xyz/api/quotes?anime=${option}`)
             .then(response => response.json())  
             .then(data => {
+                if(data.data.length == 0){
+                    return message.channel.send(new Discord.MessageEmbed()
+                    .setTitle(`Random quote from: ${args.slice(" ").join(" ")}`)
+                    .setColor("#ff00ff")
+                    .addField("\u200B","There seems to be no quotes available for this anime. Contact the developers and they'll do their best to make that change"))
+                }
                     var quote1 = data.data[0].quote;
                     var character1 = data.data[0].character;
                     var anime1 = data.data[0].anime; 
                     //This if statement currently does not execute. Will need to rewrite this. 
-                    if (quote1 == "null"|| null || undefined)
+                    if (quote1 == "null"|| quote1 == null || quote1 == undefined)
                     {
                         message.channel.send("K it failed")
                     }
