@@ -18,6 +18,14 @@ module.exports = {
         fetch(`https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=${now}`)
         .then(response => response.json())
         .then(data => {             
+
+            if (data.code == 404) {
+                message.channel.send(new Discord.MessageEmbed()
+                .setColor("#ff00ff")
+                .setTitle(`No Pic of The Day today :(. Try using \`!mars\` instead!)`));
+
+                return;
+            }
                 var image = data.url
                 var info = data.explanation
                 var length = 800;
