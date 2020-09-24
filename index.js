@@ -34,7 +34,6 @@ client.on('message', async message => {
 	try {
 		const helpers = require('./helpers/helpers')
 		let guild = message.guild.id;
-		console.log(guild);
 		helpers.pool.getConnection(function(err, connection) {
 			if (err) throw err; // not connected!
 		   
@@ -55,7 +54,7 @@ client.on('message', async message => {
 				//guild found, check for prefix
 				// console.log(results);
 	
-				console.log(results.length);
+			
 				if (results.length == 1) {
 					connection.query(`SELECT * FROM ${process.env.mysql_prefixes_table} WHERE guild_id = ${results[0]['id']}`, function (err, results_) {
 						if (err) {
