@@ -45,17 +45,28 @@ module.exports = {
                 embed.addField(`\u200b` ,`**${++i}** - *${d.version.name}*`, true);
                 embed.setFooter(`❌ Return to the main menu.`)
             })
+
+
+
             message.channel.send(embed).then(function (messageGame){
+                // messageGame.react('❌');
                 messageGame.react('❌');
+    
+                const filter = (reaction, user) => {
+                    return ['❌'].includes(reaction.emoji.name) && user.id === message.author.id;
+                };
+    
+                messageGame.awaitReactions(filter, { max: 1, time: 30000, errors: ['time'] })
+                    .then(collected => {
+                        const reaction = collected.first();
+    
+                        if (reaction.emoji.name === '❌') {
+                            messageGame.delete();
+                        mainMenu();
+                        }
+                    })
                 })
             })
-            if (reaction.emoji.name === '❌')
-            {   
-                message2.reactions.removeAll();
-                message2.delete();
-                //embed.delete;
-                mainMenu();
-            }
         }
         //End of version function
         function pokemonType()
@@ -71,16 +82,23 @@ module.exports = {
             embed.setFooter(`❌ Return to the main menu.`)
             })
             message.channel.send(embed).then(function (messageGame){
+                // messageGame.react('❌');
                 messageGame.react('❌');
-                })
-            })
-            if (reaction.emoji.name === '❌')
-            {   
-                message2.reactions.removeAll();
-                message2.delete();
-                //embed.delete;
-                mainMenu();
-            }
+    
+                const filter = (reaction, user) => {
+                    return ['❌'].includes(reaction.emoji.name) && user.id === message.author.id;
+                };
+    
+                messageGame.awaitReactions(filter, { max: 1, time: 30000, errors: ['time'] })
+                    .then(collected => {
+                        const reaction = collected.first();
+    
+                        if (reaction.emoji.name === '❌') {
+                            messageGame.delete();
+                        mainMenu();
+                        }
+                    })
+                })})
         }
         //End Type function
 
@@ -98,16 +116,23 @@ module.exports = {
                 embed.setFooter(`❌ Return to the main menu.`)
             })
             message.channel.send(embed).then(function (messageGame){
+                // messageGame.react('❌');
                 messageGame.react('❌');
-                })
-            })
-            if (reaction.emoji.name === '❌')
-            {   
-                message2.reactions.removeAll();
-                message2.delete();
-                //embed.delete;
-                mainMenu();
-            }
+    
+                const filter = (reaction, user) => {
+                    return ['❌'].includes(reaction.emoji.name) && user.id === message.author.id;
+                };
+    
+                messageGame.awaitReactions(filter, { max: 1, time: 30000, errors: ['time'] })
+                    .then(collected => {
+                        const reaction = collected.first();
+    
+                        if (reaction.emoji.name === '❌') {
+                            messageGame.delete();
+                        mainMenu();
+                        }
+                    })
+                })})
         }
         //End of version function
 
@@ -130,7 +155,9 @@ module.exports = {
                     return ['👍', '👀', ,'🌎', '❌'].includes(reaction.emoji.name) && user.id === message.author.id;
                 };
                 message.channel.send(title).then(function (message_) {
-                    message_.react('👍').then(() => message_.react('❌').then(() => message_.react('👀').then(() => message_.react('🌎'))));
+                    message_.react('👍')
+                    message_.react('👀')
+                    message_.react('🌎');
                     message_.awaitReactions(filter, { max: 1, time: 30000, errors: ['time'] })
                     .then(collected => {
                         const reaction = collected.first();
