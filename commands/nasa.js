@@ -26,6 +26,7 @@ module.exports = {
 
                 return;
             }
+            else {
                 var image = data.url
                 var info = data.explanation
                 var length = 800;
@@ -34,7 +35,7 @@ module.exports = {
                 var dateTaken = data.date
                 var author = data.copyright
                 console.log(image);
-
+            
                 let embed = new Discord.MessageEmbed()
                 .setColor("#ff00ff")
                 .setTitle(`NASA Pic of the Day`)
@@ -43,6 +44,7 @@ module.exports = {
                 .setImage(image)
                 .setFooter(helpers.getFooter());
                 message.channel.send(embed);
+            }
         }
         );
         delete embed;

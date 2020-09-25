@@ -23,11 +23,16 @@ client.once('ready', () => {
 	console.log('Ready to go!');
 	//Sends a message to TR Dev server acknoledging reboot
 	client.channels.cache.get('727953467443773460').send('Storehaus has been rebooted.');
-	client.user.setActivity(`!help in ${client.guilds.cache.size} servers`, {
-		type: "STREAMING",
-		//url: "Some URL here" 
-		//asdasdasda
-	});
+	client.user.setActivity(`!help in ${client.guilds.cache.size} servers`);
+	setInterval(() => {
+		client.user.setActivity(`!help in ${client.guilds.cache.size} servers`, {
+			type: "STREAMING",
+			//url: "Some URL here" 
+		});
+
+	}, 1000 * 60 * 5);
+	//From https://stackoverflow.com/questions/60225366/how-do-i-make-a-bot-status-that-has-membercount-on-it
+
 });
 
 client.on('message', async message => {

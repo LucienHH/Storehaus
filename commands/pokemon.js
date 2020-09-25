@@ -17,27 +17,11 @@ module.exports = {
     cooldown: 5,
     async execute(message, args) {
         let pokemon = args.slice(0).join(" ");
-        //----------Beginning of code for API wrapper-----------
-        // P.getPokemonByName('eevee') // with Promise
-        // .then(function(response) {
-        //   console.log(response);
-        // })
-        // .catch(function(error) {
-        //   console.log('There was an ERROR: ', error);
-        // });
-
-        // P.getRegionByName("sinnoh")
-        // .then(function(response) {
-        //   console.log(response);
-        // })
-        //----------End of Commented out code for API wrapper---------
 
         function pokemonVersion(){
             fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
             .then(response => response.json())
             .then(data => {  
-            //message_.reactions.removeAll();
-            //message_.edit(new Discord.MessageEmbed().setTitle("test"));
             embed = new Discord.MessageEmbed()
             let i=0;
             data.game_indices.map(d => {
@@ -45,9 +29,6 @@ module.exports = {
                 embed.addField(`\u200b` ,`**${++i}** - *${d.version.name}*`, true);
                 embed.setFooter(`❌ Return to the main menu.`)
             })
-
-
-
             message.channel.send(embed).then(function (messageGame){
                 // messageGame.react('❌');
                 messageGame.react('❌');
@@ -78,11 +59,13 @@ module.exports = {
             //message_.edit(new Discord.MessageEmbed().setTitle("test"));
             embed = new Discord.MessageEmbed()
             data.types.map(d => {
+            pokeID = data.id
+            pokeImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeID}.png`
             embed.addField(`Types for ${pokemon}:`,`${d.type.name}`)
+            embed.setImage(pokeImage)
             embed.setFooter(`❌ Return to the main menu.`)
             })
             message.channel.send(embed).then(function (messageGame){
-                // messageGame.react('❌');
                 messageGame.react('❌');
     
                 const filter = (reaction, user) => {
@@ -111,9 +94,12 @@ module.exports = {
             embed = new Discord.MessageEmbed()
             let i=0;
             data.abilities.map(d => {
+                pokeID = data.id
+                pokeImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeID}.png`
                 embed.setTitle(`${pokemon} abilities:`)
                 embed.addField(`\u200b` ,`**${++i}** - *${d.ability.name}*`, true);
-                embed.setFooter(`❌ Return to the main menu.`)
+                embed.setImage(pokeImage)
+                embed.setFooter(`❌ Return to the main menu.`)  
             })
             message.channel.send(embed).then(function (messageGame){
                 // messageGame.react('❌');
@@ -139,17 +125,13 @@ module.exports = {
         function mainMenu() {
             fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
             .then(response => response.json())
-            .then(data => {         
+            .then(data => { 
                 let title = new Discord.MessageEmbed() 
+                pokeID = data.id
+                pokeImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeID}.png`
                 title.setColor("#ff00ff")
                 title.addField(`Pokemon Info for ${pokemon}`,`👍 Get a list of all the versions that ${pokemon} has appeared in. \n 👀 See what type ${pokemon} is \n 🌎 See the abilities of this Pokemon \n❌ Return to the main menu.`)
-                // let i=0;
-                // data.game_indices.map(d => {
-                //     title.addField(`\u200b` ,`**${++i}** - *${d.version.name}*`, true);
-                // })
-                // data.types.map(d => {
-                // title.addField(`Type:`,`${d.type.name}`)
-                // })
+                title.setImage(pokeImage)
                 title.setFooter(helpers.getFooter());
                 const filter = (reaction, user) => {
                     return ['👍', '👀', ,'🌎', '❌'].includes(reaction.emoji.name) && user.id === message.author.id;
