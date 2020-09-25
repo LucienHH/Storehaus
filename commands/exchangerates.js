@@ -28,8 +28,8 @@ module.exports = {
                 var rates = data.rates.currency
                 let embed = new Discord.MessageEmbed()
                 .setColor("#ff00ff")
-                .addField(`Exchange Rates for ${currency}`)
-                // .setTitle('Exchange Rates')
+                .setTitle(`Exchange Rates for ${currency}`)
+                // .addField(`Exchange Rates for ${currency}`)
                 // .setFooter(helpers.getFooter());
                 .addField("GBP", `${data.rates.GBP}`,true)
                 .addField("HKD", `${data.rates.HKD}`,true)
