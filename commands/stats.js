@@ -27,7 +27,7 @@ module.exports = {
                 let embed = new Discord.MessageEmbed()
                     .setColor("#ff00ff")
                     .addField(`Stats`, `Servers: ${servers}\n Channels: ${channels}\n Users: ${users}`)
-                    .addField(`Top command usage stats`, `
+                    .addField(`Top 10 Commands Statistics`, `
 ${result[0]?result[0].command_name:""} ${result[0]?"-":""} ${result[0]?result[0].count:""}
 ${result[1]?result[1].command_name:""} ${result[1]?"-":""} ${result[1]?result[1].count:""}
 ${result[2]?result[2].command_name:""} ${result[2]?"-":""} ${result[2]?result[2].count:""}
