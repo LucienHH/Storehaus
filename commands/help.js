@@ -90,14 +90,11 @@ module.exports = {
             .addField(`Math`,"Retrieve a random fact about math, numbers, and dates in history.\n `!math`")
             .addField(`Meme`,"See some of the best gaming memes on the Internet today. Recommended for those 18+.\n `!meme`")
             .addField(`Nasa`,"See the NASA Picture of the Day! One of our favorite commands.\n `!nasa`")
-            .addField(`Someone`, "Ping someone at random!\n `!someone` or to remove you from being pinged use `!someone-blacklist` and if you want to be removed from the blacklist use `!someone-whitelist`")
             .addField(`Star Wars`,"Grab a random quote from the Star Wars movies. Of course the prequels are included.\n `!starwars`")
-            .addField(`Stats`, "See what the most popular commands are on the bot!\n `!stats`")
             .addField(`Today in History`,"Learn about what happened today in history.\n `!today`")
             .addField(`Trivia`,"Learn something new about gaming, TV, film, and history.\n `!trivia game`, `!trivia film`, `!trivia tv`, or `!trivia history`")
             .addField(`Weather`,"Get data of weather from any city around the world.\n `!weather Tokyo`")
             .addField(`No Context Xbox Live Messages`,"See a random post from the No Context Xbox Live subreddit.\n `!xbl`")
-            .addField('YELL',"THIS YELLS ANYTHING YOU SAY. IT GETS VERY LOUD.\n `!yell where are the reports James`")
             .addField(`Yes Or No`,"Yes or No.\n `!yesorno`")
             .setFooter(`<3`)
             message.channel.send(embed);
@@ -127,15 +124,17 @@ module.exports = {
                 return message.reply('that\'s not a valid command!');
             }
             //Grabs command info to send to author
-            data.push(`**Name:** ${command.name}`);
-    
-            if (command.aliases) data.push(`**Aliases:** ${command.aliases.join(', ')}`);
-            if (command.description) data.push(`**Description:** ${command.description}`);
-            if (command.usage) data.push(`**Usage:** ${prefix}${command.name} ${command.usage}`);
-    
-            data.push(`**Cooldown:** ${command.cooldown || 3} second(s)`);
-    
-            message.channel.send(data, { split: true });
+            let embed = new Discord.MessageEmbed().setColor("00FF00");
+
+            command.name?embed.setTitle(`Help for **\`${command.name}\`**`):null;
+            command.aliases?embed.addField(`Aliases`, `${command.aliases.join(", ")}`):null;
+            command.description?embed.addField(`Description`, `${command.description}`):null;
+            command.usage?embed.addField(`Usage`,`${prefix}${command.name} ${command.usage}`):null;
+            command.cooldown?embed.addField(`Cooldown`,`${command.cooldown} seconds`):null;
+
+            message.channel.send(embed)
+            delete embed;
+
         }
      }
 };
