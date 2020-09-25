@@ -1,7 +1,7 @@
 {
-  "name": "gamereleasebot",
+  "name": "storehaus",
   "version": "1.0.0",
-  "description": "A discord bot that provides a wealth of information on video games.",
+  "description": "A discord bot that provides a wealth of information on video games and the best memes.",
   "main": "index.js",
   "dependencies": {
     "cron": "^1.8.2",
@@ -19,9 +19,11 @@
     "request": "^2.88.2",
     "snekfetch": "^4.0.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jest": "^26.4.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --coverage"
   },
   "repository": {
     "type": "git",
