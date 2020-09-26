@@ -21,7 +21,7 @@ module.exports = {
             .setColor("#ff00ff")
             .setTitle(`Age of Empires 2 Commands`)
             .addField(`Civs`, "See all the information about every civ in Age of Empires 2. Can also be used for an individual civ\n`!age2 all civs` or `!age2 japenese`")
-            .addField(`Units`, "See all the information about every unit in Age of Empires 2. Can also be used for an individual unit. \n`!age2 all units` or `!age2 villager`")
+            //.addField(`Units`, "See all the information about every unit in Age of Empires 2. Can also be used for an individual unit. \n`!age2 all units` or `!age2 villager`")
             .setFooter(`<3`)
             message.channel.send(embed);
             delete embed;
