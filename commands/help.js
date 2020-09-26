@@ -38,7 +38,9 @@ module.exports = {
             //message.channel.send(new Discord.MessageEmbed().setTitle("Try !help `name of a command`. To view all commands, type `!about`"));
             let embed = new Discord.MessageEmbed()
             .setColor("#ff00ff")
-            .addField(`Commands List`, "**Gaming Commands** `!help gaming`\n**Humor Commands** `!help humor`\n **Misc Commands** `!help misc`\n **About Storehaus** `!about`")
+            .setTitle("Commands List")
+            .addField("Gaming Commands", "`!help gaming`\n`!achievements`\n`!compat`",true)
+            .addField("Humor Commands", `!help humor\n help yer mum\n test`,true)
             message.channel.send(embed);
             delete embed;
             return;
