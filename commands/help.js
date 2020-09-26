@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 //required
 const prefix  = process.env.prefix;
-
+const helpers = require('../helpers/helpers');
 module.exports = {
 	name: 'help',
 	description: 'List info about a specific command.',
@@ -38,9 +38,11 @@ module.exports = {
             //message.channel.send(new Discord.MessageEmbed().setTitle("Try !help `name of a command`. To view all commands, type `!about`"));
             let embed = new Discord.MessageEmbed()
             .setColor("#ff00ff")
-            .setTitle("Commands List")
-            .addField("Gaming Commands", "`!help gaming`\n`!achievements`\n`!compat`",true)
-            .addField("Humor Commands", `!help humor\n help yer mum\n test`,true)
+            .setTitle("Storehaus Commands List")
+            .addField("🎮 Gaming Commands", "To see more detailed info, run `!help gaming`\n----------------\n`!achievements`\n`!compat`\n`!dlc`\n`!gameinfo`\n`!gamesub`\n`!gogdeals`\n`!goty`\n`!halopedia`\n`!haloquote`\n`!playanywhere`\n`!playtime`\n`!psnow`\n`!review`\n`!screenshot`\n`!series`\n`!steamdeals`\n`!stores`\n`!xbl`",true)
+            .addField("😂 Humor Commands", "To see more detailed info, run `!help humor`\n----------------\n`!8ball`\n`!anime`\n`!cat`\n`!chuck`\n`!dadjoke`\n`!dog`\n`!exchangerates`\n`!geekjoke`\n`!gif`\n`!hakc`\n`!insult`\n`!ligma`\n`!mars`\n`!math`\n`!meme`\n`!nasa`\n`!someone`\n`!starwars`\n`!today`\n`!weather`\n`!xbl`\n`!yell`\n`!yesorno`",true)
+            .addField("⚙️ Misc Commands", "To see more detailed info, run `!help misc`\n----------------\n`!about`\n`!feedback`\n`!help`\n`!invite`\n`!support`\n`!teamrespawn`",true)
+            embed.setFooter(helpers.getFooter());
             message.channel.send(embed);
             delete embed;
             return;
@@ -83,10 +85,11 @@ module.exports = {
             .addField(`Chuck`,"What bot would not have Chuck Norris jokes?\n `!chuck`")
             .addField(`Dad Jokes`,"Dad joke lol.\n `!dadjoke`")
             .addField(`Dog`,"Retrieve a random picture of a good doggo.\n `!dog`")
+            .addField(`Exchange Rates`,"Retrieve the current exchange rates for various currencies.\n `!exchangerates usd`")
             .addField(`Geek Joke`, "If you laugh you are a true nerd\n `!geekjoke`")
             .addField(`Gif`,"Retrieve a random gif.\n `!gif`")
             .addField(`Hack`, "Be a true hacker and hack a totally fake person.\n `!hack`")
-            .addField(`Insult`,"Get a random insult. May or may not make sense for the lolz.\n `!insult @someone`")
+            .addField(`Insult`,"Get a random insult. May or may not make sense for the lolz.\n `!insult @james`")
             .addField(`Ligma`,"Do you have ligma? What about one of your friends?\n `!ligma @someone` or `!ligma`")
             .addField(`Mars`,"See a random picture taken by the NASA Curiosity rover!\n `!mars`")
             .addField(`Math`,"Retrieve a random fact about math, numbers, and dates in history.\n `!math`")
