@@ -40,7 +40,7 @@ module.exports = {
             .setColor("#ff00ff")
             .setTitle("Storehaus Commands List")
             .addField("🎮 Gaming Commands", "To see more detailed info, run `!help gaming`\n----------------\n`!achievements`\n`!compat`\n`!dlc`\n`!gameinfo`\n`!gamesub`\n`!gogdeals`\n`!goty`\n`!halopedia`\n`!haloquote`\n`!playanywhere`\n`!playtime`\n`!psnow`\n`!review`\n`!screenshot`\n`!series`\n`!steamdeals`\n`!stores`\n`!xbl`",true)
-            .addField("😂 Humor Commands", "To see more detailed info, run `!help humor`\n----------------\n`!8ball`\n`!anime`\n`!cat`\n`!chuck`\n`!dadjoke`\n`!dog`\n`!exchangerates`\n`!geekjoke`\n`!gif`\n`!hakc`\n`!insult`\n`!ligma`\n`!mars`\n`!math`\n`!meme`\n`!nasa`\n`!someone`\n`!starwars`\n`!today`\n`!weather`\n`!xbl`\n`!yell`\n`!yesorno`",true)
+            .addField("😂 Humor Commands", "To see more detailed info, run `!help humor`\n----------------\n`!8ball`\n`!anime`\n`!cat`\n`!chuck`\n`!dadjoke`\n`!dog`\n`!exchangerates`\n`!geekjoke`\n`!gif`\n`!hack`\n`!insult`\n`!ligma`\n`!mars`\n`!math`\n`!meme`\n`!nasa`\n`!someone`\n`!starwars`\n`!today`\n`!weather`\n`!xbl`\n`!yell`\n`!yesorno`",true)
             .addField("⚙️ Misc Commands", "To see more detailed info, run `!help misc`\n----------------\n`!about`\n`!feedback`\n`!help`\n`!invite`\n`!support`\n`!teamrespawn`",true)
             embed.setFooter(helpers.getFooter());
             message.channel.send(embed);
