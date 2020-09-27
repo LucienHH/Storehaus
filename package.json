@@ -23,7 +23,7 @@
     "@cucumber/cucumber": "^7.0.0-rc.0"
   },
   "scripts": {
-    "test": "node ../node_modules/.bin/cucumber-js"
+    "test": "node_modules/.bin/cucumber-js"
   },
   "test": {
     "name": "hellocucumber",
