@@ -35,7 +35,5 @@ jobs:
       - name: Run Cucumber tests
         run: | 
           echo Running tests....
-          npm config set user 0
-          npm config set unsafe-perm true
           npm test
           echo Tests complete...
