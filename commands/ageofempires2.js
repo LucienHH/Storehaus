@@ -63,25 +63,25 @@ module.exports = {
     
             return;
         }
-        if (option == "all units" || option == "units")
-        {        
-        fetch(`https://age-of-empires-2-api.herokuapp.com/api/v1/units`)
-        .then(response => response.json())
-        .then(data => {             
-                let embed = new Discord.MessageEmbed()
-                .setColor("#ff00ff")
-                .setTitle(`Units Info`);
+        // if (option == "all units" || option == "units")
+        // {        
+        // fetch(`https://age-of-empires-2-api.herokuapp.com/api/v1/units`)
+        // .then(response => response.json())
+        // .then(data => {             
+        //         let embed = new Discord.MessageEmbed()
+        //         .setColor("#ff00ff")
+        //         .setTitle(`Units Info`);
 
-                data.units.map(d =>{
-                    embed.addField(`${d.name}`, `Description: ${d.description}\n Expansion: ${d.expansion}\n Age: ${d.age}`,true)
-                })
-                message.channel.send(embed);
-            }
-            );
-        delete embed;
+        //         data.units.map(d =>{
+        //             embed.addField(`${d.name}`, `Description: ${d.description}\n Expansion: ${d.expansion}\n Age: ${d.age}`,true)
+        //         })
+        //         message.channel.send(embed);
+        //     }
+        //     );
+        // delete embed;
 
-        return;
-        }
+        // return;
+        // }
         else{
             message.channel.send(">>> Sorry, that was not found. Please try running the `!age2` command again");
         }
