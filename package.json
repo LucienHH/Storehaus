@@ -25,20 +25,20 @@
   "scripts": {
     "test": "cucumber-js"
   },
-  "test":{
-      "name": "hellocucumber",
-      "version": "1.0.0",
-      "description": "",
-      "main": "index.js",
-      "scripts": {
-        "test": "cucumber-js"
-      },
-      "keywords": [],
-      "author": "",
-      "license": "ISC",
-      "devDependencies": {
-        "cucumber": "^6.0.5"
-      }
+  "test": {
+    "name": "hellocucumber",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "cucumber-js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "cucumber": "^6.0.5"
+    }
   },
   "repository": {
     "type": "git",
@@ -46,5 +46,4 @@
   },
   "author": "",
   "license": "ISC"
-
 }
