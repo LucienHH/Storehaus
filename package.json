@@ -22,9 +22,6 @@
   "devDependencies": {
     "@cucumber/cucumber": "^7.0.0-rc.0"
   },
-  "scripts": {
-    "test": "cucumber-js"
-  },
   "test": {
     "name": "hellocucumber",
     "version": "1.0.0",
