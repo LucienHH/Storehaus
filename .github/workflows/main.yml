@@ -33,4 +33,7 @@ jobs:
           echo test, and deploy your project.
       # Run tests
       - name: Run Cucumber tests
-        run: npm test
+        run: | 
+          echo Running tests....
+          npm test
+          echo Tests complete...
