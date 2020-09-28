@@ -8,6 +8,7 @@ module.exports = {
     name: 'gamesub',
     description: 'Get a list of most recent posts from the game\'s subreddit.',
     cooldown: 5,
+    usage: 'minecraft',
     async execute(message, args) {
         let game = args.slice(0).join(" ");
            if (game == undefined || game=="") {

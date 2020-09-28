@@ -6,8 +6,9 @@ const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'achievements',
-    description: 'Get a list of game achievements.',
+    description: 'Get a list of game achievements for an Xbox game.',
     cooldown: 5,
+    usage: "crackdown",
     async execute(message, args) {
         let game = args.slice(0).join(" ");
 
@@ -19,7 +20,7 @@ module.exports = {
         //Test query below
         let embed = new Discord.MessageEmbed()
             .setColor("#ff00ff")
-            .setTitle(`${game} achievements.`)
+            .setTitle(`${game} Achievements`)
 
         var y = 0; // used as counter for data.results mapping 
         fetch(`https://api.rawg.io/api/games?search=${game}&page_size=1`)

@@ -7,6 +7,7 @@ module.exports = {
     name: 'chuck',
     description: 'Of course we need Chuck Norris jokes. To run, type `!chuck`',
     cooldown: 5,
+    usage: '',
     async execute(message, args) {
       fetch(`https://api.chucknorris.io/jokes/random`)
       .then(response => response.json())

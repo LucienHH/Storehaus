@@ -4,7 +4,8 @@ module.exports = {
 	name: 'teamrespawn',
 	aliases: ['tr', `respawn`],
 	description: 'Learn more about the TeamRespawn community. To run, type `!teamrespawn',
-	cooldown: 5,
+    cooldown: 5,
+    usage: ` `,
 	execute(message, args) {
 		let input = args.slice(0).join(" ");
 		const commandName = input.toLowerCase();  

@@ -10,6 +10,7 @@ module.exports = {
     name: 'math',
     description: 'See some nerdy facts with numbers, math, and dates! To run, try !math',
     cooldown: 5,
+    usage: ` `,
     async execute(message, args) {
         var request = require('request');// need this for below to work 
         var array = [`http://numbersapi.com/random/year`, `http://numbersapi.com/random/trivia`, `http://numbersapi.com/random/date`, `http://numbersapi.com/random/math`]

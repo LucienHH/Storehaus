@@ -10,6 +10,7 @@ module.exports = {
     name: 'nasa',
     description: 'Retrieve the NASA picture of the day! To run, try `!nasa`',
     cooldown: 60,
+    usage: ` `,
     async execute(message, args) {
         let option = args.slice(0).join(" ");
         // This package gets today's date. Sometimes the NASA API tries to grab tomorrow's data without this.

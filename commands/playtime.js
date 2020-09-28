@@ -3,7 +3,8 @@ const client = new Discord.Client();
 module.exports = {
 	name: 'playtime',
 	description: 'Get information about the time to beat and complete a game. To run, type `!playtime name of game`!',
-	cooldown: 5,
+        cooldown: 5,
+        usage: ` Borderlands`,
 	execute(message, args) {
         let game = args.slice(0).join(" ");
         if (game == undefined || game=="") {

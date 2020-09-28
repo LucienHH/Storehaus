@@ -6,6 +6,7 @@ module.exports = {
     name: 'gif',
     description: 'Send a random gif! Gifs are picked at random. To run, type `!gif`',
     cooldown: 5,
+    usage: ' ',
     execute(message, args) {
         //Reads each line from text file that supplies gifs. Picks one at random and displays it.
         var fs = require('fs');

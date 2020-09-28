@@ -4,6 +4,7 @@ module.exports = {
     name: 'haloquote',
     description: 'Send a line of dialogue from the Halo series! Quotes are picked at random. To run, type `!haloquote`',
     cooldown: 5,
+    usage: ` `,
     execute(message, args) {
         //Reads each line from text file that supplies lines of dialogue. Picks one at random and displays it.
         var fs = require('fs');

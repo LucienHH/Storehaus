@@ -7,6 +7,7 @@ module.exports = {
     aliases: ['somebody'],
     description: 'Ping a random person! To get blacklisted use `!someone blacklist`, to whitelist yourself again do `!someone whitelist`. Formerly the main feature of KappaBot. [*]',
     cooldown: 7200,
+    usage: ` `,
     execute(message, args) {
         //grab a non bot user
         let users = message.guild.members.cache.filter(f => f.user.bot === false);

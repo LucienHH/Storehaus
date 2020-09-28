@@ -7,6 +7,7 @@ module.exports = {
     name: 'playanywhere',
     description: 'Check if a game is a Xbox Play Anywhere title. To run, type `!playanywhere name of game`',
     cooldown: 5,
+    usage: ` Gears 5`,
     execute(message, args) {
         let playAnywhere = args.slice(0).join(" ");
         if (playAnywhere == undefined || playAnywhere=="") {

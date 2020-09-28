@@ -10,6 +10,7 @@ module.exports = {
     name: 'weather',
     description: 'Retrieve the weather! To run, try !weather city',
     cooldown: 5,
+    usage: ` anchorage`,
     async execute(message, args) {
         let option = args.slice(0).join(" ");
         if (option == undefined || option=="") {

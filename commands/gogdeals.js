@@ -6,8 +6,10 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'gogdeals',
+    aliases: [`gog`],
     description: 'Get deals about a game on steam. Try `!gogdeals name of game`!',
     cooldown: 5,
+    usage: 'Witcher 3',
     async execute(message, args) {
         let game = args.slice(0).join(" ");
         const querystring = require('querystring')

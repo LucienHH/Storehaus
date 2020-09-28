@@ -12,6 +12,7 @@ module.exports = {
     aliases: [`age`, `age of empires`, `age 2`],
     description: 'Retrieve info about everything Age of Empires 2! To run, try `!age2`. To see all commands in Age 2, try `!age2 all`',
     cooldown: 5,
+    usage: " list: `!age2 civs` or `!age2 japanese` or `!age2 all`",
     async execute(message, args) {
         let input = args.slice(0).join(" ");
         const option = input.toLowerCase(); 

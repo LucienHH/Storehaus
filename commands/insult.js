@@ -7,6 +7,7 @@ module.exports = {
     name: 'insult',
     description: 'A random insult generator. To run, type `!insult`',
     cooldown: 5,
+    usage: ` or !insult @james`,
     async execute(message, args) {
         var request = require('request');// need this for below to work 
         

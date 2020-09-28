@@ -8,6 +8,7 @@ module.exports = {
     name: 'stores',
     description: 'Get links to the stores that sell the game.',
     cooldown: 5,
+    usage: ` borderlands`,
     async execute(message, args) {
         let game = args.slice(0).join(" ");
         if (game == undefined || game=="") {

@@ -15,6 +15,7 @@ module.exports = {
     name: 'pokemon',
     description: 'Retrieve the NASA picture of the day! To run, try `!nasa`',
     cooldown: 5,
+    usage: ` Pikachu`,
     async execute(message, args) {
         let pokemon = args.slice(0).join(" ");
 

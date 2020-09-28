@@ -9,6 +9,7 @@ module.exports = {
     name: 'feedback',
     description: 'Report a bug / Suggest a feature [Any misuse of the command may lead to a temporary / permanent ban from using the bot]',
     usage: "[report content]",
+    usage: ' tell James we need the reports pls',
     cooldown: 5,
     async execute(message, args) {
         helpers.pool.getConnection(async function(err, connection) {
