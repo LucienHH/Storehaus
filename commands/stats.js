@@ -24,39 +24,6 @@ module.exports = {
         const { commands } = message.client
         helpers.pool.getConnection(function (err, connection) {
             connection.query(`SELECT command_name, COUNT(*) count FROM ${process.env.mysql_command_stats_table} GROUP BY command_name  HAVING count > 0 ORDER BY count DESC`, function (err, result) {
-
-                    helpers.pool.getConnection(function(err,connection){
-                        connection.query(`SELECT * FROM ${process.env.mysql_command_stats_table}`, function (err, results) {
-                            // console.log(fullDate.toString());
-                
-                            var d1 = new Date();
-                            d1.toUTCString();
-                            Math.floor(d1.getTime()/ 1000)
-                            var date = new Date( d1.getUTCFullYear(), d1.getUTCMonth(), d1.getUTCDate(), d1.getUTCHours(), d1.getUTCMinutes(), d1.getUTCSeconds() );
-                            const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-                
-                
-                            
-                            results.forEach(element => {
-                                const diffDays = Math.round(Math.abs((element.date - date) / oneDay));
-                                let D = element.date;
-                                D.setDate(D.getDate() + 1);
-                                if (diffDays >= 6) {
-                                    connection.query(`DELETE FROM ${process.env.mysql_command_stats_table} WHERE date = "${new Date(Date.parse(D)).toISOString().slice(0, 10).replace('T', ' ')}"`,function(err,result){
-                                        if (err) {
-                                            console.log(err);
-                                            console.log(`Something went wrong. If the issue persists contact the developers. \`!support\``);
-                                        }else{
-                                            console.log(`deleted ${new Date(Date.parse(D)).toISOString().slice(0, 10).replace('T', ' ')}`);
-                                        }
-                                    })
-                                } 
-                                    // console.log(element.date);
-                                });
-                                connection.release();
-                        })	
-                    })
-
                                 let embed = new Discord.MessageEmbed()
                                     .setColor("#ff00ff")
                                     .addField(`Stats`, `Servers: ${servers}\n Channels: ${channels}\n Users: ${users}`)
