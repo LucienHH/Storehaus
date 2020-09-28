@@ -1,5 +1,5 @@
 {
-  "name": "gamereleasebot",
+  "name": "storehaus",
   "version": "1.0.0",
   "description": "A discord bot that provides a wealth of information on video games.",
   "main": "index.js",
@@ -19,9 +19,26 @@
     "request": "^2.88.2",
     "snekfetch": "^4.0.4"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@cucumber/cucumber": "^7.0.0-rc.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cucumber-js"
+  },
+  "test": {
+    "name": "hellocucumber",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "cucumber.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+      "cucumber": "^6.0.5"
+    }
   },
   "repository": {
     "type": "git",

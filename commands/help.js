@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 //required
 const prefix  = process.env.prefix;
-
+const helpers = require('../helpers/helpers');
 module.exports = {
 	name: 'help',
 	description: 'List info about a specific command.',
@@ -38,7 +38,11 @@ module.exports = {
             //message.channel.send(new Discord.MessageEmbed().setTitle("Try !help `name of a command`. To view all commands, type `!about`"));
             let embed = new Discord.MessageEmbed()
             .setColor("#ff00ff")
-            .addField(`Commands List`, "**Gaming Commands** `!help gaming`\n**Humor Commands** `!help humor`\n **Misc Commands** `!help misc`\n **About Storehaus** `!about`")
+            .setTitle("Storehaus Commands List")
+            .addField("🎮 Gaming Commands", "To see more detailed info, run `!help gaming`\n----------------\n`!achievements`\n`!compat`\n`!dlc`\n`!gameinfo`\n`!gamesub`\n`!gogdeals`\n`!goty`\n`!halopedia`\n`!haloquote`\n`!playanywhere`\n`!playtime`\n`!psnow`\n`!review`\n`!screenshot`\n`!series`\n`!steamdeals`\n`!stores`\n`!xbl`",true)
+            .addField("😂 Humor Commands", "To see more detailed info, run `!help humor`\n----------------\n`!8ball`\n`!anime`\n`!cat`\n`!chuck`\n`!dadjoke`\n`!dog`\n`!exchangerates`\n`!geekjoke`\n`!gif`\n`!hack`\n`!insult`\n`!ligma`\n`!mars`\n`!math`\n`!meme`\n`!nasa`\n`!someone`\n`!starwars`\n`!today`\n`!weather`\n`!xbl`\n`!yell`\n`!yesorno`",true)
+            .addField("⚙️ Misc Commands", "To see more detailed info, run `!help misc`\n----------------\n`!about`\n`!feedback`\n`!help`\n`!invite`\n`!support`\n`!teamrespawn`",true)
+            embed.setFooter(helpers.getFooter());
             message.channel.send(embed);
             delete embed;
             return;
@@ -81,10 +85,11 @@ module.exports = {
             .addField(`Chuck`,"What bot would not have Chuck Norris jokes?\n `!chuck`")
             .addField(`Dad Jokes`,"Dad joke lol.\n `!dadjoke`")
             .addField(`Dog`,"Retrieve a random picture of a good doggo.\n `!dog`")
+            .addField(`Exchange Rates`,"Retrieve the current exchange rates for various currencies.\n `!exchangerates usd`")
             .addField(`Geek Joke`, "If you laugh you are a true nerd\n `!geekjoke`")
             .addField(`Gif`,"Retrieve a random gif.\n `!gif`")
             .addField(`Hack`, "Be a true hacker and hack a totally fake person.\n `!hack`")
-            .addField(`Insult`,"Get a random insult. May or may not make sense for the lolz.\n `!insult @someone`")
+            .addField(`Insult`,"Get a random insult. May or may not make sense for the lolz.\n `!insult @james`")
             .addField(`Ligma`,"Do you have ligma? What about one of your friends?\n `!ligma @someone` or `!ligma`")
             .addField(`Mars`,"See a random picture taken by the NASA Curiosity rover!\n `!mars`")
             .addField(`Math`,"Retrieve a random fact about math, numbers, and dates in history.\n `!math`")
@@ -124,15 +129,17 @@ module.exports = {
                 return message.reply('that\'s not a valid command!');
             }
             //Grabs command info to send to author
-            data.push(`**Name:** ${command.name}`);
-    
-            if (command.aliases) data.push(`**Aliases:** ${command.aliases.join(', ')}`);
-            if (command.description) data.push(`**Description:** ${command.description}`);
-            if (command.usage) data.push(`**Usage:** ${prefix}${command.name} ${command.usage}`);
-    
-            data.push(`**Cooldown:** ${command.cooldown || 3} second(s)`);
-    
-            message.channel.send(data, { split: true });
+            let embed = new Discord.MessageEmbed().setColor("00FF00");
+
+            command.name?embed.setTitle(`Help for **\`${command.name}\`**`):null;
+            command.aliases?embed.addField(`Aliases`, `${command.aliases.join(", ")}`):null;
+            command.description?embed.addField(`Description`, `${command.description}`):null;
+            command.usage?embed.addField(`Usage`,`${prefix}${command.name} ${command.usage}`):null;
+            command.cooldown?embed.addField(`Cooldown`,`${command.cooldown} seconds`):null;
+
+            message.channel.send(embed)
+            delete embed;
+
         }
      }
 };

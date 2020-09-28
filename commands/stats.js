@@ -11,7 +11,9 @@ module.exports = {
     description: 'See stats about Storehaus',
     cooldown: 5,
     async execute(message, args) {
+
         // First we use guild.members.fetch to make sure all members are cached
+
         var servers = message.client.guilds.cache.size;
         var channels = message.client.channels.cache.size;
         var users = message.client.users.cache.size
