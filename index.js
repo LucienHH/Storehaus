@@ -3,6 +3,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 var mysql = require('mysql');
 const client = new Discord.Client();
+const helpers = require('./helpers/helpers')
 
 //This is for REST API.
 const fetch = require('node-fetch');
@@ -68,7 +69,6 @@ client.once('ready', () => {
 
 client.on('message', async message => {
 	try {
-		const helpers = require('./helpers/helpers')
 		let guild = message.guild.id;
 		helpers.pool.getConnection(function(err, connection) {
 			if (err) throw err; // not connected!
