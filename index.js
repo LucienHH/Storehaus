@@ -28,7 +28,6 @@ client.once('ready', () => {
 	setInterval(() => {
 		helpers.pool.getConnection(function(err,connection){
 			connection.query(`SELECT * FROM ${process.env.mysql_command_stats_table}`, function (err, results) {
-				// console.log(fullDate.toString());
 	
 				var d1 = new Date();
 				d1.toUTCString();
@@ -41,7 +40,6 @@ client.once('ready', () => {
 				results.forEach(element => {
 					const diffDays = Math.round(Math.abs((element.date - date) / oneDay));
 					let D = element.date;
-					// D.setDate(D.getDate());
 					if (diffDays >= 8) {
 						connection.query(`DELETE FROM ${process.env.mysql_command_stats_table} WHERE date = "${new Date(Date.parse(D)).toISOString().slice(0, 10).replace('T', ' ')}"`,function(err,result){
 							if (err) {
@@ -52,7 +50,6 @@ client.once('ready', () => {
 							}
 						})
 					} 
-						// console.log(element.date);
 					});
 					connection.release();
 			})	
