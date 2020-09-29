@@ -4,6 +4,7 @@ module.exports = {
     name: 'ping',
     description: 'test command!',
     cooldown: 0,
+    usage: ` `,
     execute(message, args) {
 
         // message.channel.send("Kappa bot best bot, I mean.. PONG!!")

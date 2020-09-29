@@ -12,6 +12,7 @@ module.exports = {
     aliases: [`age`, `age of empires`, `age 2`],
     description: 'Retrieve info about everything Age of Empires 2! To run, try `!age2`. To see all commands in Age 2, try `!age2 all`',
     cooldown: 5,
+    usage: " list: `!age2 civs` or `!age2 japanese` or `!age2 all`",
     async execute(message, args) {
         let input = args.slice(0).join(" ");
         const option = input.toLowerCase(); 
@@ -63,25 +64,25 @@ module.exports = {
     
             return;
         }
-        if (option == "all units" || option == "units")
-        {        
-        fetch(`https://age-of-empires-2-api.herokuapp.com/api/v1/units`)
-        .then(response => response.json())
-        .then(data => {             
-                let embed = new Discord.MessageEmbed()
-                .setColor("#ff00ff")
-                .setTitle(`Units Info`);
+        // if (option == "all units" || option == "units")
+        // {        
+        // fetch(`https://age-of-empires-2-api.herokuapp.com/api/v1/units`)
+        // .then(response => response.json())
+        // .then(data => {             
+        //         let embed = new Discord.MessageEmbed()
+        //         .setColor("#ff00ff")
+        //         .setTitle(`Units Info`);
 
-                data.units.map(d =>{
-                    embed.addField(`${d.name}`, `Description: ${d.description}\n Expansion: ${d.expansion}\n Age: ${d.age}`,true)
-                })
-                message.channel.send(embed);
-            }
-            );
-        delete embed;
+        //         data.units.map(d =>{
+        //             embed.addField(`${d.name}`, `Description: ${d.description}\n Expansion: ${d.expansion}\n Age: ${d.age}`,true)
+        //         })
+        //         message.channel.send(embed);
+        //     }
+        //     );
+        // delete embed;
 
-        return;
-        }
+        // return;
+        // }
         else{
             message.channel.send(">>> Sorry, that was not found. Please try running the `!age2` command again");
         }

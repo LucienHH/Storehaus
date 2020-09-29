@@ -5,6 +5,7 @@ module.exports = {
     name: 'geekjoke',
     description: 'See a random geek joke. To run, type `!geekjoke`',
     cooldown: 5,
+    usage: " ",
     execute(message, args) {
         //Reads each line from text file that supplies lines of dialogue. Picks one at random and displays it.
         var fs = require('fs');

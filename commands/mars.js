@@ -9,6 +9,7 @@ module.exports = {
     name: 'mars',
     description: 'Retrieve a picture from the Mars Curiosity rover! To run, try `!mars`',
     cooldown: 5,
+    usage: ` `,
     async execute(message, args) {
         let option = args.slice(0).join(" ");
         //Used to select image at random

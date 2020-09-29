@@ -9,6 +9,7 @@ module.exports = {
     name: 'halopedia',
     description: 'Retrieve a random article from the Halo lore website Halopedia.org. To run, try `!halopedia random`',
     cooldown: 5,
+    usage: `random or !halopedia master chief`,
     async execute(message, args) {
         let option = args.slice(0).join(" ");
         if (option == undefined || option=="") {

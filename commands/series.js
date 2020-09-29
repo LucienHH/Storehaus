@@ -8,6 +8,7 @@ module.exports = {
     name: 'series',
     description: 'Get a list of games that are part of the same series. To run, type `!series name of a game`',
     cooldown: 5,
+    usage: ` halo`,
     async execute(message, args) {
         let game = args.slice(0).join(" ");
         if (game == undefined || game=="") {

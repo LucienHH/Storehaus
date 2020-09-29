@@ -7,6 +7,7 @@ module.exports = {
     name: 'psnow',
     description: 'Check if a game is on PlayStation Now. To run, type `!psnow name of game`',
     cooldown: 5,
+    usage: ` Bioshock`,
     execute(message, args) {
         let PSNow = args.slice(0).join(" ");
         console.log(PSNow)

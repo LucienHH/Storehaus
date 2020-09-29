@@ -14,6 +14,7 @@ module.exports = {
     aliases: ['gamereview'],
     description: 'Get reviews about a game.  To run, type `!review name of game`',
     cooldown: 5,
+    usage: 'Skyrim',
     async execute(message, args) {
         let game = args.slice(0).join(" ");
         const querystring = require('querystring')

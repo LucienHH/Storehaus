@@ -3,8 +3,9 @@ const client = new Discord.Client();
 
 module.exports = {
     name: '8ball',
-    description: 'Leave the most important decisions up to random! To run, type `!8BALL`',
+    description: 'Leave the most important decisions up to random!',
     cooldown: 5,
+    usage: ` should I invite this bot to my server?`,
     execute(message, args) {
         //Reads each line from text file that supplies lines of dialogue. Picks one at random and displays it.
         var fs = require('fs');

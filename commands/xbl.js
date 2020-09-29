@@ -8,6 +8,7 @@ module.exports = {
     name: 'xbl',
     description: 'Get no context Xbox Live messages from the subreddit r/nocontextxboxmessages. Content may contain vulgarity. To run, type `!xbl`',
     cooldown: 5,
+    usage: ` `,
     async execute(message, args) {
         var fs = require('fs');
         var array = fs.readFileSync('textfiles/InsultsAndCompliments.txt').toString().split("\n");

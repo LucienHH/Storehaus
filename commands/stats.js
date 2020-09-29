@@ -10,6 +10,7 @@ module.exports = {
     name: 'stats',
     description: 'See stats about Storehaus',
     cooldown: 5,
+    usage: ` `,
     async execute(message, args) {
 
         // First we use guild.members.fetch to make sure all members are cached

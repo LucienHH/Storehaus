@@ -7,6 +7,7 @@ module.exports = {
     name: 'compat',
     description: 'Check if a game is backwards compatible on Xbox One or Xbox Series X. To run, type `!compat name of game`',
     cooldown: 5,
+    usage: 'Halo 3',
     execute(message, args) {
         let game = args.slice(0).join(" ");
 

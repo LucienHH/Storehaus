@@ -8,9 +8,8 @@ module.exports = {
     name: 'dog',
     description: 'Retrieve a picture a good doggo. To run, try `!dog`',
     cooldown: 5,
+    usage: ' ',
     async execute(message, args) {
-        let option = args.slice(0).join(" ");
-
         fetch(`https://api.thedogapi.com/v1/images/search`)
         .then(response => response.json())
         .then(data => {             

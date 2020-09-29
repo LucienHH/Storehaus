@@ -9,6 +9,7 @@ module.exports = {
     name: 'hack',
     description: 'Become a professional hacker in one command! To run, try `!hack`',
     cooldown: 5,
+    usage: ` `,
     async execute(message, args) {
         let option = args.slice(0).join(" ");
         //setTimeout(() => message.channel.send(`>>> Initiating hack...`).then(m => m.send(`K`)), 1000)

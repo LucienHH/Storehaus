@@ -8,6 +8,7 @@ module.exports = {
     name: 'screenshot',
     description: 'Get screenshots for a game. To run, type `!screenshot name of a game`',
     cooldown: 10,
+    usage: ` Outer Worlds`,
     async execute(message, args) {
         let game = args.slice(0).join(" ");
         if (game == undefined || game=="") {
