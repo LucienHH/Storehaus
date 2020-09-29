@@ -3,6 +3,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 var mysql = require('mysql');
 const client = new Discord.Client();
+const helpers = require('./helpers/helpers')
 
 //This is for REST API.
 const fetch = require('node-fetch');
@@ -24,6 +25,37 @@ client.once('ready', () => {
 	//Sends a message to TR Dev server acknoledging reboot
 	client.channels.cache.get('727953467443773460').send('Storehaus has been rebooted.');
 	client.user.setActivity(`!help in ${client.guilds.cache.size} servers`);
+	
+	setInterval(() => {
+		helpers.pool.getConnection(function(err,connection){
+			connection.query(`SELECT * FROM ${process.env.mysql_command_stats_table}`, function (err, results) {
+	
+				var d1 = new Date();
+				d1.toUTCString();
+				Math.floor(d1.getTime()/ 1000)
+				var date = new Date( d1.getUTCFullYear(), d1.getUTCMonth(), d1.getUTCDate(), d1.getUTCHours(), d1.getUTCMinutes(), d1.getUTCSeconds() );
+				const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+	
+	
+				
+				results.forEach(element => {
+					const diffDays = Math.round(Math.abs((element.date - date) / oneDay));
+					let D = element.date;
+					if (diffDays >= 8) {
+						connection.query(`DELETE FROM ${process.env.mysql_command_stats_table} WHERE date = "${new Date(Date.parse(D)).toISOString().slice(0, 10).replace('T', ' ')}"`,function(err,result){
+							if (err) {
+								console.log(err);
+								console.log(`Something went wrong. If the issue persists contact the developers. \`!support\``);
+							}else{
+
+							}
+						})
+					} 
+					});
+					connection.release();
+			})	
+		})
+	},   1000 * 60 * 60 * 24);
 	setInterval(() => {
 		client.user.setActivity(`!help in ${client.guilds.cache.size} servers`, {
 			type: "STREAMING",
@@ -37,7 +69,6 @@ client.once('ready', () => {
 
 client.on('message', async message => {
 	try {
-		const helpers = require('./helpers/helpers')
 		let guild = message.guild.id;
 		helpers.pool.getConnection(function(err, connection) {
 			if (err) throw err; // not connected!
