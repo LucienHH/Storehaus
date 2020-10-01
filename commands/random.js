@@ -2,9 +2,9 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 module.exports = {
     name: 'random',
-    description: 'Have Storehaus suggest a command for you to try out.`',
+    description: 'Have Storehaus suggest a command for you to try out.',
     cooldown: 5,
-    usage: `!random`,
+    usage: ` `,
     execute(message, args) {
         //Reads each line from text file that supplies command list. Picks one at random and displays it.
         var fs = require('fs');
