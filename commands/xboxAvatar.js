@@ -29,7 +29,6 @@ module.exports = {
                     const authInfo = { headers: { 'Authorization': process.env.XBOXREPLAY_AUTHORIZATION } };
         
                     axios.get(`https://api.xboxreplay.net/players/${Gamertag.replace(/_/g, '-')}`, authInfo).then((xb1) => {
-                        console.log(xb1);
                         if (xb1.data.gamertag === undefined) return message.channel.send('Error reading your profile this will most likely be due to your xbox account privacy settings or an invalid gamertag.');
                         const embed = new Discord.MessageEmbed()
                             .setAuthor(`${xb1.data.gamertag}'s gamerpic: `, `${xb1.data.gamerpic}`)

@@ -39,7 +39,6 @@ module.exports = {
                             axios.get(`https://api.xboxreplay.net/players/${Gamertag.replace(/_/g, '-')}`, authInfo),
                             axios.get(`https://api.xboxreplay.net/players/${Gamertag.replace(/_/g, '-')}/screenshots`, authInfo),
                         ]).then(axios.spread((xb1, xb2) => {
-                            console.log(xb2.data.data);
                             const total = xb2.data.additional.total;
                             let num = args[1];
                             if (!isNaN(args[0])) {
