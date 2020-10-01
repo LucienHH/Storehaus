@@ -11,7 +11,6 @@ module.exports = {
     description: 'Saves your gamertag to the Storehaus database so you can use xbox commands without typing your gamertag. Do !savegt update <gamer_tag> to change your saved gt.',
     cooldown: 5,
     async execute(message, args) {
-        debugger
         let errMsg = '';
         const userID = message.author.id;
 
