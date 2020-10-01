@@ -42,7 +42,7 @@ module.exports = {
                             m.react('❌')
                                 .then(r => {
                                     const reactFilter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
-                                    m.awaitReactions(reactFilter, { max: 1, time: 30000 })
+                                    m.awaitReactions(reactFilter, { max: 1 })
                                         .then(collected => {
                                             m.delete();
                                             message.delete();
