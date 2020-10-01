@@ -104,6 +104,7 @@ module.exports = {
                     });
                 })
             })
+            connection.release();
         })
     }
 };
