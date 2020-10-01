@@ -97,6 +97,7 @@ module.exports = {
                     })
                 })
             })
+            connection.release();
         })
     }
 };
