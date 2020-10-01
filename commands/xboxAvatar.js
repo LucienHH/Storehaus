@@ -25,7 +25,11 @@ module.exports = {
                         helpers.sendErr(message, errMsg);
                         return;
                     }
-        
+                    if (Gamertag === undefined) {
+                        errMsg = 'Error reading your profile this will most likely be due to not having your GT saved to the database. !savegt <gamer_tag>.';
+                        helpers.sendErr(message, errMsg);
+                        return;
+                    }
                     const authInfo = { headers: { 'Authorization': process.env.XBOXREPLAY_AUTHORIZATION } };
         
                     axios.get(`https://api.xboxreplay.net/players/${Gamertag.replace(/_/g, '-')}`, authInfo).then((xb1) => {

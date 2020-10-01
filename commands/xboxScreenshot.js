@@ -29,7 +29,7 @@ module.exports = {
                             msg.edit(helpers.embedErr(msg, errMsg));
                         }
                         if (Gamertag === undefined) {
-                            errMsg = 'Error reading your profile this will most likely be due to your xbox account privacy settings or an invalid gamertag.';
+                            errMsg = 'Error reading your profile this will most likely be due to not having your GT saved to the database. !savegt <gamer_tag>.';
                             helpers.embedErr(msg, errMsg);
                             return;
                         }

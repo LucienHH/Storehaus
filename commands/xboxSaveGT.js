@@ -18,7 +18,7 @@ module.exports = {
         if (args[0].toLowerCase() === 'update') {
             Gamertag = args[1];
         } 
-        else if (args[0] == undefined) {
+        else if (args[0] === undefined) {
             message.channel.send("Please provide a gamertag you wish to link to your discord account.")
             return;
         }
@@ -39,7 +39,6 @@ module.exports = {
                             }
                             console.log(args[0].toLowerCase());
                             if (result.length == 0) {
-                                console.log("test 2");
                                 connection.query(`INSERT INTO ${process.env.mysql_xbox_table} VALUES (NULL, ${result_user[0].id}, "${Gamertag}" )`, function (err, result) {
                                     if (err) {
                                         console.log(err);

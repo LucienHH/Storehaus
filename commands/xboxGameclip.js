@@ -33,7 +33,7 @@ module.exports = {
                             helpers.embedErr(msg, errMsg);
                         }
                         if (Gamertag === undefined) {
-                            errMsg = 'Error reading your profile this will most likely be due to your xbox account privacy settings or an invalid gamertag.';
+                            errMsg = 'Error reading your profile this will most likely be due to not having your GT saved to the database. !savegt <gamer_tag>.';
                             helpers.embedErr(msg, errMsg);
                             return;
                         }
@@ -44,7 +44,7 @@ module.exports = {
                             axios.get(`https://api.xboxreplay.net/players/${Gamertag.replace(/_/g, '-')}`, authInfo),
                             axios.get(`https://api.xboxreplay.net/players/${Gamertag.replace(/_/g, '-')}/clips`, authInfo),
                         ]).then(axios.spread((xb1, xb2) => {
-                            console.log(`There is ${xb2.headers['x-rate-limit-remaining']} calls remianing to the Xbox API. Rate limit reset ${xb2.headers['x-rate-limit-reset']} (Rate limit total - ${xb2.headers['x-rate-limit-limit']})`);
+                            // console.log(`There is ${xb2.headers['x-rate-limit-remaining']} calls remianing to the Xbox API. Rate limit reset ${xb2.headers['x-rate-limit-reset']} (Rate limit total - ${xb2.headers['x-rate-limit-limit']})`);
                             const total = xb2.data.additional.total;
                             if (!isNaN(args[0])) {
                                 num = args[0];
