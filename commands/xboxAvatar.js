@@ -25,11 +25,14 @@ module.exports = {
                         helpers.sendErr(message, errMsg);
                         return;
                     }
-        
+                    if (Gamertag === undefined) {
+                        errMsg = 'Error reading your profile this will most likely be due to not having your GT saved to the database. !savegt <gamer_tag>.';
+                        helpers.sendErr(message, errMsg);
+                        return;
+                    }
                     const authInfo = { headers: { 'Authorization': process.env.XBOXREPLAY_AUTHORIZATION } };
         
                     axios.get(`https://api.xboxreplay.net/players/${Gamertag.replace(/_/g, '-')}`, authInfo).then((xb1) => {
-                        console.log(xb1);
                         if (xb1.data.gamertag === undefined) return message.channel.send('Error reading your profile this will most likely be due to your xbox account privacy settings or an invalid gamertag.');
                         const embed = new Discord.MessageEmbed()
                             .setAuthor(`${xb1.data.gamertag}'s gamerpic: `, `${xb1.data.gamerpic}`)
@@ -39,7 +42,7 @@ module.exports = {
                             m.react('❌')
                                 .then(r => {
                                     const reactFilter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
-                                    m.awaitReactions(reactFilter, { max: 1 })
+                                    m.awaitReactions(reactFilter, { max: 1, time: 30000 })
                                         .then(collected => {
                                             m.delete();
                                             message.delete();
@@ -56,6 +59,7 @@ module.exports = {
                     });
                 })
             })
+            connection.release();
         })
 
 

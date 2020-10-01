@@ -15,9 +15,10 @@ module.exports = {
         const userID = message.author.id;
 
         let Gamertag = args[0];
-        if (args[0] && args[0].toLowerCase() === 'update') {
+        if (args[0].toLowerCase() === 'update') {
             Gamertag = args[1];
-        } else if (args[0] == undefined) {
+        } 
+        else if (args[0] === undefined) {
             message.channel.send("Please provide a gamertag you wish to link to your discord account.")
             return;
         }
@@ -38,25 +39,24 @@ module.exports = {
                             }
                             console.log(args[0].toLowerCase());
                             if (result.length == 0) {
-                                console.log("test 2");
                                 connection.query(`INSERT INTO ${process.env.mysql_xbox_table} VALUES (NULL, ${result_user[0].id}, "${Gamertag}" )`, function (err, result) {
                                     if (err) {
                                         console.log(err);
                                     }
-                                    message.channel.send(`Successfully added the gamertag '${xb1.data.gamertag}' to the database and linked it to your account!`);
+                                    message.channel.send(`Successfully added the gamertag '${xb1.data.gamertag}' to the database and linked it to your account! If this doesn't look like your gamertag remember to replace spaces with '_'`);
                                 })
                             }
                             else if (result.length == 1) {
                                 if (result[0].gamertag.toLowerCase() == Gamertag.toLowerCase()) {
                                     //same
-                                    message.channel.send(`You\'ve already set your gamertag to ${xb1.data.gamertag}, if you need to update it do !savegt update gamer_tag`);
+                                    message.channel.send(`You\'ve already set your gamertag to ${xb1.data.gamertag}, if you need to update it do !savegt update gamer_tag and remember to replace spaces with '_'`);
                                 } else {
                                     //not the same
                                     connection.query(`UPDATE ${process.env.mysql_xbox_table} SET gamertag = "${Gamertag}" WHERE user_id = ${result_user[0].id}`, function (err, result) {
                                         if (err) {
                                             console.log(err);
                                         }
-                                        message.channel.send(`Successfully updated your gamertag to '${xb1.data.gamertag}' and linked it to your account!`);
+                                        message.channel.send(`Successfully updated your gamertag to '${xb1.data.gamertag}' and linked it to your account! If this doesn't look like your gamertag remember to replace spaces with '_'`);
                                     })
                                 }
                             }
