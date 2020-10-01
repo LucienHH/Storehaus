@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 module.exports = {
-	name: 'playtime',
+        name: 'playtime',
+        aliases: [],
 	description: 'Get information about the time to beat and complete a game. To run, type `!playtime name of game`!',
         cooldown: 5,
         usage: ` Borderlands`,

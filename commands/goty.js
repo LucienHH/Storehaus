@@ -6,6 +6,7 @@ const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'goty',
+    aliases: [],
     description: 'Learn the best games from a particular year! To run, type `!goty year`',
     cooldown: 5,
     usage: `2017`,

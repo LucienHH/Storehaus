@@ -7,6 +7,7 @@ const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'halopedia',
+    aliases: [],
     description: 'Retrieve a random article from the Halo lore website Halopedia.org. To run, try `!halopedia random`',
     cooldown: 5,
     usage: `random or !halopedia master chief`,

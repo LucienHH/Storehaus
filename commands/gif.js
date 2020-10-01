@@ -4,6 +4,7 @@ const client = new Discord.Client();
 //const botStats = require('../helpers/stats')
 module.exports = {
     name: 'gif',
+    aliases: [],
     description: 'Send a random gif! Gifs are picked at random. To run, type `!gif`',
     cooldown: 5,
     usage: ' ',

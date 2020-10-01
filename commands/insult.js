@@ -5,6 +5,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'insult',
+    aliases: [],
     description: 'A random insult generator. To run, type `!insult`',
     cooldown: 5,
     usage: ` or !insult @james`,

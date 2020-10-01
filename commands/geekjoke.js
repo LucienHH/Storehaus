@@ -3,6 +3,7 @@ const client = new Discord.Client();
 
 module.exports = {
     name: 'geekjoke',
+    aliases: [],
     description: 'See a random geek joke. To run, type `!geekjoke`',
     cooldown: 5,
     usage: " ",

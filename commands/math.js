@@ -8,6 +8,7 @@ const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'math',
+    aliases: [],
     description: 'See some nerdy facts with numbers, math, and dates! To run, try !math',
     cooldown: 5,
     usage: ` `,

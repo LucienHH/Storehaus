@@ -1,15 +1,15 @@
 require('dotenv').config({ path: require('find-config')('.env') });
 const Discord = require('discord.js');
-const client = new Discord.Client();
 //required
 const prefix  = process.env.prefix;
 const helpers = require('../helpers/helpers');
 module.exports = {
-	name: 'help',
+    name: 'help',
+    aliases: [],
 	description: 'List info about a specific command.',
     cooldown: 2,
     usage: '[command name]',
-	execute(message, args) {
+	execute(message, args, client) {
         const data = [];
         const { commands } = message.client;
         //// ----------Leaving this commented out in case we use it in the future---------------////
@@ -123,23 +123,34 @@ module.exports = {
             return;
         }
         else {
-            const lowerCaseName = args[0].toLowerCase();
-            const command = commands.get(lowerCaseName);
-            if (!command) {
-                return message.reply('that\'s not a valid command!');
-            }
-            //Grabs command info to send to author
-            let embed = new Discord.MessageEmbed().setColor("00FF00");
+            const command = args[0];
+			if (client.commands.has(command)) {
+				cmd = client.commands.get(command);
+                const embed = new Discord.MessageEmbed().setColor('00FF00');
+				cmd.name ? embed.setTitle(`Help for **\`${cmd.name}\`**`) : null;
+				cmd.aliases ? embed.addField('Aliases', `${cmd.aliases.join(', ')}`) : null;
+				cmd.description ? embed.addField('Description', `${cmd.description}`) : null;
+				cmd.usage ? embed.addField('Usage', `${prefix}${cmd.name} ${cmd.usage}`) : null;
+				cmd.cooldown ? embed.addField('Cooldown', `${cmd.cooldown} seconds`) : null;
 
-            command.name?embed.setTitle(`Help for **\`${command.name}\`**`):null;
-            command.aliases?embed.addField(`Aliases`, `${command.aliases.join(", ")}`):null;
-            command.description?embed.addField(`Description`, `${command.description}`):null;
-            command.usage?embed.addField(`Usage`,`${prefix}${command.name} ${command.usage}`):null;
-            command.cooldown?embed.addField(`Cooldown`,`${command.cooldown} seconds`):null;
+				message.channel.send(embed);
+				return;
+			}
+			else if (client.aliases.has(command)) {
+				cmd = client.commands.get(client.aliases.get(command));
+				const embed = new Discord.MessageEmbed().setColor('00FF00');
+				cmd.name ? embed.setTitle(`Help for **\`${cmd.name}\`**`) : null;
+				cmd.aliases ? embed.addField('Aliases', `${cmd.aliases.join(', ')}`) : null;
+				cmd.description ? embed.addField('Description', `${cmd.description}`) : null;
+				cmd.usage ? embed.addField('Usage', `${prefix}${cmd.name} ${cmd.usage}`) : null;
+				cmd.cooldown ? embed.addField('Cooldown', `${cmd.cooldown} seconds`) : null;
 
-            message.channel.send(embed)
-            delete embed;
-
+				message.channel.send(embed);
+				return;
+			}
+			else {
+				return message.reply('That command doesn\'t exist!');
+			}
         }
      }
 };

@@ -7,6 +7,7 @@ var mysql = require('mysql');
 const { options } = require("snekfetch");
 module.exports = {
     name: 'feedback',
+    aliases: [],
     description: 'Report a bug / Suggest a feature [Any misuse of the command may lead to a temporary / permanent ban from using the bot]',
     usage: "[report content]",
     usage: ' tell James we need the reports pls',

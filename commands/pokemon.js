@@ -13,6 +13,7 @@ var Pokedex = require('pokedex-promise-v2');
 var P = new Pokedex();
 module.exports = {
     name: 'pokemon',
+    aliases: [],
     description: 'Retrieve the NASA picture of the day! To run, try `!nasa`',
     cooldown: 5,
     usage: ` Pikachu`,

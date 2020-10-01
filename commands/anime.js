@@ -6,6 +6,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'anime',
+    aliases: [],
     description: 'Retrieve a quote from an anime. To run, try `!anime random` or `!anime [name of anime series]`',
     cooldown: 5,
     usage: `random or !anime naruto`,

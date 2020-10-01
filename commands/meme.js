@@ -6,6 +6,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'meme',
+    aliases: [],
     description: 'Get some of the best gaming memes around. Content may contain vulgarity. To run, type `!meme`',
     cooldown: 1,
     usage: ` `,

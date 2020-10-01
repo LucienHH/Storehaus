@@ -7,6 +7,7 @@ const fetch = require('node-fetch');
 const helpers = require('../helpers/helpers');
 module.exports = {
     name: 'today',
+    aliases: [],
     description: 'See what happened today in history! To run, try `!today`',
     cooldown: 60,
     usage: ` `,

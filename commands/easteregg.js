@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 module.exports = {
     name: 'easteregg',
+    aliases: [],
     description: 'Find out! To run, type `!easteregg`',
     cooldown: 5,
     usage: ` `,

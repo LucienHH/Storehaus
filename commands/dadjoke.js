@@ -5,6 +5,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'dadjoke',
+    aliases: [],
     description: 'The cheesiest dad jokes. To run, type `!dadjoke`',
     cooldown: 5,
     usage: ' ',

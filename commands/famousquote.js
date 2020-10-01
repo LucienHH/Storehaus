@@ -7,6 +7,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'famousquote',
+    aliases: [],
     description: 'Retrieve a random famous quote from history. To run, try !famousqoute',
     cooldown: 5,
     usage: ' ',

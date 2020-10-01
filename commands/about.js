@@ -3,6 +3,7 @@ const helpers = require('../helpers/helpers');
 const client = new Discord.Client();
 module.exports = {
 	name: 'about',
+	aliases: [],
 	description: 'Storehaus is a bot that queries various APIs to enhance your discord server. This bot was created to help gamers discover, share, and enjoy info on their favorite games!',
 	usage: ` `,
 	cooldown: 10,

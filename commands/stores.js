@@ -6,6 +6,7 @@ const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'stores',
+    aliases: [],
     description: 'Get links to the stores that sell the game.',
     cooldown: 5,
     usage: ` borderlands`,

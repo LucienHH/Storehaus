@@ -6,6 +6,7 @@ const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'gamesub',
+    aliases: [],
     description: 'Get a list of most recent posts from the game\'s subreddit.',
     cooldown: 5,
     usage: 'minecraft',

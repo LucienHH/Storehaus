@@ -5,6 +5,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'trivia',
+    aliases: [],
     description: 'Learn something new about gaming, TV, film, and history. To run, type `!trivia (game, TV, film, or history)` to learn more.',
     cooldown: 5,
     usage: `game, !trivia tv, !trivia film, or !trivia history `,

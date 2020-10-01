@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 module.exports = {
     name: 'support',
+    aliases: [],
     description: 'Get an invite to the Storehaus support server!',
     cooldown: 0,
     usage: ` `,

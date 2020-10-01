@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 module.exports = {
     name: 'haloquote',
+    aliases: [],
     description: 'Send a line of dialogue from the Halo series! Quotes are picked at random. To run, type `!haloquote`',
     cooldown: 5,
     usage: ` `,

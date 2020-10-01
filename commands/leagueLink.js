@@ -8,6 +8,7 @@ let helpers = require("../helpers/helpers")
 
 module.exports = {
     name: 'leaguelink',
+    aliases: [],
     description: 'Link a league of legends account to your Discord account',
     cooldown: 5,
     async execute(message, args) {
