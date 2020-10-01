@@ -26,9 +26,13 @@ module.exports = {
                         }
                         catch (error) {
                             errMsg = 'Missing input credentials. Do !xboxgc gamer_tag [number]. Or !savegt gamer_tag to save your gamertag then !xboxgc [number].'
-                            msg.edit(helpers.embedErr(message, errMsg));
+                            msg.edit(helpers.embedErr(msg, errMsg));
                         }
-
+                        if (Gamertag === undefined) {
+                            errMsg = 'Error reading your profile this will most likely be due to your xbox account privacy settings or an invalid gamertag.';
+                            helpers.embedErr(msg, errMsg);
+                            return;
+                        }
                         const authInfo = { headers: { 'Authorization': process.env.XBOXREPLAY_AUTHORIZATION } };
 
                         axios.all([
