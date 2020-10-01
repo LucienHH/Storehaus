@@ -38,11 +38,6 @@ module.exports = {
                             console.log(xb2.data.data);
                             const total = xb2.data.additional.total;
                             let num = args[1];
-                            if (xb2.data.pull.status === 'ended') {
-                                errMsg = 'Error reading your profile this will most likely be due to your xbox account privacy settings or an invalid gamertag.';
-                                msg.edit(helpers.embedErr(msg, errMsg));
-                                return;
-                            }
                             if (!isNaN(args[0])) {
                                 num = args[0];
                             }
