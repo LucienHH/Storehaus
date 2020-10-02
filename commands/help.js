@@ -39,8 +39,8 @@ module.exports = {
             let embed = new Discord.MessageEmbed()
             .setColor("#ff00ff")
             .setTitle("Storehaus Commands List")
-            .addField("🎮 Gaming Commands", "To see more detailed info, run `!help gaming`\n----------------\n`!achievements`\n`!compat`\n`!dlc`\n`!gameinfo`\n`!gamesub`\n`!gogdeals`\n`!goty`\n`!halopedia`\n`!haloquote`\n`!playanywhere`\n`!playtime`\n`!psnow`\n`!review`\n`!screenshot`\n`!series`\n`!steamdeals`\n`!stores`\n`!xbl`",true)
-            .addField("😂 Humor Commands", "To see more detailed info, run `!help humor`\n----------------\n`!8ball`\n`!anime`\n`!cat`\n`!chuck`\n`!dadjoke`\n`!dog`\n`!exchangerates`\n`!geekjoke`\n`!gif`\n`!hack`\n`!insult`\n`!ligma`\n`!mars`\n`!math`\n`!meme`\n`!nasa`\n`!someone`\n`!starwars`\n`!today`\n`!weather`\n`!xbl`\n`!yell`\n`!yesorno`",true)
+            .addField("🎮 Gaming Commands", "To see more detailed info, run `!help gaming`\n----------------\n`!achievements`\n `!age2`\n`!compat`\n`!dlc`\n`!gameinfo`\n`!gamesub`\n`!gogdeals`\n`!goty`\n`!halopedia`\n`!haloquote`\n`!playanywhere`\n`!playtime`\n`!psnow`\n`!review`\n`!screenshot`\n`!series`\n`!steamdeals`\n`!stores`\n`!xbl`",true)
+            .addField("😂 Humor Commands", "To see more detailed info, run `!help humor`\n----------------\n`!8ball`\n`!anime`\n`!cat`\n`!chuck`\n`!dadjoke`\n`!dog`\n`!exchangerates`\n`!geekjoke`\n`!gif`\n`!hack`\n`!insult`\n`!ligma`\n`!mars`\n`!math`\n`!meme`\n`!nasa`\n`!random`\n `!someone`\n`!starwars`\n`!today`\n`!weather`\n`!xbl`\n`!yell`\n`!yesorno`",true)
             .addField("⚙️ Misc Commands", "To see more detailed info, run `!help misc`\n----------------\n`!about`\n`!feedback`\n`!help`\n`!invite`\n`!support`\n`!teamrespawn`",true)
             embed.setFooter(helpers.getFooter());
             message.channel.send(embed);
@@ -53,6 +53,7 @@ module.exports = {
             .setColor("#ff00ff")
             .setTitle(`Gaming Commands`)
             .addField(`Achievements`, "Learn about the achievements of a particular game\n`!achievements skyrim`")
+            .addField(`Age of Empires 2`, "Get a bunch of cool info about Age of Empires 2!\n `!age2`")
             .addField(`Compat`,"See if a game is backwards compatatible on Xbox One\n `!compat Halo 4`")
             .addField(`DLC`, "See what DLC is offered on a game\n `!dlc witcher 3`")
             .addField(`Game Info`, "Get general information of a particular game.\n `!gameinfo Crackdown 2`")
@@ -95,6 +96,7 @@ module.exports = {
             .addField(`Math`,"Retrieve a random fact about math, numbers, and dates in history.\n `!math`")
             .addField(`Meme`,"See some of the best gaming memes on the Internet today. Recommended for those 18+.\n `!meme`")
             .addField(`Nasa`,"See the NASA Picture of the Day! One of our favorite commands.\n `!nasa`")
+            .addField('Random', "Grab a random command for you to try out.\n `!random`")
             .addField(`Star Wars`,"Grab a random quote from the Star Wars movies. Of course the prequels are included.\n `!starwars`")
             .addField(`Today in History`,"Learn about what happened today in history.\n `!today`")
             .addField(`Trivia`,"Learn something new about gaming, TV, film, and history.\n `!trivia game`, `!trivia film`, `!trivia tv`, or `!trivia history`")

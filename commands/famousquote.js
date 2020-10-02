@@ -9,8 +9,8 @@ module.exports = {
     name: 'famousquote',
     description: 'Retrieve a random famous quote from history. To run, try !famousqoute',
     cooldown: 5,
+    usage: ' ',
     async execute(message, args) {
-        let option = args.slice(0).join(" ");
         fetch(`https://quote-garden.herokuapp.com/api/v2/quotes/random`)
         .then(response => response.json())
         .then(data => {             

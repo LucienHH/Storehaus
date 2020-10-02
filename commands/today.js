@@ -9,6 +9,7 @@ module.exports = {
     name: 'today',
     description: 'See what happened today in history! To run, try `!today`',
     cooldown: 60,
+    usage: ` `,
     async execute(message, args) {
         let option = args.slice(0).join(" ");
 

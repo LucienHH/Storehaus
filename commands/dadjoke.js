@@ -7,6 +7,7 @@ module.exports = {
     name: 'dadjoke',
     description: 'The cheesiest dad jokes. To run, type `!dadjoke`',
     cooldown: 5,
+    usage: ' ',
     async execute(message, args) {
         var request = require('request');// need this for below to work 
         

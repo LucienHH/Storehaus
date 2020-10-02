@@ -9,7 +9,7 @@ module.exports = {
     aliases: [`yell`, `scream`],
 	description: 'THIS WILL SHOUT WHATEVER YOU SAY. IT IS VERY LOUD',
     cooldown: 2,
-    usage: '[command name]',
+    usage: ' where are the reports',
 	execute(message, args) {
         let input = args.slice(0).join(" ");
         const YELL = input.toUpperCase(); 

@@ -8,6 +8,7 @@ module.exports = {
     name: 'meme',
     description: 'Get some of the best gaming memes around. Content may contain vulgarity. To run, type `!meme`',
     cooldown: 1,
+    usage: ` `,
     async execute(message, args) {
         var array = [`https://www.reddit.com/r/halomemes/random.json?show=all&limit=1`, `https://www.reddit.com/r/skyrimmemes/random.json?show=all&limit=1`, `https://www.reddit.com/r/MinecraftMemes/random.json?show=all&limit=1`,`https://www.reddit.com/r/memes/random.json?show=all&limit=1`];
         var subreddit = array[Math.floor(Math.random() * array.length)];

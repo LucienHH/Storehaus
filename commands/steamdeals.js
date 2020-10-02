@@ -6,8 +6,10 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'steamdeals',
+    aliases: [`steam`],
     description: 'Get deals about a game on Steam. To run, type `!steamdeals name of game`',
     cooldown: 5,
+    usage: ` fallout 3`,
     async execute(message, args) {
         let game = args.slice(0).join(" ");
         const querystring = require('querystring')

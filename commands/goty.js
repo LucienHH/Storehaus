@@ -8,6 +8,7 @@ module.exports = {
     name: 'goty',
     description: 'Learn the best games from a particular year! To run, type `!goty year`',
     cooldown: 5,
+    usage: `2017`,
     async execute(message, args) {
         var fs = require('fs');
         var array = fs.readFileSync('textfiles/tips.txt').toString().split("\n");

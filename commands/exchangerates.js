@@ -10,6 +10,7 @@ module.exports = {
     aliases: [`exchange`, `currency`],
     description: 'See how much your currency is worth around the world! To run, type `!currency USD`\n Supported currencies: GBP, HKD, IDR, ILS, DKK, INR, CHF, MXN, CZK, SGD, THB, HRK, EUR, MYR, NOK, CNY, BGN, PHP, PLN, ZAR, CAD, ISK, BRL, RON, NZD, TRY, JPY, RUB, KRW, USD, AUD, HUK, SEK',
     cooldown: 5,
+    usage: 'USD',
     async execute(message, args) {
         let input = args.slice(0).join(" ");
         const currency = input.toUpperCase();
