@@ -7,6 +7,7 @@ const fetch = require('node-fetch');
 const helpers = require('../helpers/helpers');
 module.exports = {
     name: 'mars',
+    aliases: [],
     description: 'Retrieve a picture from the Mars Curiosity rover! To run, try `!mars`',
     cooldown: 5,
     usage: ` `,

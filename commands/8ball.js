@@ -3,6 +3,7 @@ const client = new Discord.Client();
 
 module.exports = {
     name: '8ball',
+    aliases: [],
     description: 'Leave the most important decisions up to random!',
     cooldown: 5,
     usage: ` should I invite this bot to my server?`,

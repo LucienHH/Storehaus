@@ -8,6 +8,7 @@ const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'stats',
+    aliases: [],
     description: 'See stats about Storehaus',
     cooldown: 5,
     usage: ` `,

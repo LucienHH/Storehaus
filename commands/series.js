@@ -6,6 +6,7 @@ const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'series',
+    aliases: [],
     description: 'Get a list of games that are part of the same series. To run, type `!series name of a game`',
     cooldown: 5,
     usage: ` halo`,

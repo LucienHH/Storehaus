@@ -6,6 +6,7 @@ const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'achievements',
+    aliases: [],
     description: 'Get a list of game achievements for an Xbox game.',
     cooldown: 5,
     usage: "crackdown",

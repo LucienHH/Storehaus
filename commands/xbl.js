@@ -6,6 +6,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: 'xbl',
+    aliases: [],
     description: 'Get no context Xbox Live messages from the subreddit r/nocontextxboxmessages. Content may contain vulgarity. To run, type `!xbl`',
     cooldown: 5,
     usage: ` `,

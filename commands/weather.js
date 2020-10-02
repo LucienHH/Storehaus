@@ -8,6 +8,7 @@ const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'weather',
+    aliases: [],
     description: 'Retrieve the weather! To run, try !weather city',
     cooldown: 5,
     usage: ` anchorage`,
