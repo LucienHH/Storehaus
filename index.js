@@ -55,7 +55,7 @@ client.once('ready', () => {
 					connection.release();
 			})	
 		})
-	},   1000 * 60 * 60 * 24);
+	},   1000 * 60 * 60 * 1);
 	setInterval(() => {
 		client.user.setActivity(`!help in ${client.guilds.cache.size} servers`, {
 			type: "STREAMING",
