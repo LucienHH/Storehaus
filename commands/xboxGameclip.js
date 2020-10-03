@@ -119,7 +119,7 @@ module.exports = {
                                     return;
                                 }
                                 if (isNaN(num)) {
-                                    errMsg = 'That doesnt look like a number or you incorrectly formated the command. Do !help xboxss to find out.';
+                                    errMsg = 'That doesnt look like a number or you incorrectly formated the command. Do !help xboxgc to find out.';
                                     helpers.embedErr(msg, errMsg);
                                     return;
                                 }
