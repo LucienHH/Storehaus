@@ -29,7 +29,7 @@ module.exports = {
                         }
 
                         catch (error) {
-                            errMsg = 'Missing input credentials. Do !xboxgc gamer_tag [number]. Or !savegt gamer_tag to save your gamertag then !xboxgc [number].';
+                            errMsg = 'Missing input credentials. Do !xboxgc gamer_tag [number]. Or !savegt gamer\\_tag to save your gamertag then !xboxgc [number].';
                             helpers.embedErr(msg, errMsg);
                         }
                         if (Gamertag === undefined) {
