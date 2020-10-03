@@ -56,7 +56,7 @@ module.exports = {
                                 const total = xb2.data.data.length;
                                 const random = Math.floor(Math.random() * (total));
                                 if (total === 0) {
-                                    errMsg = `You dont have any clips available for ${data.data.data[0].name}`;
+                                    errMsg = `You dont have any screenshots available for ${data.data.data[0].name}`;
                                     helpers.embedErr(msg, errMsg);
                                     return;
                                 }
