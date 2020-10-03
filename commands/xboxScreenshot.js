@@ -108,20 +108,24 @@ module.exports = {
                                 }
                                 if (total < 1) {
                                     errMsg = 'Error reading your profile this will most likely be due to your xbox account privacy settings or an invalid gamertag.';
-                                    msg.edit(helpers.embedErr(msg, errMsg));
+                                    helpers.embedErr(msg, errMsg);
                                     return;
                                 }
                                 if (isNaN(num)) {
                                     errMsg = 'That doesnt look like a number or you incorrectly formated the command. Do !help xboxss to find out.';
-                                    msg.edit(helpers.embedErr(msg, errMsg));
+                                    helpers.embedErr(msg, errMsg);
                                     return;
                                 }
                                 if (num > total) {
                                     errMsg = `You dont have that many screenshots! Pick between 0 and ${total}.`;
-                                    msg.edit(helpers.embedErr(msg, errMsg));
+                                    helpers.embedErr(msg, errMsg);
                                     return;
                                 }
-        
+                                if (num < 1) {
+                                    errMsg = `Pick between 1 and ${total}.`;
+                                    helpers.embedErr(msg, errMsg);
+                                    return;
+                                }
                                 const xbox = xb2.data.data[num - 1];
                                 const embed = new Discord.MessageEmbed()
                                     .setAuthor(`${xbox.author.gamertag}`, `${xbox.author.gamerpic}`)

@@ -128,6 +128,11 @@ module.exports = {
                                     helpers.embedErr(msg, errMsg);
                                     return;
                                 }
+                                if (num < 1) {
+                                    errMsg = `Pick between 1 and ${total}.`;
+                                    helpers.embedErr(msg, errMsg);
+                                    return;
+                                }
                                 const xbox = xb2.data.data[num - 1];
             
                                 const embed = new Discord.MessageEmbed()
