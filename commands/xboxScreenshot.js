@@ -103,6 +103,9 @@ module.exports = {
                                 else if (message.content.toLowerCase().includes('recent')) {
                                     num = ('1');
                                 }
+                                else if (message.content.toLowerCase().includes('oldest')) {
+                                    num = (total);
+                                }
                                 else if (!num) {
                                     num = Math.floor(Math.random() * (total - 1)) + 1;
                                 }
