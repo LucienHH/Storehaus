@@ -44,7 +44,7 @@ module.exports = {
                             }
                             const data = await axios.get(`https://api.xboxreplay.net/games?count=1&search=${Game.replace(/ /g, '%20')}&lang=en-us`, authInfo);
                             if (data.data.data.length === 0) {
-                                errMsg = 'I can\'t find that game. Make sure you\'ve spelled it correctly.';
+                                errMsg = 'I can\'t find that game. Make sure you\'ve spelled it correctly. Try *not* using the abbreviated name and replace arabic numerals with roman counterpart and vice-versa';
                                 helpers.embedErr(msg, errMsg);
                                 return;
                             }
