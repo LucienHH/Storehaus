@@ -47,16 +47,20 @@ module.exports = {
                                 })
                             }
                             else if (result.length == 1) {
-                                if (result[0].gamertag.toLowerCase() == Gamertag.toLowerCase()) {
+                                if (args[0] === 'current') return message.channel.send(`Your saved gamertag is [${result[0].gamertag}] | If this isn't correct do !savegt update gamer_tag and remember to replace spaces with '_'`)
+
+                                else if (result[0].gamertag.toLowerCase() == Gamertag.toLowerCase()) {
                                     //same
-                                    message.channel.send(`You\'ve already set your gamertag to ${xb1.data.gamertag}, if you need to update it do !savegt update gamer_tag and remember to replace spaces with '_'`);
-                                } else {
+                                    message.channel.send(`You\'ve already set your gamertag to ${xb1.data.gamertag}, if you need to update it do !savegt update gamer_tag and remember to replace spaces with '\\_'`);
+                                }
+
+                                else {
                                     //not the same
                                     connection.query(`UPDATE ${process.env.mysql_xbox_table} SET gamertag = "${Gamertag}" WHERE user_id = ${result_user[0].id}`, function (err, result) {
                                         if (err) {
                                             console.log(err);
                                         }
-                                        message.channel.send(`Successfully updated your gamertag to '${xb1.data.gamertag}' and linked it to your account! If this doesn't look like your gamertag remember to replace spaces with '_'`);
+                                        message.channel.send(`Successfully updated your gamertag to '${xb1.data.gamertag}' and linked it to your account! If this doesn't look like your gamertag remember to replace spaces with '\\_'`);
                                     })
                                 }
                             }
