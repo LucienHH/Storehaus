@@ -4,20 +4,28 @@ const Discord = require('discord.js');
 var mysql = require('mysql');
 const client = new Discord.Client();
 const helpers = require('./helpers/helpers')
-
+const moment = require('moment');
 //This is for REST API.
 const fetch = require('node-fetch');
 const querystring = require('querystring');
-const { log } = require('console');
-
+const log = message => {
+	console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
+};
 client.commands = new Discord.Collection();
+client.aliases = new Discord.Collection();
+fs.readdir('./commands/', (err, files) => {
+	if (err) console.error(err);
+	log(`Loading a total of ${files.length} commands.`);
+	files.forEach(f => {
+		const props = require(`./commands/${f}`);
+		log(`Command Loaded! ${props.name}`);
+		client.commands.set(props.name, props);
+		props.aliases.forEach(alias => {
+			client.aliases.set(alias, props.name);
+		});
+	});
+});
 
-/// GO THROUGH EVERY FILE IN COMMANDS FOLDER AND GRAB ALL JS FILES
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.name, command);
-}
 
 const cooldowns = new Discord.Collection();
 client.once('ready', () => {
