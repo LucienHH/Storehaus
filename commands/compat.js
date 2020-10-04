@@ -5,6 +5,7 @@ const readline = require('readline');
 const fs = require('fs');
 module.exports = {
     name: 'compat',
+    aliases: [],
     description: 'Check if a game is backwards compatible on Xbox One or Xbox Series X. To run, type `!compat name of game`',
     cooldown: 5,
     usage: 'Halo 3',

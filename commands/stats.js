@@ -8,6 +8,7 @@ const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'stats',
+    aliases: [],
     description: 'See stats about Storehaus',
     cooldown: 5,
     usage: ` `,
@@ -25,10 +26,10 @@ module.exports = {
         const { commands } = message.client
         helpers.pool.getConnection(function (err, connection) {
             connection.query(`SELECT command_name, COUNT(*) count FROM ${process.env.mysql_command_stats_table} GROUP BY command_name  HAVING count > 0 ORDER BY count DESC`, function (err, result) {
-                let embed = new Discord.MessageEmbed()
-                    .setColor("#ff00ff")
-                    .addField(`Stats`, `Servers: ${servers}\n Channels: ${channels}\n Users: ${users}`)
-                    .addField(`Top 10 Commands Statistics`, `
+                                let embed = new Discord.MessageEmbed()
+                                    .setColor("#ff00ff")
+                                    .addField(`Stats`, `Servers: ${servers}\n Channels: ${channels}\n Users: ${users}`)
+                                    .addField(`Top 10 command usage stats. Past 7 Days`, `
 ${result[0]?result[0].command_name:""} ${result[0]?"-":""} ${result[0]?result[0].count:""}
 ${result[1]?result[1].command_name:""} ${result[1]?"-":""} ${result[1]?result[1].count:""}
 ${result[2]?result[2].command_name:""} ${result[2]?"-":""} ${result[2]?result[2].count:""}
@@ -39,8 +40,8 @@ ${result[6]?result[6].command_name:""} ${result[6]?"-":""} ${result[6]?result[6]
 ${result[7]?result[7].command_name:""} ${result[7]?"-":""} ${result[7]?result[7].count:""}
 ${result[8]?result[8].command_name:""} ${result[8]?"-":""} ${result[8]?result[8].count:""}
 ${result[9]?result[9].command_name:""} ${result[9]?"-":""} ${result[9]?result[9].count:""}`);
-//the above must stay indented
-                message.channel.send(embed)
+                //the above must stay indented
+                                message.channel.send(embed)
             })
         })
 

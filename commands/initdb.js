@@ -2,6 +2,7 @@ var mysql = require('mysql');
 const helpers = require('../helpers/helpers');
 module.exports = {
     name: '_init',
+    aliases: [],
     description: 'Initiate DB (BOT OWNER ONLY)',
     cooldown: 5,
     async execute(message, args) {

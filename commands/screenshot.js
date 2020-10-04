@@ -6,6 +6,7 @@ const fs = require('fs');
 
 module.exports = {
     name: 'screenshot',
+    aliases: [],
     description: 'Get screenshots for a game. To run, type `!screenshot name of a game`',
     cooldown: 10,
     usage: ` Outer Worlds`,

@@ -5,6 +5,7 @@ const readline = require('readline');
 const fs = require('fs');
 module.exports = {
     name: 'psnow',
+    aliases: [],
     description: 'Check if a game is on PlayStation Now. To run, type `!psnow name of game`',
     cooldown: 5,
     usage: ` Bioshock`,

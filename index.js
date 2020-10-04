@@ -3,20 +3,29 @@ const fs = require('fs');
 const Discord = require('discord.js');
 var mysql = require('mysql');
 const client = new Discord.Client();
-
+const helpers = require('./helpers/helpers')
+const moment = require('moment');
 //This is for REST API.
 const fetch = require('node-fetch');
 const querystring = require('querystring');
-const { log } = require('console');
-
+const log = message => {
+	console.log(`[${moment().format('YYYY-MM-DD HH:mm:ss')}] ${message}`);
+};
 client.commands = new Discord.Collection();
+client.aliases = new Discord.Collection();
+fs.readdir('./commands/', (err, files) => {
+	if (err) console.error(err);
+	log(`Loading a total of ${files.length} commands.`);
+	files.forEach(f => {
+		const props = require(`./commands/${f}`);
+		log(`Command Loaded! ${props.name}`);
+		client.commands.set(props.name, props);
+		props.aliases.forEach(alias => {
+			client.aliases.set(alias, props.name);
+		});
+	});
+});
 
-/// GO THROUGH EVERY FILE IN COMMANDS FOLDER AND GRAB ALL JS FILES
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-	const command = require(`./commands/${file}`);
-	client.commands.set(command.name, command);
-}
 
 const cooldowns = new Discord.Collection();
 client.once('ready', () => {
@@ -24,6 +33,37 @@ client.once('ready', () => {
 	//Sends a message to TR Dev server acknoledging reboot
 	client.channels.cache.get('727953467443773460').send('Storehaus has been rebooted.');
 	client.user.setActivity(`!help in ${client.guilds.cache.size} servers`);
+	
+	setInterval(() => {
+		helpers.pool.getConnection(function(err,connection){
+			connection.query(`SELECT * FROM ${process.env.mysql_command_stats_table}`, function (err, results) {
+	
+				var d1 = new Date();
+				d1.toUTCString();
+				Math.floor(d1.getTime()/ 1000)
+				var date = new Date( d1.getUTCFullYear(), d1.getUTCMonth(), d1.getUTCDate(), d1.getUTCHours(), d1.getUTCMinutes(), d1.getUTCSeconds() );
+				const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+	
+	
+				
+				results.forEach(element => {
+					const diffDays = Math.round(Math.abs((element.date - date) / oneDay));
+					let D = element.date;
+					if (diffDays >= 8) {
+						connection.query(`DELETE FROM ${process.env.mysql_command_stats_table} WHERE date = "${new Date(Date.parse(D)).toISOString().slice(0, 10).replace('T', ' ')}"`,function(err,result){
+							if (err) {
+								console.log(err);
+								console.log(`Something went wrong. If the issue persists contact the developers. \`!support\``);
+							}else{
+
+							}
+						})
+					} 
+					});
+					connection.release();
+			})	
+		})
+	},   1000 * 60 * 60 * 1);
 	setInterval(() => {
 		client.user.setActivity(`!help in ${client.guilds.cache.size} servers`, {
 			type: "STREAMING",
@@ -37,7 +77,6 @@ client.once('ready', () => {
 
 client.on('message', async message => {
 	try {
-		const helpers = require('./helpers/helpers')
 		let guild = message.guild.id;
 		helpers.pool.getConnection(function(err, connection) {
 			if (err) throw err; // not connected!
@@ -103,7 +142,7 @@ client.on('message', async message => {
 	
 	
 						try {
-							command.execute(message, args);
+							command.execute(message, args, client);
 							///INSERT COMMAND NAME TO DATABASE 
 
 							connection.query(`INSERT INTO ${process.env.mysql_command_stats_table} VALUES ("${command.name}", DEFAULT)`,function(err,results){
@@ -170,7 +209,7 @@ client.on('message', async message => {
 	
 	
 									try {
-										command.execute(message, args);
+										command.execute(message, args, client);
 									} catch (error) {
 										console.error(error);
 										message.reply('there was an error trying to execute that command!');

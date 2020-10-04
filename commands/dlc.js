@@ -6,6 +6,7 @@ const helpers = require('../helpers/helpers');
 
 module.exports = {
     name: 'dlc',
+    aliases: [],
     description: 'DLC\'s for the game, GOTY and other editions, companion apps, etc. To run, type `!dlc name of a game`',
     cooldown: 5,
     usage: 'Witcher 3',

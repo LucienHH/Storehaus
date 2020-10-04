@@ -8,6 +8,7 @@ const fetch = require('node-fetch');
 
 module.exports = {
     name: '_mods',
+    aliases: [],
     description: 'Get the top trending mods about a game on Nexus Mods. Try `!mods name of game`',
     cooldown: 10,
     async execute(message, args) {

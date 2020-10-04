@@ -7,6 +7,7 @@ const fetch = require('node-fetch');
 const helpers = require('../helpers/helpers');
 module.exports = {
     name: 'hack',
+    aliases: [],
     description: 'Become a professional hacker in one command! To run, try `!hack`',
     cooldown: 5,
     usage: ` `,

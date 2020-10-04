@@ -9,6 +9,7 @@ const { log } = require('console');
 
 module.exports = {
     name: 'movie',
+    aliases: [],
     description: 'Retrieve movie information! To run, try !movie [name of a movie]',
     cooldown: 5,
     async execute(message, args) {

@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 module.exports = {
     name: 'yesorno',
+    aliases: [],
     description: 'Yes or No? Find out! To run, type `!yesorno`',
     cooldown: 5,
     usage: ` will James be fired today?`,

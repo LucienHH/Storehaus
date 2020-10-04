@@ -2,7 +2,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 module.exports = {
     name: 'random',
-    description: 'Have Storehaus suggest a command for you to try out.',
+    aliases: [],
+    description: 'Have Storehaus suggest a command for you to try out.`',
     cooldown: 5,
     usage: ` `,
     execute(message, args) {
