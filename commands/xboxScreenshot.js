@@ -20,7 +20,7 @@ module.exports = {
                     message.channel.send(embed).then(async msg => {
                         let Gamertag = args[0];
                         try {
-                            if (!isNaN(args[0]) || !args[0] || args[0] === 'recent' || args[0] === 'search') {
+                            if (!isNaN(args[0]) || !args[0] || args[0] === 'recent' || args[0] === 'search' || args[0] === 'oldest') {
                                 Gamertag = result_gamertag && result_gamertag.length == 1 ? result_gamertag[0].gamertag : undefined;
                             }
                         }
