@@ -19,6 +19,7 @@ module.exports = {
 		.addField(`Xbox Avatar`, "See your Xbox Avatar or the avatar of one of your friends. \n`!xavatar slashstorm` or `!xboxavatar slashstorm`")
         .addField(`Xbox Game Clip`, "See gameclips saved on your Xbox profile!\n`!xboxgc`")
         .addField(`Xbox Screenshot`, "See screenshots saved on your Xbox profile!\n`!xboxss`")
+        .addField(`No Context Xbox Live Memes`, "See memes from the No Context Xbox Live subreddit\n`!xbl`")
 		.setFooter(helpers.getFooter());
 		message.channel.send(embed);
 		delete embed;
