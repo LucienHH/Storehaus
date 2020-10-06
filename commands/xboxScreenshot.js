@@ -20,7 +20,8 @@ module.exports = {
                     message.channel.send(embed).then(async msg => {
                         let Gamertag = args[0];
                         try {
-                            if (!isNaN(args[0]) || !args[0] || args[0] === 'recent' || args[0] === 'search') {
+                            if (!isNaN(args[0]) || !args[0] || args[0] === 'recent' || args[0] === 'search' || args[0] === 'oldest') {
+
                                 Gamertag = result_gamertag && result_gamertag.length == 1 ? result_gamertag[0].gamertag : undefined;
                             }
                         }
@@ -103,6 +104,11 @@ module.exports = {
                                 else if (message.content.toLowerCase().includes('recent')) {
                                     num = ('1');
                                 }
+
+                                else if (message.content.toLowerCase().includes('oldest')) {
+                                    num = (total);
+                                }
+
                                 else if (!num) {
                                     num = Math.floor(Math.random() * (total - 1)) + 1;
                                 }
@@ -117,7 +123,7 @@ module.exports = {
                                     return;
                                 }
                                 if (num > total) {
-                                    errMsg = `You dont have that many screenshots! Pick between 0 and ${total}.`;
+                                    errMsg = `You dont have that many screenshots! Pick between 1 and ${total}.`;
                                     helpers.embedErr(msg, errMsg);
                                     return;
                                 }
