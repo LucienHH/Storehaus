@@ -127,7 +127,7 @@ module.exports = {
                                     return;
                                 }
                                 if (num > total) {
-                                    errMsg = `You dont have that many gameclips! Pick between 0 and ${total}.`;
+                                    errMsg = `You dont have that many gameclips! Pick between 1 and ${total}.`;
                                     helpers.embedErr(msg, errMsg);
                                     return;
                                 }
