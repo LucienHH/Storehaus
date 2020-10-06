@@ -47,6 +47,7 @@ module.exports = {
                                 })
                             }
                             else if (result.length == 1) {
+
                                 if (args[0] === 'current') return message.channel.send(`Your saved gamertag is [${result[0].gamertag}] | If this isn't correct do !savegt update gamer\\_tag and remember to replace spaces with '\\_'`)
 
                                 else if (result[0].gamertag.toLowerCase() == Gamertag.toLowerCase()) {
