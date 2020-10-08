@@ -9,6 +9,10 @@ module.exports.get = async (url, query, message, args) =>{
     if(query === "game"){
         //Taking in argument of game name
         let game = args.slice(0).join(" ");
+        if (game == undefined || game=="") {
+            message.channel.send(new Discord.MessageEmbed().setTitle("You must specify a game to check its info ")).then(m => m.delete({timeout: 10000}));
+            return;
+        }
                 
         //API Fields
         fields = `age_ratings,aggregated_rating,aggregated_rating_count,alternative_names,artworks,bundles,category,checksum,collection,cover,
