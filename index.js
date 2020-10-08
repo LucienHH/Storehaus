@@ -17,11 +17,35 @@ client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 
 // / GO THROUGH EVERY FILE IN COMMANDS FOLDER AND GRAB ALL JS FILES
-fs.readdir('./commands/', (err, files) => {
+fs.readdir('./commands/gaming/', (err, files) => {
 	if (err) console.error(err);
 	log(`Loading a total of ${files.length} commands.`);
 	files.forEach(f => {
-		const props = require(`./commands/${f}`);
+		const props = require(`./commands/gaming/${f}`);
+		log(`Command Loaded! ${props.name}`);
+		client.commands.set(props.name, props);
+		props.aliases.forEach(alias => {
+			client.aliases.set(alias, props.name);
+		});
+	});
+});
+fs.readdir('./commands/fun/', (err, files) => {
+	if (err) console.error(err);
+	log(`Loading a total of ${files.length} commands.`);
+	files.forEach(f => {
+		const props = require(`./commands/fun/${f}`);
+		log(`Command Loaded! ${props.name}`);
+		client.commands.set(props.name, props);
+		props.aliases.forEach(alias => {
+			client.aliases.set(alias, props.name);
+		});
+	});
+});
+fs.readdir('./commands/misc/', (err, files) => {
+	if (err) console.error(err);
+	log(`Loading a total of ${files.length} commands.`);
+	files.forEach(f => {
+		const props = require(`./commands/misc/${f}`);
 		log(`Command Loaded! ${props.name}`);
 		client.commands.set(props.name, props);
 		props.aliases.forEach(alias => {
