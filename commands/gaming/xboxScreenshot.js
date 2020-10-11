@@ -83,6 +83,11 @@ module.exports = {
                                                 })
                                                 .catch(console.error);
                                         });
+                                }).catch((err) => {
+                                    console.log(`Error at line 87: ${err}`)
+                                    errMsg = `Request timed out | Error has been logged to console`;
+                                    helpers.embedErr(msg, errMsg);
+                                    return;
                                 });
                             }), error => {
                                 if (error) {
@@ -222,6 +227,11 @@ module.exports = {
                                                 })
                                                 .catch(console.error);
                                         });
+                                }).catch((err) => {
+                                    console.log(`Error at line 226: ${err}`)
+                                    errMsg = `Request timed out | Error has been logged to console`;
+                                    helpers.embedErr(msg, errMsg);
+                                    return;
                                 });
                             }), error => {
                                 if (error) {
