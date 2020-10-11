@@ -18,19 +18,57 @@ module.exports = {
         return converted;
 
     },
+    // Function to be used to edit an exisitng embed
+    embedEdit: function (message, desc) {
+        const embedEdit = new Discord.MessageEmbed()
+            .setDescription(desc);
+        return message.edit(embedEdit);
+    },
     // function to be used for editing previous embeds to errors.
     embedErr: function (message, errMsg) {
         const embedErr = new Discord.MessageEmbed()
             .setColor('#ff0000')
+            .setFooter('Please contact a dev if this issue persists')
             .setDescription(errMsg);
-        return message.edit(embedErr).then(msg => msg.delete({ timeout: 15000 }));
+        return message.edit(embedErr); 
+    //.then(msg => msg.delete({ timeout: 15000 })); | Removed to help with intial debugging
     },
     // function to be used to send error messages
     sendErr: function (message, errMsg) {
         const embedErr = new Discord.MessageEmbed()
             .setColor('#ff0000')
+            .setFooter('Please contact a dev if this issue persists')
             .setDescription(errMsg);
-        return message.channel.send(embedErr).then(msg => msg.delete({ timeout: 15000 }));
+        return message.channel.send(embedErr);
+    //.then(msg => msg.delete({ timeout: 15000 })); | Removed to help with intial debugging
+    },
+    // Function to be used to check a number within set parameters
+    numCheck: function (min, max, number) {
+        let reason = '';
+        if (isNaN(number)) {
+            reason = `${number} is not a number`
+            return {
+                ok: false,
+                reason: reason,
+            };
+        }
+        else if (number > max) {
+            reason = `${number} is greater than ${max}`;
+            return {
+                ok: false,
+                reason: reason,
+            };
+        }
+        else if (number < min) {
+            reason = `${number} is less than ${min}`;
+            return {
+                ok: false,
+                reason: reason,
+            };
+        }
+        else {
+            return true;
+        }
     },
     // connectMYSQL: function(){
     //         var con = mysql.createPool({
