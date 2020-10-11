@@ -19,15 +19,15 @@ module.exports = {
                 connection.query(`SELECT * FROM ${process.env.mysql_xbox_table} WHERE user_id = ${result_user[0].id}`, function (err, result_gamertag) {
                     try {
                         if (!args[0]) {
-                            Gamertag = result_gamertag && result_gamertag.length == 1 ? result_gamertag[0].gamertag : undefined;
+                            gamertag = result_gamertag && result_gamertag.length == 1 ? result_gamertag[0].gamertag : undefined;
                         }
                     }
                     catch (error) {
-                        errMsg = 'Missing input credentials. Do !xboxgc gamer_tag [number]. Or !savegt gamer_tag to save your gamertag then !xboxgc [number].';
+                        errMsg = 'Missing input credentials. Do !xachievement <gamertag>. Or !savegt <gamer_tag> to save your gamertag then !xachievement.';
                         helpers.sendErr(message, errMsg);
                         return;
                     }
-                    if (Gamertag === undefined) {
+                    if (gamertag === undefined) {
                         errMsg = 'Error reading your profile this will most likely be due to not having your GT saved to the database. !savegt <gamer_tag>.';
                         helpers.sendErr(message, errMsg);
                         return;

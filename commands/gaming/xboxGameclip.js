@@ -149,8 +149,13 @@ module.exports = {
                                 if (args[0] === 'list') {
                                     const xb = xb2.data.data;
                                     const maxPage = Math.ceil(total / 10);
+                                    let listNum = 0;
+                                    if(args[1] === '1') listNum = 1;
+                                    else if(!isNaN(args[1])) listNum = args[1];
+                                    else if(!args[1]) listNum =	Math.ceil(Math.random() * (maxPage));
+            
                                     let viewsTotal = 0;
-                                    if (args[1] === '1' || !args[1]) {
+                                    if (listNum === '1') {
                                         let order = 1;
                                         let lstring = '';
                                         for (let i = 0; i < total; i++) {
@@ -175,8 +180,8 @@ module.exports = {
                                         return;
                                     }
                                     else {
-                                        const decimal = (args[1] - Math.floor(args[1])) !== 0;
-                                        if (isNaN(args[1])) {
+                                        const decimal = (listNum - Math.floor(listNum)) !== 0;
+                                        if (isNaN(listNum)) {
                                             errMsg = 'You need to specify a page number';
                                             helpers.embedErr(msg, errMsg);
                                             return;
@@ -186,28 +191,28 @@ module.exports = {
                                             helpers.embedErr(msg, errMsg);
                                             return;
                                         }
-                                        else if (args[1] > maxPage || args[1] < 1) {
+                                        else if (listNum > maxPage || listNum < 1) {
                                             errMsg = `That page doesn't exist. Choose between 1 and ${maxPage}`;
                                             helpers.embedErr(msg, errMsg);
                                             return;
                                         }
-                                        let order = `${args[1] - 1}1`;
+                                        let order = `${listNum - 1}1`;
                                         let lstring = '';
-                                        for (let i = (args[1] - 1) * 10; i < total; i++) {
+                                        for (let i = (listNum - 1) * 10; i < total; i++) {
                                             if (i > total - 1) {
                                                 break;
                                             }
                                             viewsTotal = viewsTotal + xb[i].metadata.views;
                                             lstring = lstring + `**${order}.** [${xb[i].game.name}](${xb[i].share_urls.play}) | Uploaded ${xb[i].uploaded_at.replace(/T/g, ' ').replace(/Z/g, '').slice(0, 10)}\n`;
                                             order++;
-                                            if (order > `${args[1]}0`) {
+                                            if (order > `${listNum}0`) {
                                                 break;
                                             }
                                         }
                                         const embed = new Discord.MessageEmbed()
                                             .setAuthor(`${xb[0].author.gamertag}`, `${xb[0].author.gamerpic}`)
                                             .setColor(xb1.data.colors.primary)
-                                            .setTitle(`Xbox Gameclips: (page ${args[1]})`)
+                                            .setTitle(`Xbox Gameclips: (page ${listNum})`)
                                             .setDescription(lstring + '')
                                             .setFooter(`Total Views: ${viewsTotal} | Page ${args[1]}/${maxPage}`);
                                         message.channel.send({ embed });

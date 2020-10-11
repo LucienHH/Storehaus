@@ -28,15 +28,19 @@ module.exports = {
     embedErr: function (message, errMsg) {
         const embedErr = new Discord.MessageEmbed()
             .setColor('#ff0000')
+            .setFooter('Please contact a dev if this issue persists')
             .setDescription(errMsg);
-        return message.edit(embedErr).then(msg => msg.delete({ timeout: 15000 }));
+        return message.edit(embedErr); 
+    //.then(msg => msg.delete({ timeout: 15000 })); | Removed to help with intial debugging
     },
     // function to be used to send error messages
     sendErr: function (message, errMsg) {
         const embedErr = new Discord.MessageEmbed()
             .setColor('#ff0000')
+            .setFooter('Please contact a dev if this issue persists')
             .setDescription(errMsg);
-        return message.channel.send(embedErr).then(msg => msg.delete({ timeout: 15000 }));
+        return message.channel.send(embedErr);
+    //.then(msg => msg.delete({ timeout: 15000 })); | Removed to help with intial debugging
     },
     // Function to be used to check a number within set parameters
     numCheck: function (min, max, number) {
