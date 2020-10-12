@@ -214,7 +214,7 @@ module.exports = {
                                             .setColor(xb1.data.colors.primary)
                                             .setTitle(`Xbox Gameclips: (page ${listNum})`)
                                             .setDescription(lstring + '')
-                                            .setFooter(`Total Views: ${viewsTotal} | Page ${args[1]}/${maxPage}`);
+                                            .setFooter(`Total Views: ${viewsTotal} | Page ${listNum}/${maxPage}`);
                                         message.channel.send({ embed });
                                         msg.delete();
                                         return;

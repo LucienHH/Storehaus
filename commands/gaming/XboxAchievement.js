@@ -14,6 +14,7 @@ module.exports = {
     async execute(message, args) {
         let errMsg = '';
         let gamertag = args.join(' ');
+        const XRauthInfo = { headers: { 'Authorization': process.env.XBOXREPLAY_AUTHORIZATION } };
         helpers.pool.getConnection(function (err, connection) {
             connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${message.author.id}`, function (err, result_user) {
                 connection.query(`SELECT * FROM ${process.env.mysql_xbox_table} WHERE user_id = ${result_user[0].id}`, function (err, result_gamertag) {
