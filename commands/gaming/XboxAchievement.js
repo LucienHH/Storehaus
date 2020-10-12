@@ -138,7 +138,7 @@ module.exports = {
                 });
             }, error => {
                 if (error) errMsg = 'I can\'t find that game. Make sure you\'ve spelled it correctly.';
-                helpers.sendErr(msg, errMsg);
+                helpers.embedErr(msg, errMsg);
                 return;
             });
         }
@@ -171,7 +171,7 @@ module.exports = {
         function achievementsHome(msg) {
             if (achievements.length < 1) {
                 errMsg = 'I couldn\'t find any achievements for that game. This command doesn\'t work for 360 games, sorry.';
-                helpers.sendErr(msg, errMsg);
+                helpers.embedErr(msg, errMsg);
                 return;
             }
             let completed = 0;
@@ -216,6 +216,7 @@ module.exports = {
             });
         }
         function selectPage(message_, maxPage) {
+            message_.reactions.removeAll();
             const desc = `Please select a number between 1 and ${maxPage} | Page 1 is the home page\n\nReply "cancel" to end the request`;
             helpers.embedEdit(message_, desc).then(async msg => {
                 msg.channel.awaitMessages(m => m.author.id == message.author.id,
@@ -261,6 +262,7 @@ module.exports = {
                                     break;
                                 }
                             }
+                            msg.delete();
                             const embed = new Discord.MessageEmbed()
                                 .setAuthor(`${userInfo.settings[0].value}s Achievements`, `${userInfo.settings[1].value}`)
                                 .setColor(33992)
@@ -273,7 +275,6 @@ module.exports = {
                         }
 
                     }).catch((err) => {
-                        msg.reactions.removeAll();
                         console.log(err);
                         errMsg = `Request timed out | No reply after 30 seconds from [${message.author.username}]`;
                         helpers.embedErr(msg, errMsg);
@@ -403,6 +404,7 @@ module.exports = {
                 }
             }
             else if (button === 'ℹ') {
+                message_.reactions.removeAll();
                 const embed = new Discord.MessageEmbed()
                     .setColor(33992)
                     .setDescription('Please select the achievments number to get more info!')
