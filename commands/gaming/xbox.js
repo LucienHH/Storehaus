@@ -3,10 +3,11 @@ const client = new Discord.Client();
 
 //Fetch required for API Call
 const fetch = require('node-fetch');
-const helpers = require('../helpers/helpers');
+const helpers = require('../../helpers/helpers');
 
 module.exports = {
     name: 'xbox',
+    category: 'gaming',
     aliases: [],
     description: 'A general landing page for all the Xbox commands',
     cooldown: 5,
