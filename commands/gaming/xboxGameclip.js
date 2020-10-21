@@ -108,7 +108,7 @@ module.exports = {
                             axios.all([
                                 axios.get(`https://api.xboxreplay.net/players/${Gamertag.replace(/_/g, '-')}`, authInfo),
                                 axios.get(`https://api.xboxreplay.net/players/${Gamertag.replace(/_/g, '-')}/clips`, authInfo),
-                            ]).then(axios.spread((xb1, xb2) => {
+                            ]).then(axios.spread(async (xb1, xb2) => {
                                 // console.log(`There is ${xb2.headers['x-rate-limit-remaining']} calls remianing to the Xbox API. Rate limit reset ${xb2.headers['x-rate-limit-reset']} (Rate limit total - ${xb2.headers['x-rate-limit-limit']})`);
                                 const total = xb2.data.additional.total;
                                 if (!isNaN(args[0])) {
