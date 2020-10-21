@@ -118,99 +118,55 @@ module.exports = {
                                 else if (!num) {
                                     num = Math.floor(Math.random() * (total - 1)) + 1;
                                 }
-                                if (total < 1) {
-                                    errMsg = 'Error reading your profile this will most likely be due to your xbox account privacy settings or an invalid gamertag.';
-                                    helpers.embedErr(msg, errMsg);
-                                    return;
-                                }
-                                if (isNaN(num)) {
-                                    errMsg = 'That doesnt look like a number or you incorrectly formated the command. Do !help xboxss to find out.';
-                                    helpers.embedErr(msg, errMsg);
-                                    return;
-                                }
-                                if (num > total) {
-                                    errMsg = `You dont have that many screenshots! Pick between 1 and ${total}.`;
-                                    helpers.embedErr(msg, errMsg);
-                                    return;
-                                }
-                                if (num < 1) {
-                                    errMsg = `Pick between 1 and ${total}.`;
+                                const numCheck = helpers.numCheck(1, total, num);
+                                if (numCheck.ok === false) {
+                                    errMsg = `Request timed out | ${numCheck.reason}`;
                                     helpers.embedErr(msg, errMsg);
                                     return;
                                 }
                                 if (args[0] === 'list') {
-                                    const xb = xb2.data.data;
-                                    const maxPage = Math.ceil(total / 10);
-                                    let listNum = 0;
-                                    if(args[1] === '1') listNum = 1;
-                                    else if(!isNaN(args[1])) listNum = args[1];
-                                    else if(!args[1]) listNum =	Math.ceil(Math.random() * (maxPage));
-            
-                                    let viewsTotal = 0;
-                                    if (listNum === '1') {
-                                        let order = 1;
-                                        let lstring = '';
-                                        for (let i = 0; i < total; i++) {
-                                            if (i > total - 1) {
-                                                break;
-                                            }
-                                            viewsTotal = viewsTotal + xb[i].metadata.views;
-                                            lstring = lstring + `**${order}.** [${xb[i].game.name}](${xb[i].download_urls.source}) | Uploaded ${xb[i].uploaded_at.replace(/T/g, ' ').replace(/Z/g, '').slice(0, 10)}\n`;
-                                            order++;
-                                            if (order > 10) {
-                                                break;
-                                            }
+                                    let currentPage = 0;
+                                    if (args[1]) {
+                                        currentPage = args[1] - 1;
+                                        const pageCheck = helpers.numCheck(1, Math.ceil(xb2.data.data.length / 10), currentPage + 1);
+                                        if (pageCheck.ok === false) {
+                                            errMsg = `Request timed out | ${pageCheck.reason}`;
+                                            helpers.embedErr(msg, errMsg);
+                                            return;
                                         }
-                                        const embed = new Discord.MessageEmbed()
-                                            .setAuthor(`${xb[0].author.gamertag}`, `${xb[0].author.gamerpic}`)
-                                            .setColor(xb1.data.colors.primary)
-                                            .setTitle('Xbox Screenshots: (page 1)')
-                                            .setDescription(lstring + '')
-                                            .setFooter(`Total Views: ${viewsTotal} | Page 1/${maxPage}`);
-                                        message.channel.send({ embed });
-                                        msg.delete();
-                                        return;
                                     }
-                                    else {
-                                        const decimal = (listNum - Math.floor(listNum)) !== 0;
-                                        if (isNaN(listNum)) {
-                                            errMsg = 'You need to specify a page number';
-                                            helpers.embedErr(msg, errMsg);
-                                            return;
-                                        }
-                                        else if (decimal) {
-                                            errMsg = 'That number includes a decimal';
-                                            helpers.embedErr(msg, errMsg);
-                                            return;
-                                        }
-                                        else if (listNum > maxPage || listNum < 1) {
-                                            errMsg = `That page doesn't exist. Choose between 1 and ${maxPage}`;
-                                            helpers.embedErr(msg, errMsg);
-                                            return;
-                                        }
-                                        let order = `${listNum - 1}1`;
-                                        let lstring = '';
-                                        for (let i = (listNum - 1) * 10; i < total; i++) {
-                                            if (i > total - 1) {
-                                                break;
-                                            }
-                                            viewsTotal = viewsTotal + xb[i].metadata.views;
-                                            lstring = lstring + `**${order}.** [${xb[i].game.name}](${xb[i].download_urls.source}) | Uploaded ${xb[i].uploaded_at.replace(/T/g, ' ').replace(/Z/g, '').slice(0, 10)}\n`;
-                                            order++;
-                                            if (order > `${listNum}0`) {
-                                                break;
+                                    const embeds = gernerateXboxssPageEmbed(xb2.data.data, xb1.data);
+                                    const pageEmbed = await msg.edit(embeds[currentPage]);
+                                    await pageEmbed.react('⬅');
+                                    await pageEmbed.react('➡');
+                                    await pageEmbed.react('❌');
+        
+                                    const filter = (reaction, user) => ['⬅', '➡', '❌'].includes(reaction.emoji.name) && (message.author.id === user.id);
+                                    const collector = pageEmbed.createReactionCollector(filter, { time: 45000 });
+        
+                                    collector.on('collect', async (reaction, user) => {
+                                        if (reaction.emoji.name === '➡') {
+                                            if (currentPage < embeds.length - 1) {
+                                                currentPage++;
+                                                pageEmbed.edit(embeds[currentPage]);
+                                                pageEmbed.reactions.resolve('➡').users.remove(message.author.id);
+                                                collector.resetTimer();
                                             }
                                         }
-                                        const embed = new Discord.MessageEmbed()
-                                            .setAuthor(`${xb[0].author.gamertag}`, `${xb[0].author.gamerpic}`)
-                                            .setColor(xb1.data.colors.primary)
-                                            .setTitle(`Xbox Screenshots: (page ${listNum})`)
-                                            .setDescription(lstring + '')
-                                            .setFooter(`Total Views: ${viewsTotal} | Page ${listNum}/${maxPage}`);
-                                        message.channel.send({ embed });
-                                        msg.delete();
-                                        return;
-                                    }
+                                        else if (reaction.emoji.name === '⬅') {
+                                            if (currentPage !== 0) {
+                                                --currentPage;
+                                                pageEmbed.edit(embeds[currentPage]);
+                                                pageEmbed.reactions.resolve('⬅').users.remove(message.author.id);
+                                                collector.resetTimer();
+                                            }
+                                        }
+                                        else {
+                                            collector.stop();
+                                            await pageEmbed.reactions.removeAll();
+                                        }
+                                    });
+                                    collector.on('end', collected => pageEmbed.reactions.removeAll());
                                 }
                                 const xbox = xb2.data.data[num - 1];
                                 const embed = new Discord.MessageEmbed()
@@ -253,3 +209,24 @@ module.exports = {
         })
     }
 };
+function gernerateXboxssPageEmbed(arr, user) {
+	const embeds = [];
+	let k = 10;
+	for(let i = 0; i < arr.length; i += 10) {
+		const current = arr.slice(i, k);
+		let j = i;
+		k += 10;
+		let v = 0;
+		current.map(content => v = v + content.metadata.views);
+		const info = current.map(content => `**${++j}.** [${content.game.name}](${content.download_urls.source}) | ${content.uploaded_at.replace(/T/g, ' ').replace(/Z/g, '').replace(/-/g, '/').slice(0, 10)}`).join('\n');
+
+		const embed = new MessageEmbed()
+			.setAuthor(`${arr[0].author.gamertag}`, `${arr[0].author.gamerpic}`)
+			.setTitle(`Xbox Screenshots: (page ${(k / 10) - 1}/${Math.ceil(arr.length / 10)})`)
+			.setColor(user.colors.primary)
+			.setFooter(`Total Views: ${v} | Page ${(k / 10) - 1}/${Math.ceil(arr.length / 10)}`)
+			.setDescription(`${info}`);
+		embeds.push(embed);
+	}
+	return embeds;
+}
