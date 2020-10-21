@@ -57,8 +57,10 @@ const cooldowns = new Discord.Collection();
 client.once('ready', () => {
 	console.log('Ready to go!');
 	//Sends a message to TR Dev server acknoledging reboot
-	client.channels.cache.get('727953467443773460').send('Storehaus has been rebooted.');
+	client.channels.cache.get(`727953467443773460`).send('Storehaus has been rebooted.');
+	// client.channels.cache.get(`727953467443773460`).send(helpers.getInsult()); // why is this here
 	client.user.setActivity(`!help in ${client.guilds.cache.size} servers`);
+	
 
 	setInterval(() => {
 		helpers.pool.getConnection(function (err, connection) {
