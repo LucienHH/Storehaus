@@ -21,7 +21,7 @@ module.exports = {
                     message.channel.send(embed).then(async msg => {
                         let Gamertag = args[0];
                         try {
-                            if (!isNaN(args[0]) || !args[0] || args[0] === 'recent' || args[0] === 'search' || args[0] === 'oldest') {
+                            if (!isNaN(args[0]) || !args[0] || args[0] === 'recent' || args[0] === 'search' || args[0] === 'oldest' || args[0] === 'list') {
 
                                 Gamertag = result_gamertag && result_gamertag.length == 1 ? result_gamertag[0].gamertag : undefined;
                             }
@@ -83,6 +83,11 @@ module.exports = {
                                                 })
                                                 .catch(console.error);
                                         });
+                                }).catch((err) => {
+                                    console.log(`Error at line 87: ${err}`)
+                                    errMsg = `Request timed out | Error has been logged to console`;
+                                    helpers.embedErr(msg, errMsg);
+                                    return;
                                 });
                             }), error => {
                                 if (error) {
@@ -133,6 +138,80 @@ module.exports = {
                                     helpers.embedErr(msg, errMsg);
                                     return;
                                 }
+                                if (args[0] === 'list') {
+                                    const xb = xb2.data.data;
+                                    const maxPage = Math.ceil(total / 10);
+                                    let listNum = 0;
+                                    if(args[1] === '1') listNum = 1;
+                                    else if(!isNaN(args[1])) listNum = args[1];
+                                    else if(!args[1]) listNum =	Math.ceil(Math.random() * (maxPage));
+            
+                                    let viewsTotal = 0;
+                                    if (listNum === '1') {
+                                        let order = 1;
+                                        let lstring = '';
+                                        for (let i = 0; i < total; i++) {
+                                            if (i > total - 1) {
+                                                break;
+                                            }
+                                            viewsTotal = viewsTotal + xb[i].metadata.views;
+                                            lstring = lstring + `**${order}.** [${xb[i].game.name}](${xb[i].download_urls.source}) | Uploaded ${xb[i].uploaded_at.replace(/T/g, ' ').replace(/Z/g, '').slice(0, 10)}\n`;
+                                            order++;
+                                            if (order > 10) {
+                                                break;
+                                            }
+                                        }
+                                        const embed = new Discord.MessageEmbed()
+                                            .setAuthor(`${xb[0].author.gamertag}`, `${xb[0].author.gamerpic}`)
+                                            .setColor(xb1.data.colors.primary)
+                                            .setTitle('Xbox Screenshots: (page 1)')
+                                            .setDescription(lstring + '')
+                                            .setFooter(`Total Views: ${viewsTotal} | Page 1/${maxPage}`);
+                                        message.channel.send({ embed });
+                                        msg.delete();
+                                        return;
+                                    }
+                                    else {
+                                        const decimal = (listNum - Math.floor(listNum)) !== 0;
+                                        if (isNaN(listNum)) {
+                                            errMsg = 'You need to specify a page number';
+                                            helpers.embedErr(msg, errMsg);
+                                            return;
+                                        }
+                                        else if (decimal) {
+                                            errMsg = 'That number includes a decimal';
+                                            helpers.embedErr(msg, errMsg);
+                                            return;
+                                        }
+                                        else if (listNum > maxPage || listNum < 1) {
+                                            errMsg = `That page doesn't exist. Choose between 1 and ${maxPage}`;
+                                            helpers.embedErr(msg, errMsg);
+                                            return;
+                                        }
+                                        let order = `${listNum - 1}1`;
+                                        let lstring = '';
+                                        for (let i = (listNum - 1) * 10; i < total; i++) {
+                                            if (i > total - 1) {
+                                                break;
+                                            }
+                                            viewsTotal = viewsTotal + xb[i].metadata.views;
+                                            lstring = lstring + `**${order}.** [${xb[i].game.name}](${xb[i].download_urls.source}) | Uploaded ${xb[i].uploaded_at.replace(/T/g, ' ').replace(/Z/g, '').slice(0, 10)}\n`;
+                                            order++;
+                                            if (order > `${listNum}0`) {
+                                                break;
+                                            }
+                                        }
+                                        const embed = new Discord.MessageEmbed()
+                                            .setAuthor(`${xb[0].author.gamertag}`, `${xb[0].author.gamerpic}`)
+                                            .setColor(xb1.data.colors.primary)
+                                            .setTitle(`Xbox Screenshots: (page ${listNum})`)
+                                            .setDescription(lstring + '')
+                                            .setFooter(`Total Views: ${viewsTotal} | Page ${listNum}/${maxPage}`);
+                                        message.channel.send({ embed });
+                                        msg.delete();
+                                        return;
+                                    }
+                                }
                                 const xbox = xb2.data.data[num - 1];
                                 const embed = new Discord.MessageEmbed()
                                     .setAuthor(`${xbox.author.gamertag}`, `${xbox.author.gamerpic}`)
@@ -153,6 +232,11 @@ module.exports = {
                                                 })
                                                 .catch(console.error);
                                         });
+                                }).catch((err) => {
+                                    console.log(`Error at line 226: ${err}`)
+                                    errMsg = `Request timed out | Error has been logged to console`;
+                                    helpers.embedErr(msg, errMsg);
+                                    return;
                                 });
                             }), error => {
                                 if (error) {

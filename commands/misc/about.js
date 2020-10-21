@@ -9,6 +9,8 @@ module.exports = {
 	usage: ` `,
 	cooldown: 10,
 	execute(message, args) {
+//test
+		//message.channel.send("This bot is made to show information about games! Made by AndyTheNerd and PatrossDev. Contribute to this project at https://github.com/AndyTheNerd/GameInfoBot/")
 		let embed = new Discord.MessageEmbed()
 		.setColor("#ff00ff")
 		.addField(`Storehaus: A Gaming Info Bot`, "[Invite Storehaus to your server!](https://discord.com/oauth2/authorize?client_id=736204347171405904&scope=bot&permissions=379968)\n \nStorehaus is a gaming info bot designed to help you learn and enhance your gaming experience.\n \nThe default prefix for Storehaus is `!` and you can change it with `!setprefix`")
