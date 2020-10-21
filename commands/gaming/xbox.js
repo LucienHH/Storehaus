@@ -16,6 +16,7 @@ module.exports = {
         let embed = new Discord.MessageEmbed()
         .setColor("#ff00ff")
         .setTitle("Xbox Command List")
+        .addField(`xbox Achievements`, "See the achievements you've unlocked!\n `!xachievement slashstorm`")
         .addField(`Xbox Save Gamertag`, "Save your gamertag to see your gameclips or screenshots.\n`!savegt edpeter`")
 		.addField(`Xbox Avatar`, "See your Xbox Avatar or the avatar of one of your friends. \n`!xavatar slashstorm` or `!xboxavatar slashstorm`")
         .addField(`Xbox Game Clip`, "See gameclips saved on your Xbox profile!\n`!xboxgc`")
