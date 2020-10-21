@@ -3,6 +3,8 @@ const client = new Discord.Client();
 const helpers = require('../../helpers/helpers');
 const xboxgt = require('../../schemas/xboxgt.js');
 const axios = require('axios');
+const { MessageEmbed } = require('discord.js');
+
 
 module.exports = {
     name: 'xboxscreenshot',
