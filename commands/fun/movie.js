@@ -24,11 +24,13 @@ module.exports = {
 
         const query = querystring.stringify({ term: args.join(' ') });
 
-        fetch(`http://www.omdbapi.com/?apikey=${process.env.OMDb_api}&t=${args.join(' ')}`)
+        fetch(`https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=${args.join(' ')}&api-key=${process.env.ny_times}`)
         .then(response => response.json())
         .then(data => {         
             
-            //none of this currently works kappa
+            // data.results.forEach(element => {
+            //     // console.log(element.display_title);
+            // });
             console.log(data);
                 var movieName = data.display_title
                 console.log(data.display_title)
