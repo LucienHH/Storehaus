@@ -101,7 +101,7 @@ module.exports = {
                             axios.all([
                                 axios.get(`https://api.xboxreplay.net/players/${Gamertag.replace(/_/g, '-')}`, authInfo),
                                 axios.get(`https://api.xboxreplay.net/players/${Gamertag.replace(/_/g, '-')}/screenshots`, authInfo),
-                            ]).then(axios.spread((xb1, xb2) => {
+                            ]).then(axios.spread(async (xb1, xb2) => {
                                 const total = xb2.data.additional.total;
                                 let num = args[1];
                                 if (!isNaN(args[0])) {
