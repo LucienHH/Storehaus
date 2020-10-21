@@ -95,7 +95,7 @@ module.exports = {
             message.channel.send(embed)
         }
         else {
-            const command = args[0];
+            const command = args[0].toLowerCase();
             if (client.commands.has(command)) {
                 cmd = client.commands.get(command);
                 const embed = new Discord.MessageEmbed().setColor('00FF00');
