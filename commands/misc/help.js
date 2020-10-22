@@ -1,4 +1,5 @@
 require('dotenv').config({ path: require('find-config')('.env') });
+const { log } = require('console');
 const Discord = require('discord.js');
 //required
 const fs = require('fs');
@@ -12,6 +13,97 @@ module.exports = {
     cooldown: 2,
     usage: '[command name]',
     execute(message, args, client) {
+
+        function SendCommandList(msg,page, category) {
+            let count = 0
+            let embed = new Discord.MessageEmbed()
+            embed.setColor("#ff00ff")
+                .setTitle(`${category.charAt(0).toUpperCase() + category.slice(1)} Commands. Page ${page}`)
+
+            const cmd = client.commands;
+            cmd.forEach(element => {
+                if (element.category == category) {
+                    // console.log(element.name);
+                    if (page == 1) {
+                        if (count <= 20) {
+                            embed.addField(element.name, element.description, true)
+                        }
+
+                    }
+                    if (page == 2) {
+                        if (count > 20 && count <= 40) {
+                            embed.addField(element.name, element.description, true)
+                        }
+                    }
+                    if (page == 3) {
+                        if (count > 40 && count <= 60) {
+                            embed.addField(element.name, element.description, true)
+                        }
+                    }
+                    count++;
+                }
+            });
+            console.log(page);
+            embed.setFooter("React with ⬅️ and ➡️ to navigate!")
+            message.channel.messages.fetch(msg).then(a => a.edit(embed)).then(function (message_) {
+                message_.reactions.removeAll();
+                if (count > 20 && count <= 40 && page == 1) { //page 1 shown but page 2 available
+
+                    message_.react('➡️');
+                    const filter = (reaction, user) => {
+                        return ['➡️'].includes(reaction.emoji.name) && user.id === message.author.id;
+                    };
+
+                    message_.awaitReactions(filter, { max: 1,time: 60000 * 5, errors: ['time'] })
+                        .then(collected => {
+                            const reaction = collected.first();
+
+                            if (reaction.emoji.name === '➡️') {
+                                SendCommandList(msg,2, category)
+                            }
+                        })
+                }
+
+                if (count > 20 && count <= 40 && page == 2) { //page 2 shown with page 1 available
+
+                    message_.react('⬅️');
+                    const filter = (reaction, user) => {
+                        return ['⬅️'].includes(reaction.emoji.name) && user.id === message.author.id;
+                    };
+
+                    message_.awaitReactions(filter, { max: 1,time: 60000 * 5, errors: ['time'] })
+                        .then(collected => {
+                            const reaction = collected.first();
+
+                            if (reaction.emoji.name === '⬅️') {
+                                SendCommandList(msg,1, category)
+                            }
+                        })
+                }
+
+                if (count > 40 && count <= 60 && page == 2) { //page 1 or 2 shown with page 3 availble
+
+                    message_.react('⬅️');
+                    message_.react('➡️');
+
+                    const filter = (reaction, user) => {
+                        return ['⬅️','➡️'].includes(reaction.emoji.name) && user.id === message.author.id;
+                    };
+
+                    message_.awaitReactions(filter, { max: 1,time: 60000 * 5, errors: ['time'] })
+                        .then(collected => {
+                            const reaction = collected.first();
+
+                            if (reaction.emoji.name === '⬅️') {
+                                SendCommandList(msg,1, category)
+                            }
+                            if (reaction.emoji.name === '➡️') {
+                                SendCommandList(msg,3,category)
+                            }
+                        })
+                }
+            });
+        }
         const data = [];
         const { commands } = message.client;
         //// ----------Leaving this commented out in case we use it in the future---------------////
@@ -34,7 +126,7 @@ module.exports = {
         //             message.reply('it seems like I can\'t DM you! Do you have DMs disabled?');
         //         });
         // //------------------------------------------------------------------------------//
-        let name = args.slice(0).join(" ");
+        let name = args.slice(0).join(" ").toLowerCase();
 
         if (name == undefined || name == "") {
             //message.channel.send(new Discord.MessageEmbed().setTitle("Try !help `name of a command`. To view all commands, type `!about`"));
@@ -49,53 +141,26 @@ module.exports = {
             delete embed;
             return;
         }
-        else if (name.toLowerCase() == "gaming") {
-            let embed = new Discord.MessageEmbed()
-                .setColor("#ff00ff")
-                .setTitle(`Gaming Commands`)
-            const cmd = client.commands;
-            let string = "";
-            cmd.forEach(element => {
-                if (element.category == 'gaming') {
-                    // console.log(element.name);
-                    string += `!${element.name}\n`
-                }
-            });
-            embed.addField(string, `\u200b`);
-            message.channel.send(embed)
+        else if (name == "gaming") {
+            let embed = new Discord.MessageEmbed().setTitle('\u200b');
+            message.channel.send(embed).then(a => {
+                SendCommandList(a.id,1,"gaming");
+            })
         }
-        else if (name.toLowerCase() == "fun") {
-            let embed = new Discord.MessageEmbed()
-                .setColor("#ff00ff")
-                .setTitle(`Fun Commands`)
-            const cmd = client.commands;
-            let string = "";
-            cmd.forEach(element => {
-                if (element.category == 'fun') {
-                    // console.log(element.name);
-                    string += `!${element.name}\n`
-                }
-            });
-            embed.addField(string, `\u200b`);
-            message.channel.send(embed)
+        else if (name == "fun") {
+            let embed = new Discord.MessageEmbed().setTitle('\u200b');
+            message.channel.send(embed).then(a => {
+                SendCommandList(a.id,1,"fun");
+            })
         }
-        else if (name.toLowerCase() == "misc") {
-            let embed = new Discord.MessageEmbed()
-                .setColor("#ff00ff")
-                .setTitle(`Misc Commands`)
-            const cmd = client.commands;
-            let string = "";
-            cmd.forEach(element => {
-                if (element.category == 'misc') {
-                    // console.log(element.name);
-                    string += `!${element.name}\n`
-                }
-            });
-            embed.addField(string, `\u200b`);
-            message.channel.send(embed)
+        else if (name == "misc") {
+            let embed = new Discord.MessageEmbed().setTitle('\u200b');
+            message.channel.send(embed).then(a => {
+                SendCommandList(a.id,1,"misc");
+            })
         }
         else {
-            const command = args[0].toLowerCase();
+            const command = args[0];
             if (client.commands.has(command)) {
                 cmd = client.commands.get(command);
                 const embed = new Discord.MessageEmbed().setColor('00FF00');
