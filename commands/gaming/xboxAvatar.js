@@ -3,6 +3,8 @@ const client = new Discord.Client();
 const helpers = require('../../helpers/helpers');
 const xboxgt = require('../../schemas/xboxgt.js');
 const axios = require('axios');
+const XboxLiveAuth = require('@xboxreplay/xboxlive-auth');
+const XBLAuthentication = require('../../helpers/XBLAuthentication');
 
 module.exports = {
     name: 'xboxavatar',
