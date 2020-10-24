@@ -120,7 +120,7 @@ module.exports = {
                     const achievements = xb1.data.achievements;
                     const length = achievements.length;
                     for (let i = 0; i < length; i++) {
-                        if (i == length - 1) {
+                        if (i == length) {
                             errMsg = `Error, couldn't find any achievements linked with the ID: ${achId}`;
                             helpers.embedErr(msg, errMsg);
                             return;

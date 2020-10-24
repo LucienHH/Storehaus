@@ -202,7 +202,7 @@ module.exports = {
                 m.react('🔢');
                 m.react('⏩');
                 m.react('ℹ');
-                const filter = (r, user) => ['🔢', '⏩', 'ℹ'].includes(r.emoji.name) && (!user.bot);
+                const filter = (r, user) => ['🔢', '⏩', 'ℹ'].includes(r.emoji.name) && (message.author.id === user.id);
                 m.awaitReactions(filter, { max: 1, time: 30000 })
                     .then(collected => {
                         const r = collected.first();
@@ -295,7 +295,7 @@ module.exports = {
             message_.react('⏪');
             message_.react('⏩');
             message_.react('ℹ');
-            const filter = (r, user) => ['🔢', '⏩', '⏪', 'ℹ'].includes(r.emoji.name) && (!user.bot);
+            const filter = (r, user) => ['🔢', '⏩', '⏪', 'ℹ'].includes(r.emoji.name) && (message.author.id === user.id);
             message_.awaitReactions(filter, { max: 1, time: 30000 })
                 .then(collected => {
                     const r = collected.first();

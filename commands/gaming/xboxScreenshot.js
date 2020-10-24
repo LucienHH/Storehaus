@@ -105,6 +105,11 @@ module.exports = {
                                 axios.get(`https://api.xboxreplay.net/players/${Gamertag.replace(/_/g, '-')}/screenshots`, authInfo),
                             ]).then(axios.spread(async (xb1, xb2) => {
                                 const total = xb2.data.additional.total;
+                                if (xb2.data.data.length == '0') {
+                                    errMsg = `You dont have any clips available for ${xb1.data.gamertag}`;
+                                    helpers.embedErr(msg, errMsg);
+                                    return;
+                                }
                                 let num = args[1];
                                 if (!isNaN(args[0])) {
                                     num = args[0];
