@@ -12,9 +12,9 @@ module.exports = {
     cooldown: 5,
     async execute(message, args) {
         let errMsg = '';
-        helpers.pool.getConnection(function (err, connection) {
-            connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${message.author.id}`, function (err, result_user) {
-                connection.query(`SELECT * FROM ${process.env.mysql_xbox_table} WHERE user_id = ${result_user[0].id}`, function (err, result_gamertag) {
+        helpers.pool.getConnection(async function (err, connection) {
+            connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${message.author.id}`,async function (err, result_user) {
+                connection.query(`SELECT * FROM ${process.env.mysql_xbox_table} WHERE user_id = ${result_user[0].id}`,async function (err, result_gamertag) {
                     let Gamertag = args[0];
                     try {
                         if (!args[0]) {
