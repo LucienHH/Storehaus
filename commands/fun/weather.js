@@ -20,9 +20,10 @@ module.exports = {
             return;
         }
 
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${args[0]}&appid=${process.env.open_weather}`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${option}&appid=${process.env.open_weather}`)
         .then(response => response.json())
-        .then(data => {             
+        .then(data => {           
+            data.message&&data.message=="city not found"?message.channel.send(new Discord.MessageEmbed().setColor('ff0000').setTitle("City not found. Maybe try an alternative spelling?")):null; 
                 var temp = data.main.temp
                 var fahrenheit = temp * 1.8 -459.67
                 var celsius = temp -  273.15

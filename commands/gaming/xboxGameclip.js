@@ -113,6 +113,11 @@ module.exports = {
                             ]).then(axios.spread(async (xb1, xb2) => {
                                 // console.log(`There is ${xb2.headers['x-rate-limit-remaining']} calls remianing to the Xbox API. Rate limit reset ${xb2.headers['x-rate-limit-reset']} (Rate limit total - ${xb2.headers['x-rate-limit-limit']})`);
                                 const total = xb2.data.additional.total;
+                                if (xb2.data.data.length == '0') {
+                                    errMsg = `You dont have any clips available for ${xb1.data.gamertag}`;
+                                    helpers.embedErr(msg, errMsg);
+                                    return;
+                                }
                                 if (!isNaN(args[0])) {
                                     num = args[0];
                                 }

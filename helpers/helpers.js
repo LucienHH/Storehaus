@@ -45,25 +45,32 @@ module.exports = {
     // Function to be used to check a number within set parameters
     numCheck: function (min, max, number) {
         let reason = '';
+        let errReason = '';
         if (isNaN(number)) {
-            reason = `${number} is not a number`
+            reason = `Please input a number`;
+            errReason = `${number} is not a number`;
             return {
                 ok: false,
                 reason: reason,
+                errReason: errReason,
             };
         }
         else if (number > max) {
-            reason = `${number} is greater than ${max}`;
+            reason = `Please choose a number between ${min} and ${max}`;
+            errReason = `${number} is greater than ${max}`;
             return {
                 ok: false,
                 reason: reason,
+                errReason: errReason,
             };
         }
         else if (number < min) {
-            reason = `${number} is less than ${min}`;
+            reason = `Please choose a number between ${min} and ${max}`;
+            errReason = `${number} is less than ${min}`;
             return {
                 ok: false,
                 reason: reason,
+                errReason: errReason,
             };
         }
         else {
