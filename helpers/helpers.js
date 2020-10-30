@@ -104,7 +104,11 @@ module.exports = {
         var quote = Math.floor(Math.random() * array.length);
         return array[quote]
     },
-
+    getInsult: function () {
+        var array = fs.readFileSync('textfiles/InsultsAndCompliments.txt').toString().split("\n");
+        var quote = Math.floor(Math.random() * array.length);
+        return array[quote]
+    },
 
     prefix: "!",
     userID: "0",
