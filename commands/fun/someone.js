@@ -10,36 +10,39 @@ module.exports = {
     cooldown: 7200,
     usage: `!someone`,
     execute(message, args) {
-        //grab a non bot user
-        message.guild.members.fetch().then(member => {
-            const randomUser = member.random();
-            helpers.pool.getConnection(async function (err, connection) {
-                connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${randomUser.id}`, function (err, user_result) {
-                    if (user_result == undefined) {
-                        connection.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${randomUser.id})`)
-                    } else if (user_result == 0) {
-                        connection.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${randomUser.id})`)
-                    } else {
-                        //nothing
-                    }
-                })
+
+        return message.channel.send(new Discord.MessageEmbed().setTitle("This command is temporarily unavailable. Allow us time to receive additional intents from discord so that we can bring this command back up.").setFooter("<3 - Patross")
+    //     //grab a non bot user
+    //     message.guild.members.fetch().then(member => {
+    //         const randomUser = member.random();
+    //         helpers.pool.getConnection(async function (err, connection) {
+    //             connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${randomUser.id}`, function (err, user_result) {
+    //                 if (user_result == undefined) {
+    //                     connection.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${randomUser.id})`)
+    //                 } else if (user_result == 0) {
+    //                     connection.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${randomUser.id})`)
+    //                 } else {
+    //                     //nothing
+    //                 }
+    //             })
 
 
-                connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${randomUser.id}`, function (err, result) {
-                    // console.log(result);
-                    connection.query(`SELECT * FROM ${process.env.mysql_someone_blacklist_table} where user_id = ${result[0].id}`, function (err, results_) {
-                        if (results_ && results_.length == 1) {
-                            message.channel.send(`Blacklisted user: ${randomUser.user.username}#${randomUser.user.discriminator}`);
-                        } else {
-                            message.channel.send(`<@${randomUser.id}>`);
-                        }
-                    })
-                })
+    //             connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${randomUser.id}`, function (err, result) {
+    //                 // console.log(result);
+    //                 connection.query(`SELECT * FROM ${process.env.mysql_someone_blacklist_table} where user_id = ${result[0].id}`, function (err, results_) {
+    //                     if (results_ && results_.length == 1) {
+    //                         // message.channel.send(`Blacklisted user: ${randomUser.user.username}#${randomUser.user.discriminator}`);
+    //                     } else {
+    //                         // message.channel.send(`<@${randomUser.id}>`);
+    //                         console.log(randomUser.user.username);
+    //                     }
+    //                 })
+    //             })
 
 
-                connection.release();
-            })
-        });
+    //             connection.release();
+    //         })
+    //     });
 
-    }
+    // }
 };
