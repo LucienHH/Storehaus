@@ -59,9 +59,14 @@ client.once('ready', () => {
 	//Sends a message to TR Dev server acknoledging reboot
 	client.channels.cache.get(`727953467443773460`).send('Storehaus has been rebooted.');
 	// client.channels.cache.get(`727953467443773460`).send(helpers.getInsult()); // why is this here
+	// client.channels.cache.get(`727953467443773460`).send(helpers.getInsult()); //TR Dev Server
+	// client.channels.cache.get(`326725980028928011`).send(helpers.getInsult()); //TR Bot-Commands
+	// console.log(client.guilds.cache.map(m => m.members.cache.map(u => u)));
 	client.user.setActivity(`!help in ${client.guilds.cache.size} servers`);
 	
-
+	// setInterval(() => {
+	// 	console.log(client.guilds.cache.map(m => m.members.cache.map(a => a.user.username)));
+	// }, 500)
 	setInterval(() => {
 		helpers.pool.getConnection(function (err, connection) {
 			connection.query(`SELECT * FROM ${process.env.mysql_command_stats_table}`, function (err, results) {
