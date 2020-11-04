@@ -58,13 +58,8 @@ client.once('ready', () => {
 	console.log('Ready to go!');
 	//Sends a message to TR Dev server acknoledging reboot
 	client.channels.cache.get(`727953467443773460`).send('Storehaus has been rebooted.');
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 	// client.channels.cache.get(`727953467443773460`).send(helpers.getInsult()); // why is this here
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
 	// client.channels.cache.get(`727953467443773460`).send(helpers.getInsult()); //TR Dev Server
 	// client.channels.cache.get(`326725980028928011`).send(helpers.getInsult()); //TR Bot-Commands
 	// console.log(client.guilds.cache.map(m => m.members.cache.map(u => u)));
