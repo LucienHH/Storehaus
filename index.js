@@ -59,7 +59,10 @@ client.once('ready', () => {
 	//Sends a message to TR Dev server acknoledging reboot
 	client.channels.cache.get(`727953467443773460`).send('Storehaus has been rebooted.');
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	// client.channels.cache.get(`727953467443773460`).send(helpers.getInsult()); // why is this here
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 	// client.channels.cache.get(`727953467443773460`).send(helpers.getInsult()); //TR Dev Server
