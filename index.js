@@ -53,6 +53,18 @@ fs.readdir('./commands/misc/', (err, files) => {
 		});
 	});
 });
+fs.readdir('./commands/utility/', (err, files) => {
+	if (err) console.error(err);
+	log(`Loading a total of ${files.length} commands.`);
+	files.forEach(f => {
+		const props = require(`./commands/utility/${f}`);
+		log(`Command Loaded! ${props.name}`);
+		client.commands.set(props.name, props);
+		props.aliases.forEach(alias => {
+			client.aliases.set(alias, props.name);
+		});
+	});
+});
 const cooldowns = new Discord.Collection();
 client.once('ready', () => {
 	console.log('Ready to go!');
