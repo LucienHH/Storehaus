@@ -53,11 +53,11 @@ fs.readdir('./commands/misc/', (err, files) => {
 		});
 	});
 });
-fs.readdir('./commands/utility/', (err, files) => {
+fs.readdir('./commands/custom/', (err, files) => {
 	if (err) console.error(err);
 	log(`Loading a total of ${files.length} commands.`);
 	files.forEach(f => {
-		const props = require(`./commands/utility/${f}`);
+		const props = require(`./commands/custom/${f}`);
 		log(`Command Loaded! ${props.name}`);
 		client.commands.set(props.name, props);
 		props.aliases.forEach(alias => {
@@ -70,9 +70,8 @@ client.once('ready', () => {
 	console.log('Ready to go!');
 	//Sends a message to TR Dev server acknoledging reboot
 	client.channels.cache.get(`727953467443773460`).send('Storehaus has been rebooted.');
-	// client.channels.cache.get(`727953467443773460`).send(helpers.getInsult()); //TR Dev Server
-	// client.channels.cache.get(`326725980028928011`).send(helpers.getInsult()); //TR Bot-Commands
-	// console.log(client.guilds.cache.map(m => m.members.cache.map(u => u)));
+	client.channels.cache.get(`727953467443773460`).send(helpers.getInsult()); //TR Dev Server
+	client.channels.cache.get(`326725980028928011`).send(helpers.getInsult()); //TR Bot-Commands
 	client.user.setActivity(`!help in ${client.guilds.cache.size} servers`);
 	
 	// setInterval(() => {

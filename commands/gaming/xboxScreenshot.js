@@ -3,6 +3,8 @@ const client = new Discord.Client();
 const helpers = require('../../helpers/helpers');
 const xboxgt = require('../../schemas/xboxgt.js');
 const axios = require('axios');
+const { MessageEmbed } = require('discord.js');
+
 
 module.exports = {
     name: 'xboxscreenshot',
@@ -21,7 +23,7 @@ module.exports = {
                     message.channel.send(embed).then(async msg => {
                         let Gamertag = args[0];
                         try {
-                            if (!isNaN(args[0]) || !args[0] || args[0] === 'recent' || args[0] === 'search' || args[0] === 'oldest') {
+                            if (!isNaN(args[0]) || !args[0] || args[0] === 'recent' || args[0] === 'search' || args[0] === 'oldest' || args[0] === 'list') {
 
                                 Gamertag = result_gamertag && result_gamertag.length == 1 ? result_gamertag[0].gamertag : undefined;
                             }
@@ -63,7 +65,7 @@ module.exports = {
                                     return;
                                 }
                                 const xbox = xb2.data.data[random];
-        
+
                                 const embed = new Discord.MessageEmbed()
                                     .setAuthor(`${xbox.author.gamertag}`, `${xbox.author.gamerpic}`)
                                     .setColor(xb1.data.colors.primary)
@@ -83,6 +85,11 @@ module.exports = {
                                                 })
                                                 .catch(console.error);
                                         });
+                                }).catch((err) => {
+                                    console.log(`Error at line 87: ${err}`)
+                                    errMsg = `Request timed out | Error has been logged to console`;
+                                    helpers.embedErr(msg, errMsg);
+                                    return;
                                 });
                             }), error => {
                                 if (error) {
@@ -96,8 +103,13 @@ module.exports = {
                             axios.all([
                                 axios.get(`https://api.xboxreplay.net/players/${Gamertag.replace(/_/g, '-')}`, authInfo),
                                 axios.get(`https://api.xboxreplay.net/players/${Gamertag.replace(/_/g, '-')}/screenshots`, authInfo),
-                            ]).then(axios.spread((xb1, xb2) => {
+                            ]).then(axios.spread(async (xb1, xb2) => {
                                 const total = xb2.data.additional.total;
+                                if (xb2.data.data.length == '0') {
+                                    errMsg = `You dont have any clips available for ${xb1.data.gamertag}`;
+                                    helpers.embedErr(msg, errMsg);
+                                    return;
+                                }
                                 let num = args[1];
                                 if (!isNaN(args[0])) {
                                     num = args[0];
@@ -113,47 +125,84 @@ module.exports = {
                                 else if (!num) {
                                     num = Math.floor(Math.random() * (total - 1)) + 1;
                                 }
-                                if (total < 1) {
-                                    errMsg = 'Error reading your profile this will most likely be due to your xbox account privacy settings or an invalid gamertag.';
+                                const numCheck = helpers.numCheck(1, total, num);
+                                if (numCheck.ok === false) {
+                                    errMsg = `Request timed out | ${numCheck.reason}`;
                                     helpers.embedErr(msg, errMsg);
                                     return;
                                 }
-                                if (isNaN(num)) {
-                                    errMsg = 'That doesnt look like a number or you incorrectly formated the command. Do !help xboxss to find out.';
-                                    helpers.embedErr(msg, errMsg);
-                                    return;
+                                if (args[0] === 'list') {
+                                    let currentPage = 0;
+                                    if (args[1]) {
+                                        currentPage = args[1] - 1;
+                                        const pageCheck = helpers.numCheck(1, Math.ceil(xb2.data.data.length / 10), currentPage + 1);
+                                        if (pageCheck.ok === false) {
+                                            errMsg = `Request timed out | ${pageCheck.reason}`;
+                                            helpers.embedErr(msg, errMsg);
+                                            return;
+                                        }
+                                    }
+                                    const embeds = gernerateXboxssPageEmbed(xb2.data.data, xb1.data);
+                                    const pageEmbed = await msg.edit(embeds[currentPage]);
+                                    await pageEmbed.react('⬅');
+                                    await pageEmbed.react('➡');
+                                    await pageEmbed.react('❌');
+
+                                    const filter = (reaction, user) => ['⬅', '➡', '❌'].includes(reaction.emoji.name) && (message.author.id === user.id);
+                                    const collector = pageEmbed.createReactionCollector(filter, { time: 45000 });
+
+                                    collector.on('collect', async (reaction, user) => {
+                                        if (reaction.emoji.name === '➡') {
+                                            if (currentPage < embeds.length - 1) {
+                                                currentPage++;
+                                                pageEmbed.edit(embeds[currentPage]);
+                                                pageEmbed.reactions.resolve('➡').users.remove(message.author.id);
+                                                collector.resetTimer();
+                                            }
+                                        }
+                                        else if (reaction.emoji.name === '⬅') {
+                                            if (currentPage !== 0) {
+                                                --currentPage;
+                                                pageEmbed.edit(embeds[currentPage]);
+                                                pageEmbed.reactions.resolve('⬅').users.remove(message.author.id);
+                                                collector.resetTimer();
+                                            }
+                                        }
+                                        else {
+                                            collector.stop();
+                                            await pageEmbed.reactions.removeAll();
+                                        }
+                                    });
+                                    collector.on('end', collected => pageEmbed.reactions.removeAll());
                                 }
-                                if (num > total) {
-                                    errMsg = `You dont have that many screenshots! Pick between 1 and ${total}.`;
-                                    helpers.embedErr(msg, errMsg);
-                                    return;
+                                else {
+                                    const xbox = xb2.data.data[num - 1];
+                                    const embed = new Discord.MessageEmbed()
+                                        .setAuthor(`${xbox.author.gamertag}`, `${xbox.author.gamerpic}`)
+                                        .setColor(xb1.data.colors.primary)
+                                        .setTitle(`${xbox.game.name} | Click here to save`)
+                                        .setURL(xbox.download_urls.source)
+                                        .setImage(`${xbox.download_urls.source}`)
+                                        .setFooter(`${xbox.uploaded_at.replace(/T/g, ' ').replace(/Z/g, '').slice(0, 10)} | Views: ${xbox.metadata.views} | Screenshot: ${num}/${total}`);
+                                    msg.delete();
+                                    message.channel.send({ embed }).then(m => {
+                                        m.react('❌')
+                                            .then(r => {
+                                                const reactFilter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
+                                                m.awaitReactions(reactFilter, { max: 1 })
+                                                    .then(collected => {
+                                                        m.delete();
+                                                        message.delete();
+                                                    })
+                                                    .catch(console.error);
+                                            });
+                                    }).catch((err) => {
+                                        console.log(`Error at line 226: ${err}`)
+                                        errMsg = `Request timed out | Error has been logged to console`;
+                                        helpers.embedErr(msg, errMsg);
+                                        return;
+                                    });
                                 }
-                                if (num < 1) {
-                                    errMsg = `Pick between 1 and ${total}.`;
-                                    helpers.embedErr(msg, errMsg);
-                                    return;
-                                }
-                                const xbox = xb2.data.data[num - 1];
-                                const embed = new Discord.MessageEmbed()
-                                    .setAuthor(`${xbox.author.gamertag}`, `${xbox.author.gamerpic}`)
-                                    .setColor(xb1.data.colors.primary)
-                                    .setTitle(`${xbox.game.name} | Click here to save`)
-                                    .setURL(xbox.download_urls.source)
-                                    .setImage(`${xbox.download_urls.source}`)
-                                    .setFooter(`${xbox.uploaded_at.replace(/T/g, ' ').replace(/Z/g, '').slice(0, 10)} | Views: ${xbox.metadata.views} | Screenshot: ${num}/${total}`);
-                                msg.delete();
-                                message.channel.send({ embed }).then(m => {
-                                    m.react('❌')
-                                        .then(r => {
-                                            const reactFilter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
-                                            m.awaitReactions(reactFilter, { max: 1 })
-                                                .then(collected => {
-                                                    m.delete();
-                                                    message.delete();
-                                                })
-                                                .catch(console.error);
-                                        });
-                                });
                             }), error => {
                                 if (error) {
                                     errMsg = 'Error reading your profile this will most likely be due to your xbox account privacy settings or an invalid gamertag.';
@@ -169,3 +218,24 @@ module.exports = {
         })
     }
 };
+function gernerateXboxssPageEmbed(arr, user) {
+    const embeds = [];
+    let k = 10;
+    for (let i = 0; i < arr.length; i += 10) {
+        const current = arr.slice(i, k);
+        let j = i;
+        k += 10;
+        let v = 0;
+        current.map(content => v = v + content.metadata.views);
+        const info = current.map(content => `**${++j}.** [${content.game.name}](${content.download_urls.source}) | ${content.uploaded_at.replace(/T/g, ' ').replace(/Z/g, '').replace(/-/g, '/').slice(0, 10)}`).join('\n');
+
+        const embed = new MessageEmbed()
+            .setAuthor(`${arr[0].author.gamertag}`, `${arr[0].author.gamerpic}`)
+            .setTitle(`Xbox Screenshots: (page ${(k / 10) - 1}/${Math.ceil(arr.length / 10)})`)
+            .setColor(user.colors.primary)
+            .setFooter(`Total Views: ${v} | Page ${(k / 10) - 1}/${Math.ceil(arr.length / 10)}`)
+            .setDescription(`${info}`);
+        embeds.push(embed);
+    }
+    return embeds;
+}
