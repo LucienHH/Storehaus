@@ -11,6 +11,9 @@ module.exports = {
     usage: ` `,
     execute(message, args) {
         //grab a non bot user
+
+        message.channel.send(new Discord.MessageEmbed().setTitle("Command temporarily unavailable.").setColor("#ff0000").setDescription("Give us time to receive additional intents from discord so we can bring this command back up.").setFooter("<3 - Patross"));
+        return;
         message.guild.members.fetch().filter(f => f.user.bot===false).then(member => {
             const randomUser = member.random();
             helpers.pool.getConnection(async function (err, connection) {
