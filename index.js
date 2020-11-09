@@ -74,7 +74,9 @@ client.once('ready', () => {
 	client.channels.cache.get(`326725980028928011`).send(helpers.getInsult()); //TR Bot-Commands
 	client.user.setActivity(`!help in ${client.guilds.cache.size} servers`);
 	
-
+	// setInterval(() => {
+	// 	console.log(client.guilds.cache.map(m => m.members.cache.map(a => a.user.username)));
+	// }, 500)
 	setInterval(() => {
 		helpers.pool.getConnection(function (err, connection) {
 			connection.query(`SELECT * FROM ${process.env.mysql_command_stats_table}`, function (err, results) {

@@ -15,7 +15,7 @@ module.exports = {
     name: 'pokemon',
     category: 'gaming',
     aliases: [],
-    description: 'Retrieve the NASA picture of the day! To run, try `!nasa`',
+    description: 'Find out all about your favourite pokémon',
     cooldown: 5,
     usage: ` Pikachu`,
     async execute(message, args) {
