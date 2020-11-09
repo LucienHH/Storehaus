@@ -8,6 +8,8 @@ module.exports = {
 	cooldown: 5,
 	usage: ' Halo Wars',
 	execute(message, args) {
-		get("https://api-v3.igdb.com/games", "game", message, args)
-	},
+	// 	get("https://api-v3.igdb.com/games", "game", message, args)
+		message.channel.send('This command currently doesnt work :( we are working on it!')
+	 },
+	
 };
