@@ -45,17 +45,8 @@ module.exports = {
                     })
                 })
             });
-
+            connection.release()
         });
-
-
-        //         helpers.pool.getConnection(async function (err, connection) {
-
-
-
-        //             connection.release();
-        //         })
-        //     });
 
     }
 };
