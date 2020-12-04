@@ -53,6 +53,18 @@ fs.readdir('./commands/misc/', (err, files) => {
 		});
 	});
 });
+fs.readdir('./commands/custom/', (err, files) => {
+	if (err) console.error(err);
+	log(`Loading a total of ${files.length} commands.`);
+	files.forEach(f => {
+		const props = require(`./commands/custom/${f}`);
+		log(`Command Loaded! ${props.name}`);
+		client.commands.set(props.name, props);
+		props.aliases.forEach(alias => {
+			client.aliases.set(alias, props.name);
+		});
+	});
+});
 const cooldowns = new Discord.Collection();
 client.once('ready', () => {
 	console.log('Ready to go!');
@@ -62,7 +74,9 @@ client.once('ready', () => {
 	client.channels.cache.get(`326725980028928011`).send(helpers.getInsult()); //TR Bot-Commands
 	client.user.setActivity(`!help in ${client.guilds.cache.size} servers`);
 	
-
+	// setInterval(() => {
+	// 	console.log(client.guilds.cache.map(m => m.members.cache.map(a => a.user.username)));
+	// }, 500)
 	setInterval(() => {
 		helpers.pool.getConnection(function (err, connection) {
 			connection.query(`SELECT * FROM ${process.env.mysql_command_stats_table}`, function (err, results) {
