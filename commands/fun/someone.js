@@ -7,15 +7,15 @@ module.exports = {
     category: 'fun',
     aliases: ['somebody'],
     description: 'Ping a random person! To get blacklisted use `!someone blacklist`, to whitelist yourself again do `!someone whitelist`. Formerly the main feature of KappaBot. [*]',
-    cooldown: 1,
-    usage: ` `,
+    // cooldown: 7200,
+    cooldown: 7200,
+    usage: `!someone`,
     execute(message, args) {
         //grab a non bot user
+        message.guild.members.fetch({ force: true }).then(member => {
+            const filteredUser = member.filter(f => f.user.bot === false);
+            const randomUser = filteredUser.random();
 
-        message.channel.send(new Discord.MessageEmbed().setTitle("Command temporarily unavailable.").setColor("#ff0000").setDescription("Give us time to receive additional intents from discord so we can bring this command back up.").setFooter("<3 - Patross"));
-        return;
-        message.guild.members.fetch().filter(f => f.user.bot===false).then(member => {
-            const randomUser = member.random();
             helpers.pool.getConnection(async function (err, connection) {
                 connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${randomUser.id}`, function (err, user_result) {
                     if (user_result == undefined) {
@@ -32,10 +32,9 @@ module.exports = {
                     // console.log(result);
                     connection.query(`SELECT * FROM ${process.env.mysql_someone_blacklist_table} where user_id = ${result[0].id}`, function (err, results_) {
                         if (results_ && results_.length == 1) {
-                            // message.channel.send(`Blacklisted user: ${randomUser.user.username}#${randomUser.user.discriminator}`);
-                            console.log("blacklisted");
+                            message.channel.send(`Blacklisted user: ${randomUser.user.username}#${randomUser.user.discriminator}`);
                         } else {
-                            // message.channel.send(`<@${randomUser.id}>`);
+                            message.channel.send(`<@${randomUser.id}>`);
                             console.log(randomUser.user.username);
                         }
                     })
