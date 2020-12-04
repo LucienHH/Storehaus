@@ -12,38 +12,50 @@ module.exports = {
     usage: `!someone`,
     execute(message, args) {
         //grab a non bot user
-        message.guild.members.fetch({ force: true }).then(member => {
-            const filteredUser = member.filter(f => f.user.bot === false);
-            const randomUser = filteredUser.random();
+        helpers.pool.getConnection(async function (err, connection) {
+            message.guild.members.fetch({ force: true }).then(member => {
+                const filteredUser = member.filter(f => f.user.bot === false);
+                const randomUser = filteredUser.random();
 
-            helpers.pool.getConnection(async function (err, connection) {
+                // console.log(randomUser.id);
+
                 connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${randomUser.id}`, function (err, user_result) {
                     if (user_result == undefined) {
                         connection.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${randomUser.id})`)
-                    } else if (user_result == 0) {
+                        console.log("inserted user to database");
+                    } else if (user_result.length == 0) {
                         connection.query(`INSERT INTO ${process.env.mysql_users_table} VALUES (NULL, ${randomUser.id})`)
+                        console.log("inserted user to database");
                     } else {
-                        //nothing
+                        console.log("user already in database");
                     }
-                })
 
 
-                connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${randomUser.id}`, function (err, result) {
-                    // console.log(result);
-                    connection.query(`SELECT * FROM ${process.env.mysql_someone_blacklist_table} where user_id = ${result[0].id}`, function (err, results_) {
-                        if (results_ && results_.length == 1) {
-                            message.channel.send(`Blacklisted user: ${randomUser.user.username}#${randomUser.user.discriminator}`);
-                        } else {
-                            message.channel.send(`<@${randomUser.id}>`);
-                            console.log(randomUser.user.username);
-                        }
+                    
+                    connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${randomUser.id}`, function (err, result) {
+                        console.log(result);
+                        connection.query(`SELECT * FROM ${process.env.mysql_someone_blacklist_table} where user_id = ${result[0].id}`, function (err, results_) {
+                            if (results_ && results_.length == 1) {
+                                message.channel.send(`Blacklisted user: ${randomUser.user.username}#${randomUser.user.discriminator}`);
+                            } else {
+                                message.channel.send(`<@${randomUser.id}>`);
+                                console.log(randomUser.user.username);
+                            }
+                        })
                     })
                 })
+            });
 
-
-                connection.release();
-            })
         });
+
+
+        //         helpers.pool.getConnection(async function (err, connection) {
+
+
+
+        //             connection.release();
+        //         })
+        //     });
 
     }
 };
