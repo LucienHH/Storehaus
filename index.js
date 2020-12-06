@@ -178,7 +178,12 @@ client.on('message', async message => {
 								//this one works ig
 								const timeLeft = (expirationTime - now) / 1000;
 								timeLeft.toFixed(0);
-								return message.reply(`please wait ${timeLeft > 60 ? Math.floor(timeLeft / 60) : timeLeft.toFixed(0)} more ${timeLeft > 60 ? "minute(s)" : "second(s)"} before reusing the \`${command.name}\` command.`).then(m => m.delete({ timeout: 5000 }));
+								return message.reply(`please wait ${timeLeft > 60 ? Math.floor(timeLeft / 60) : timeLeft.toFixed(0)} more ${timeLeft > 60 ? "minute(s)" : "second(s)"} before reusing the \`${command.name}\` command.`).
+									then(m => {
+
+										m.delete({ timeout: 15000 })
+										message.delete({timeout: 15000})
+									});
 							}
 						}
 						timestamps.set(message.author.id, now);
