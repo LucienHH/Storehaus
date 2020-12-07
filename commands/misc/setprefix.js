@@ -7,7 +7,7 @@ let helpers = require("../../helpers/helpers")
 
 module.exports = {
     name: 'setprefix',
-    category: 'gaming',
+    category: 'misc',
     aliases: [],
     description: 'Set global prefix for the guild.',
     cooldown: 5,
