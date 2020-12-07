@@ -47,7 +47,7 @@ module.exports = {
                         const colour = await axios.get(url);
             
                         const embed = new Discord.MessageEmbed()
-                            .setAuthor(`${user.settings[1].value}s' gamerpic: `, `${user.settings[0].value}`)
+                            .setAuthor(`${user.settings[1].value}s gamerpic: `, `${user.settings[0].value}`)
                             .setColor(`${colour.data.primaryColor}`)
                             .setImage(`${user.settings[0].value}`);
                         message.channel.send({ embed }).then(m => {
