@@ -97,7 +97,7 @@ module.exports = {
         // Different suffixes relate to the amount of stars on the gamercard. Random suffix is then chosen selecting a random PNG.
         const arr = ['0001', '0002', '0003', '0004', '0005'];
         const randomItem = arr[Math.floor(Math.random() * arr.length)];
-        const background = await loadImage(`./data/gamercards/oldxbox${randomItem}.png`);
+        const background = await loadImage(`../../helpers/gamercards/oldxbox${randomItem}.png`);
 
         // Function that loads multiple images ready for canvas to draw
         function loadImages(sources, callback) {
