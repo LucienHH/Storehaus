@@ -3,6 +3,8 @@ const client = new Discord.Client();
 const helpers = require('../../helpers/helpers');
 const xboxgt = require('../../schemas/xboxgt.js');
 const axios = require('axios');
+const XboxLiveAuth = require('@xboxreplay/xboxlive-auth');
+const XBLAuthentication = require('../../helpers/XBLAuthentication');
 
 module.exports = {
     name: 'xboxavatar',
@@ -14,7 +16,7 @@ module.exports = {
         let errMsg = '';
         helpers.pool.getConnection(function (err, connection) {
             connection.query(`SELECT * FROM ${process.env.mysql_users_table} WHERE user_id = ${message.author.id}`, function (err, result_user) {
-                connection.query(`SELECT * FROM ${process.env.mysql_xbox_table} WHERE user_id = ${result_user[0].id}`, function (err, result_gamertag) {
+                connection.query(`SELECT * FROM ${process.env.mysql_xbox_table} WHERE user_id = ${result_user[0].id}`,async function (err, result_gamertag) {
                     let Gamertag = args[0];
                     try {
                         if (!args[0]) {
@@ -31,14 +33,23 @@ module.exports = {
                         helpers.sendErr(message, errMsg);
                         return;
                     }
-                    const authInfo = { headers: { 'Authorization': process.env.XBOXREPLAY_AUTHORIZATION } };
         
-                    axios.get(`https://api.xboxreplay.net/players/${Gamertag.replace(/_/g, '-')}`, authInfo).then((xb1) => {
-                        if (xb1.data.gamertag === undefined) return message.channel.send('Error reading your profile this will most likely be due to your xbox account privacy settings or an invalid gamertag.');
+                    const settings = ['GameDisplayPicRaw', 'Gamertag', 'PreferredColor'];
+                    const authInfo = await _authenticate();
+                    axios({
+                        method: 'get',
+                        url: `https://profile.xboxlive.com/users/gt(${Gamertag.replace(/_/g, '%20')})/profile/settings`,
+                        params: { settings: settings.join(',') },
+                        headers: { 'x-xbl-contract-version': 2, 'content-type': 'application/json', Authorization: `XBL3.0 x=${authInfo.userHash};${authInfo.XSTSToken}` },
+                    }).then(async (profile) => {
+                        const user = profile.data.profileUsers[0];
+                        const url = user.settings[2].value;
+                        const colour = await axios.get(url);
+            
                         const embed = new Discord.MessageEmbed()
-                            .setAuthor(`${xb1.data.gamertag}'s gamerpic: `, `${xb1.data.gamerpic}`)
-                            .setColor(`${xb1.data.colors.primary}`)
-                            .setImage(`${xb1.data.gamerpic}`);
+                            .setAuthor(`${user.settings[1].value}s gamerpic: `, `${user.settings[0].value}`)
+                            .setColor(`${colour.data.primaryColor}`)
+                            .setImage(`${user.settings[0].value}`);
                         message.channel.send({ embed }).then(m => {
                             m.react('❌')
                                 .then(r => {
@@ -66,3 +77,14 @@ module.exports = {
 
     }
 };
+async function _authenticate() {
+	const savedAuth = XBLAuthentication.get();
+	if (savedAuth.expiresOn &&
+		savedAuth.expiresOn.length > 0 &&
+		new Date(savedAuth.expiresOn) > new Date()
+	) { return savedAuth; }
+	else {
+		const auth = await XboxLiveAuth.authenticate(process.env.XBL_EMAIL, process.env.XBL_PASSWORD);
+		return XBLAuthentication.save(auth);
+	}
+}
