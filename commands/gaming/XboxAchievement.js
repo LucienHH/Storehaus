@@ -46,6 +46,7 @@ module.exports = {
                             msg.channel.awaitMessages(m => m.author.id == message.author.id,
                                 { max: 1, time: 30000 }).then(async collected => {
                                     const content = collected.first().content.toLowerCase();
+                                    collected.first().delete();
                                     // only accept messages by the user who sent the command
                                     // accept only 1 message, and return the promise after 30000ms = 30s
 
@@ -98,39 +99,45 @@ module.exports = {
                             const embed = new Discord.MessageEmbed()
                                 .setColor(33992)
                                 .setTitle('Please select the game you wish to choose')
-                                .setDescription(lstring + '')
-                                .setFooter('Reply "cancel" to end the request');
+                                .setDescription(lstring + '');
                             message.channel.send({ embed }).then((message_) => {
-                                msg.channel.awaitMessages(m => m.author.id == message.author.id,
-                                    { max: 1, time: 30000 }).then(async collected => {
-                                        const content = collected.first().content.toLowerCase();
-                                        const check = helpers.numCheck(1, maxLength, content);
-                                        if (content == 'cancel') {
-                                            errMsg = 'Request was canceled';
-                                            helpers.embedErr(message_, errMsg);
-                                            return;
+                                const reactNumber = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣'];
+                                for (let index = 0; index < order; index++) {
+                                    if (order != 5 && index == order - 1) break;
+                                    message_.react(reactNumber[index]);
+                                }
+            
+                                let num = 0;
+                                const filter = (r, user) => ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣'].includes(r.emoji.name) && user.id == message.author.id;
+                                message_.awaitReactions(filter, { max: 1 })
+                                    .then(collected => {
+                                        const r = collected.first();
+                                        switch (r.emoji.name) {
+                                        case '1️⃣':
+                                            num = 0;
+                                            break;
+                                        case '2️⃣':
+                                            num = 1;
+                                            break;
+                                        case '3️⃣':
+                                            num = 2;
+                                            break;
+                                        case '4️⃣':
+                                            num = 3;
+                                            break;
+                                        case '5️⃣':
+                                            num = 4;
+                                            break;
                                         }
-                                        else if (check.ok === false) {
-                                            errMsg = `Request timed out | ${check.reason}`;
-                                            helpers.embedErr(message_, errMsg);
-                                            return;
-                                        }
-                                        else {
-                                            const num = content - 1;
-                                            const gameInfo = {
-                                                name: xb1.data.data[num].name,
-                                                id: xb1.data.data[num].id,
-                                                hero: xb1.data.data[num].image_urls.hero,
-                                            };
-                                            const desc = 'Gathering information and making request please wait';
-                                            helpers.embedEdit(message_, desc);
-                                            getAchievements(message_, gameInfo);
-                                        }
-                                    }).catch((err) => {
-                                        console.log(err);
-                                        errMsg = `Request timed out | No reply after 30 seconds from [${message.author.username}]`;
-                                        helpers.embedErr(msg, errMsg);
-                                        return;
+                                        const gameInfo = {
+                                            name: xb1.data.data[num].name,
+                                            id: xb1.data.data[num].id,
+                                            hero: xb1.data.data[num].image_urls.hero,
+                                        };
+                                        const desc = 'Gathering information and making request please wait';
+                                        message_.reactions.removeAll();
+                                        helpers.embedEdit(message_, desc);
+                                        getAchievements(message_, gameInfo);
                                     });
                             });
                         }, error => {
