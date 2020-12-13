@@ -71,7 +71,7 @@ client.once('ready', () => {
 	//Sends a message to TR Dev server acknoledging reboot
 	client.channels.cache.get(`727953467443773460`).send('Storehaus has been rebooted.');
 	client.channels.cache.get(`727953467443773460`).send(helpers.getInsult()); //TR Dev Server
-	client.channels.cache.get(`326725980028928011`).send(helpers.getInsult()); //TR Bot-Commands
+	// client.channels.cache.get(`326725980028928011`).send(helpers.getInsult()); //TR Bot-Commands
 	client.user.setActivity(`!help in ${client.guilds.cache.size} servers`);
 	
 	// setInterval(() => {

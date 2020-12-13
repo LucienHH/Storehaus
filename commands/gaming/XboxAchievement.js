@@ -46,6 +46,7 @@ module.exports = {
                             msg.channel.awaitMessages(m => m.author.id == message.author.id,
                                 { max: 1, time: 30000 }).then(async collected => {
                                     const content = collected.first().content.toLowerCase();
+                                    collected.first().delete();
                                     // only accept messages by the user who sent the command
                                     // accept only 1 message, and return the promise after 30000ms = 30s
 
@@ -108,7 +109,7 @@ module.exports = {
             
                                 let num = 0;
                                 const filter = (r, user) => ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣'].includes(r.emoji.name) && user.id == message.author.id;
-                                msg.awaitReactions(filter, { max: 1 })
+                                message_.awaitReactions(filter, { max: 1 })
                                     .then(collected => {
                                         const r = collected.first();
                                         switch (r.emoji.name) {
