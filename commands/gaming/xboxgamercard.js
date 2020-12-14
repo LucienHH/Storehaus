@@ -63,6 +63,12 @@ module.exports = {
                     }).catch(err => {
                         return console.log(`No recent games found for ${gamertag}`);
                     });
+
+                    // Axios request to get the users follower count
+                    const follower = await axios({
+                        url: `https://social.xboxlive.com/users/xuid(${xuid})/summary`,
+                        headers: { 'x-xbl-contract-version': 2, Authorization: `XBL3.0 x=${authInfo.userHash};${authInfo.XSTSToken}`, 'Content-Type': 'application/json', Accept: 'application/json', 'Accept-Language': 'en-US' },
+                    });
             
                     // Axios request to get the users xboxlive presence. Expected output: Online, Offline and Away
                     const presence = await axios({
@@ -74,7 +80,7 @@ module.exports = {
                     });
             
                     const recentgame = titlehistory.data.titles;
-                    const avatar = profile.data.profileUsers[0].settings[0].value;
+                    const avatar = profile.data.profileUsers[0].settings[0].value.replace(/&background=0xababab&mode=Padding&format=png/g, '');
                     const displayGamertag = profile.data.profileUsers[0].settings[2].value;
                     const gamerscore = profile.data.profileUsers[0].settings[1].value;
             
@@ -93,10 +99,21 @@ module.exports = {
                     const canvas = createCanvas(width, height);
                     const context = canvas.getContext('2d');
             
-                    // Different suffixes relate to the amount of stars on the gamercard. Random suffix is then chosen selecting a random PNG.
-                    const arr = ['0001', '0002', '0003', '0004', '0005'];
-                    const randomItem = arr[Math.floor(Math.random() * arr.length)];
-                    const background = await loadImage(`././helpers/gamercards/oldxbox${randomItem}.png`);
+                    // Loads the background and the users avatar. If the users avatar errors for any reason use undefined png
+                    try {
+                        const background = await loadImage('././helpers/gamercards/oldxbox.png');
+                        const loadAvatar = await loadImage(avatar);
+                
+                        context.drawImage(background, 0, 0, width, height);
+                        context.drawImage(loadAvatar, 7 * 2, 23 * 2, 128, 128);
+                    }
+                    catch {
+                        const background = await loadImage('././helpers/gamercards/oldxbox.png');
+                        const loadAvatar = await loadImage('././helpers/gamercards/undefined.png');
+                
+                        context.drawImage(background, 0, 0, width, height);
+                        context.drawImage(loadAvatar, 7 * 2, 23 * 2, 128, 128);
+                    }
             
                     // Function that loads multiple images ready for canvas to draw
                     function loadImages(sources, callback) {
@@ -120,7 +137,6 @@ module.exports = {
             
                     // Object of all the urls for each photo
                     const sources = {
-                        avatar: avatar,
                         first: recentgame[0].displayImage,
                         second: recentgame[1].displayImage,
                         third: recentgame[2].displayImage,
@@ -132,8 +148,6 @@ module.exports = {
                     loadImages(sources, function (images) {
                         
                         // Images are processed onto the canvas
-                        context.drawImage(background, 0, 0, width, height);
-                        context.drawImage(images.avatar, 7 * 2, 23 * 2, 128, 128);
                         context.drawImage(images.first, 7 * 2, 100 * 2, 64, 64);
                         context.drawImage(images.second, 84 * 2, 100 * 2, 64, 64);
                         context.drawImage(images.third, 46 * 2, 100 * 2, 64, 64);
@@ -146,6 +160,11 @@ module.exports = {
                         context.fillStyle = '#000000';
                         context.fillText(displayGamertag, 7 * 2, 16 * 2);
             
+                        context.font = '20pt Arial';
+                        context.fillStyle = '#FFFFFF';
+                        context.textAlign = 'right';
+                        context.fillText(follower.data.targetFollowerCount, 377, 84);
+                    
                         context.font = '20pt Arial';
                         context.fillStyle = '#FFFFFF';
                         context.textAlign = 'right';
@@ -179,11 +198,7 @@ module.exports = {
                         }
                     }
                 })
-
             })
-    
-
           })
-
     }
 };
