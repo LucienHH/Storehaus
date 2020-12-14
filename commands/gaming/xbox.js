@@ -18,6 +18,7 @@ module.exports = {
         .setTitle("Xbox Command List")
         .addField(`Check Achievement Unlocks`, "See if you have unlocked an achievement or not!\n`!check slashstorm` then enter game ID and achievement ID seperated by a space.\n\nExample:`!check slashstorm`, then `1667928394 61`.\n\nYou can discover the GameID and Achievement ID by using `!xachievement` command.")
         .addField(`Xbox Achievements`, "See the achievements you've unlocked!\n `!xachievement slashstorm`")
+        .addField(`Xbox Gamercard`, "See your gamercard featuring your gamerscore and recently played games!`!xgamercard patrossdev`")
         .addField(`Xbox Save Gamertag`, "Save your gamertag to see your gameclips or screenshots.\n`!savegt edpeter`")
 		.addField(`Xbox Avatar`, "See your Xbox Avatar or the avatar of one of your friends. \n`!xavatar slashstorm` or `!xboxavatar slashstorm`")
         .addField(`Xbox Game Clip`, "See gameclips saved on your Xbox profile!\n`!xboxgc`")
