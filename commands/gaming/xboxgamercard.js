@@ -39,7 +39,7 @@ module.exports = {
             
                     // Axios request to get the users profile details. Expected output: GameDisplayPicRaw, Gamerscore, Gamertag
                     const profile = await axios({
-                        url: `https://profile.xboxlive.com/users/gt(${gamertag})/profile/settings`,
+                        url: `https://profile.xboxlive.com/users/gt(${gamertag.replace(/_/g, ' ')})/profile/settings`,
                         params: { settings: settings.join(',') },
                         headers: { 'x-xbl-contract-version': 2, 'content-type': 'application/json', Authorization: `XBL3.0 x=${authInfo.userHash};${authInfo.XSTSToken}` },
                     }).catch(err => {
