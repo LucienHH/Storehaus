@@ -5,9 +5,9 @@ const client = new Discord.Client();
 const fetch = require('node-fetch');
 
 module.exports = {
-    name: 'anime',
+    name: 'animequote',
     category: 'fun',
-    aliases: [],
+    aliases: [`animeq`],
     description: 'Retrieve a quote from an anime. To run, try `!anime random` or `!anime [name of anime series]`',
     cooldown: 5,
     usage: `random or !anime naruto`,
