@@ -53,13 +53,30 @@ fs.readdir('./commands/misc/', (err, files) => {
 		});
 	});
 });
+fs.readdir('./commands/custom/', (err, files) => {
+	if (err) console.error(err);
+	log(`Loading a total of ${files.length} commands.`);
+	files.forEach(f => {
+		const props = require(`./commands/custom/${f}`);
+		log(`Command Loaded! ${props.name}`);
+		client.commands.set(props.name, props);
+		props.aliases.forEach(alias => {
+			client.aliases.set(alias, props.name);
+		});
+	});
+});
 const cooldowns = new Discord.Collection();
 client.once('ready', () => {
 	console.log('Ready to go!');
 	//Sends a message to TR Dev server acknoledging reboot
-	client.channels.cache.get('727953467443773460').send('Storehaus has been rebooted.');
+	client.channels.cache.get(`727953467443773460`).send('Storehaus has been rebooted.');
+	client.channels.cache.get(`727953467443773460`).send(helpers.getInsult()); //TR Dev Server
+	client.channels.cache.get(`326725980028928011`).send(helpers.getInsult()); //TR Bot-Commands
 	client.user.setActivity(`!help in ${client.guilds.cache.size} servers`);
-
+	
+	// setInterval(() => {
+	// 	console.log(client.guilds.cache.map(m => m.members.cache.map(a => a.user.username)));
+	// }, 500)
 	setInterval(() => {
 		helpers.pool.getConnection(function (err, connection) {
 			connection.query(`SELECT * FROM ${process.env.mysql_command_stats_table}`, function (err, results) {
@@ -161,7 +178,12 @@ client.on('message', async message => {
 								//this one works ig
 								const timeLeft = (expirationTime - now) / 1000;
 								timeLeft.toFixed(0);
-								return message.reply(`please wait ${timeLeft > 60 ? Math.floor(timeLeft / 60) : timeLeft.toFixed(0)} more ${timeLeft > 60 ? "minute(s)" : "second(s)"} before reusing the \`${command.name}\` command.`).then(m => m.delete({ timeout: 5000 }));
+								return message.reply(`please wait ${timeLeft > 60 ? Math.floor(timeLeft / 60) : timeLeft.toFixed(0)} more ${timeLeft > 60 ? "minute(s)" : "second(s)"} before reusing the \`${command.name}\` command.`).
+									then(m => {
+
+										m.delete({ timeout: 15000 })
+										message.delete({timeout: 15000})
+									});
 							}
 						}
 						timestamps.set(message.author.id, now);

@@ -15,11 +15,9 @@ module.exports = {
         let errMsg = '';
         const userID = message.author.id;
 
-        let Gamertag = args[0];
-        if (args[0].toLowerCase() === 'update') {
-            Gamertag = args[1];
-        } 
-        else if (args[0] === undefined) {
+        const Gamertag = args.join('_');
+
+        if (!args[0]) {
             message.channel.send("Please provide a gamertag you wish to link to your discord account.")
             return;
         }
@@ -38,22 +36,21 @@ module.exports = {
                             if (err) {
                                 console.log(err);
                             }
-                            console.log(args[0].toLowerCase());
                             if (result.length == 0) {
                                 connection.query(`INSERT INTO ${process.env.mysql_xbox_table} VALUES (NULL, ${result_user[0].id}, "${Gamertag}" )`, function (err, result) {
                                     if (err) {
                                         console.log(err);
                                     }
-                                    message.channel.send(`Successfully added the gamertag '${xb1.data.gamertag}' to the database and linked it to your account! If this doesn't look like your gamertag remember to replace spaces with '_'`);
+                                    message.channel.send(`Successfully added the gamertag '${xb1.data.gamertag}' to the database and linked it to your account!`);
                                 })
                             }
                             else if (result.length == 1) {
 
-                                if (args[0] === 'current') return message.channel.send(`Your saved gamertag is [${result[0].gamertag}] | If this isn't correct do !savegt update gamer\\_tag and remember to replace spaces with '\\_'`)
+                                if (args[0] === 'current') return message.channel.send(`Your saved gamertag is [${result[0].gamertag}] | If this isn't correct do !savegt gamertag`)
 
                                 else if (result[0].gamertag.toLowerCase() == Gamertag.toLowerCase()) {
                                     //same
-                                    message.channel.send(`You\'ve already set your gamertag to ${xb1.data.gamertag}, if you need to update it do !savegt update gamer_tag and remember to replace spaces with '\\_'`);
+                                    message.channel.send(`You\'ve already set your gamertag to ${xb1.data.gamertag}, if you need to update it do !savegt gamertag`);
                                 }
 
                                 else {
@@ -62,7 +59,7 @@ module.exports = {
                                         if (err) {
                                             console.log(err);
                                         }
-                                        message.channel.send(`Successfully updated your gamertag to '${xb1.data.gamertag}' and linked it to your account! If this doesn't look like your gamertag remember to replace spaces with '\\_'`);
+                                        message.channel.send(`Successfully updated your gamertag to '${xb1.data.gamertag}' and linked it to your account!`);
                                     })
                                 }
                             }
