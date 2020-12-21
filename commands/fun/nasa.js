@@ -25,7 +25,7 @@ module.exports = {
             if (data.code == 404) {
                 message.channel.send(new Discord.MessageEmbed()
                 .setColor("#ff00ff")
-                .setTitle(`No Pic of The Day today :(. Try using \`!mars\` instead!)`));
+                .setTitle(`No Pic of The Day today :( Try using \`!mars\` instead!`));
 
                 return;
             }
