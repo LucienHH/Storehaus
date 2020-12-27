@@ -191,28 +191,15 @@ client.on('message', async message => {
 						//End Cooldown implementation
 
 
-
 						try {
-													//check if command disabled in the guild
-						connection.query(`SELECT * FROM ${process.env.mysql_disabled_commands_table} WHERE command_name = '${command.name}' AND guild_id = '${results[0]['id']}'`,function(err,result_disabledcmd){
-							if (err) {
-								console.log(err);
-							}
-							if (result_disabledcmd.length == 1) {
-								message.channel.send(new Discord.MessageEmbed().setTitle("This command is disabled in this guild. To re-enable it, use `!enablecmd [command name]`").setColor("ff0000"))
-								return;
-							}else{
-								command.execute(message, args, client);
-								// command.execute(message, args, client);
-								///INSERT COMMAND NAME TO DATABASE 
-								connection.query(`INSERT INTO ${process.env.mysql_command_stats_table} VALUES ("${command.name}", DEFAULT)`, function (err, results) {
-									if (err) {
-										console.log(err);
-									}
-								})
-							}
-						})
+							command.execute(message, args, client);
+							///INSERT COMMAND NAME TO DATABASE 
 
+							connection.query(`INSERT INTO ${process.env.mysql_command_stats_table} VALUES ("${command.name}", DEFAULT)`, function (err, results) {
+								if (err) {
+									console.log(err);
+								}
+							})
 
 							///
 
