@@ -53,7 +53,6 @@ module.exports = {
                     })
 
                 } else {
-                    console.log("Command not found");
                 }
             })
             connection.release();
