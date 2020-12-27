@@ -194,7 +194,7 @@ client.on('message', async message => {
 								console.log(err);
 							}
 							if (result_disabledcmd.length == 1) {
-								message.channel.send(new Discord.MessageEmbed().setTitle("This command is disabled in this guild").setColor("ff0000"))
+								message.channel.send(new Discord.MessageEmbed().setTitle("This command is disabled in this guild. To re-enable it, use `!enablecmd [command name]`").setColor("ff0000"))
 								return;
 							}else{
 								command.execute(message, args, client);
