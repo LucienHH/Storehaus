@@ -20,7 +20,7 @@ module.exports = {
         var lowerCaseGame = game.toLowerCase();
         var fs = require('fs');
         //Check this text file, if bad input matches, command is not allowed
-        var array = fs.readFileSync('textfiles/BadInput.txt').toString().split("\n");
+        var array = fs.readFileSync('bad_input/BadInput.txt').toString().split("\n");
             //Remove the \r and \n of each element in the array
             for (var i = 0 ; i != array.length ; i++) {
                 array[i] = array[i].trim();

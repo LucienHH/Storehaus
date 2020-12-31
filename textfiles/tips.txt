@@ -1,0 +1,24 @@
+Try running `!gameinfo name of a game` to learn more about a game!
+Want to see how long a game will take to complete? Try running `!playtime name of a game` to find out.
+Made with <3 by AndyTheNerd and PatrossDev.
+Find out when a game is on sale using !steamdeals (name of a game) or !gogdeals (name of a game).
+Please send any hatemail to Slashstorm on Xbox Live.
+Wanna see how many commands I can do? Type !help
+Do you love this bot? Let us know with !feedback
+<3
+Storehaus: A Gaming Info Bot
+Stuck on a command? Try running `help [name of command]` to learn how to use it.
+Wanna invite Storehaus to your own server? Type `!invite` to get an invite link!
+Isn't it beautiful?
+What video game are you playing today?
+Want to see a cool picture of space? Try running `!nasa` or `!mars`
+Storehaus, made with <3 by AndyTheNerd and PatrossDev.
+Want to see all the updates with Storehaus? Try `!support`
+Want to try a new command? Try !random
+Feeling a bit down today? Use !dog to see a cute doggo.
+We have an xbox integration! Try it out with !xbox
+Are you a fan of Age of Empires 2? Try !age2
+We hope you love this bot! 
+James, we need thoses reports.
+Put fate into our hands. Try out !ball or !yesorno
+Grab a random article from Halopedia by using !halopedia random
