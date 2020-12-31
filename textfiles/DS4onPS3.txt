@@ -1,0 +1,215 @@
+    3D Dot Game Heroes
+    Alice: Madness Returns
+    Aliens: Colonial Marines
+    Alpha Protocol
+    Anomaly Warzone Earth
+    Assassin's Creed II
+    Assassin's Creed: Brotherhood
+    Assassin's Creed: Revelations
+    Assassin's Creed III
+    Assassin's Creed IV: Black Flag
+    Assassin's Creed Rogue
+    Atelier Rorona Plus
+    Atelier Shallie: Alchemists of the Dusk Sea
+    Batman: Arkham Asylum
+    Batman: Arkham City
+    Batman: Arkham Origins
+    Battlefield 3
+    Battlefield 4
+    Battlefield: Bad Company 2
+    Beyond: Two Souls
+    Bionic Commando: Rearmed
+    BioShock
+    BioShock 2
+    BioShock Infinite
+    Borderlands
+    Borderlands 2
+    Brothers: A Tale Of Two Sons
+    Call of Duty: Advanced Warfare
+    Call of Duty: Black Ops 2
+    Call of Duty: Black Ops
+    Call of Duty: Modern Warfare
+    Call of Duty: Modern Warfare 2
+    Call of Duty: Modern Warfare 3
+    Call of Duty: Ghosts
+    Castle Crashers
+    Castlevania Harmony of Despair
+    Contrast
+    Dark Souls
+    Dark Souls II
+    Dead Island
+    Dead Nation
+    Dead or Alive 5
+    Dead or Alive 5 Ultimate
+    Dead or Alive 5 Ultimate: Core Fighters
+    Dead Space
+    Demon's Souls
+    Destiny
+    Devil May Cry HD
+    Devil May Cry 4
+    Deadly Premonition: Director's Cut
+    Diablo III
+    Dirt2
+    Dirt3
+    Dishonored
+    Disgaea 4: A Promise Unforgotten
+    DmC Devil May Cry
+    Doom 3 BFG
+    Dragon Age 2
+    Dragon Age: Origins
+    Dragon Age: Inquisition
+    Dragon's Dogma: Dark Arisen
+    Dynasty Warriors 7
+    Dynasty Warriors 8
+    Elder Scrolls IV: Oblivion
+    Elder Scrolls V: Skyrim
+    Eternal Sonata
+    Fallout 3
+    Fallout New Vegas
+    Far Cry 2
+    Far Cry 3
+    Far Cry 3: Blood Dragon
+    Far Cry 4
+    FIFA 13
+    FIFA 14
+    Final Fantasy X HD Remaster
+    Final Fantasy XIII
+    Final Fantasy XIII-2
+    Final Fantasy XIV: A Realm Reborn
+    God of War Saga
+    God of War 2
+    God of War II
+    God of War 3
+    God of War III
+    God of War Chains of Olympus
+    God of War Ghost of Sparta
+    God of War: Ascension
+    Grand Theft Auto IV
+    Grand Theft Auto V
+    Grid Autosport
+    Grid 2
+    Guacamelee!
+    Hannah Montana: The Movie
+    Hatsune Miku: Project Diva F
+    Hatsune Miku: Project Diva F 2nd
+    Heavenly Sword
+    Heavy Rain
+    Hitman HD Trilogy
+    Hitman: Absolution
+    Ico
+    inFAMOUS
+    inFAMOUS: Festival of Blood
+    inFAMOUS 2
+    Journey
+    Just Cause 2
+    Kingdom Hearts HD 1.5 ReMIX
+    Kingdom Hearts HD 2.5 ReMIX
+    Kingdoms Of Amalur: Reckoning
+    Killzone
+    Killzone 2
+    Killzone 3
+    Lego Batman 2: DC Super Heroes
+    Lego Marvel Super Heroes
+    LIMBO
+    LittleBigPlanet
+    LittleBigPlanet 2
+    Lightning Returns: Final Fantasy XIII
+    Lollipop Chainsaw
+    Mafia 2
+    Malicious
+    Mass Effect
+    Mass Effect 2
+    Mass Effect 3
+    Metal Gear Rising: Revengeance
+    Metal Gear Solid: Peace Walker HD
+    Metal Gear Solid 4: Guns of the Patriots
+    Metro: Last Light
+    Mickey's Castle of Illusion
+    minecraft
+    Mirror's Edge
+    MLB 13: The Show
+    Monster Hunter Portable 3rd HD
+    Mortal Kombat
+    Mortal Kombat Vs DC Universe
+    MotorStorm: Apocalypse
+    MotorStorm: Pacific Rift
+    NCAA Football 14
+    Need For Speed: Carbon
+    Need For Speed: Undercover
+    Need For Speed: Most Wanted
+    NHL 14
+    Ni No Kuni: Wrath of the White Witch
+    Operation Flashpoint: Red River
+    Papo & Yo
+    Payday 2
+    Playstation All Stars: Battle Royale
+    Portal 2
+    Persona 4 Arena
+    Prince of Persia (2008)
+    Prince of Persia Trilogy
+    Prototype
+    Rain
+    Ratchet & Clank Collection
+    Ratchet Deadlocked HD
+    Ratchet & Clank Future: Tools of Destruction
+    Ratchet & Clank Future: Quest for Booty
+    Ratchet & Clank Future: A Crack in Time
+    Rayman Legends
+    Red Dead Redemption
+    Remember Me
+    Resident Evil 4 HD
+    Resident Evil 6
+    Resident Evil: Revelations
+    Resistance: Fall of Man
+    Resistance 2
+    SBK Generations
+    Shadow of the Colossus
+    Shadows of the Damned
+    Shank 2
+    Sherlock Holmes: Crimes and Punishments
+    Silent Hill Downpour
+    Skylanders: Giants
+    Skate
+    Skate 2
+    Skate 3
+    Sly Cooper: Thieves in Time
+    Shift 2: Unleashed
+    Sniper Elite V2
+    Sonic the Hedgehog 4 Episode 1
+    South Park: The Stick Of Truth
+    Spec Ops: The Line
+    Spelunky
+    Splinter Cell: Blacklist
+    SSX
+    Starhawk
+    Star Wars Pinball
+    Star Wars The Force Unleashed 1
+    Star Wars The Force Unleashed 2
+    Street Fighter III: Third Strike
+    Street Fighter IV
+    Super Stardust HD
+    Syndicate
+    Tales of Graces f
+    Tales of Xillia
+    Tales of Xillia 2
+    Tekken Tag Tournament 2
+    The Darkness 2
+    The Last of Us
+    Tiger Woods 13
+    Tokyo Jungle
+    Tomb Raider
+    Tom Clancy's Rainbow Six: Vegas 2
+    Tony Hawk's Pro Skater HD
+    Thomas was Alone
+    Uncharted 2: Among Thieves
+    Uncharted 3: Drake's Deception
+    Uncharted: Drake's Fortune
+    Valkyria Chronicles
+    Vanquish
+    Virtua Fighter 5: Final Showdown
+    White Knight Chronicles II
+    WipeOut HD
+    WWE 2k14
+    XCOM: Enemy Unkown
+    Yakuza 4
+    Zone of the Enders HD
